@@ -51,8 +51,10 @@ public class UserApiController {
 	
 	@RequestMapping(path="/user/login", method=RequestMethod.POST)
 	public AppUser login(@RequestParam String email, @RequestParam String password){
-		
-		return new AppUser();
+		if(! appUserDao.searchForUserNameAndPassword(email, password)){
+			return new AppUser();
+		}
+		return appUserDao.getUserInfo(email);
 	}
 
 }

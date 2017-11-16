@@ -1,12 +1,23 @@
 package com.techelevator.alpha.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.constraints.AssertTrue;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties({"password","goodPassword"})
 public class AppUser {
-	private int userId;
+	
+	private long userId = 0;
+	private List<Garden> gardens = new ArrayList<>();
+	private boolean isAdmin = false;
+	
+	
 	@NotBlank (message="Email is required.") @Email (message="Enter a valid email.")
 	private String email;
 	@NotBlank (message="Password is required.")
@@ -37,7 +48,7 @@ public class AppUser {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getUserId() {
+	public long getUserId() {
 		return userId;
 	}
 	public String getPassword() {
@@ -46,8 +57,26 @@ public class AppUser {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public void setUserId(int userId) {
+	public void setUserId(long userId) {
 		this.userId = userId;
+	}
+	public List<Garden> getGardens() {
+		return gardens;
+	}
+	public void addGarden(Garden garden) {
+		gardens.add(garden);
+	}
+
+
+
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+
+
+
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
 	}
 	
 	
