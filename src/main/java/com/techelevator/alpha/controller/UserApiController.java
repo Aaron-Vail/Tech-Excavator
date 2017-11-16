@@ -4,6 +4,7 @@ import java.awt.List;
 
 import javax.validation.Valid;
 
+import org.bouncycastle.util.encoders.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techelevator.alpha.model.AppUser;
+import com.techelevator.alpha.model.AppUserDAO;
 import com.techelevator.alpha.model.Message;
 import com.techelevator.alpha.security.PasswordHasher;
 
@@ -22,26 +24,35 @@ import com.techelevator.alpha.security.PasswordHasher;
 @RestController 
 public class UserApiController {
 	
-//	@Autowired
-//	AppUserDao appUserDao;
+	@Autowired
+	AppUserDAO appUserDao;
 	@Autowired
 	PasswordHasher passwordHasher;
 	
 	@RequestMapping(path = "/user/register", method = RequestMethod.POST)
 	public Message registerUser(@Valid @ModelAttribute AppUser newUser, BindingResult result){
-	
-		if(! result.hasErrors()){
-//			byte[] salt = passwordHasher.generateRandomSalt();
-//			String hashedPassword = passwordHasher.computeHash(password, salt);
-//			appUserDao.createUser(email, hashedPassword, salt);
-			return new Message();
+		
+		Message message = new Message();
+		
+		if(! appUserDao.isEmailAvailable(newUser.getEmail())){
+			message.addMessage("That email is unavaiable.");
+			return message;
+		}else if(! result.hasErrors()){
+			byte[] salt = passwordHasher.generateRandomSalt();
+			String hashedPassword = passwordHasher.computeHash(newUser.getPassword(), salt);
+			appUserDao.createUser(newUser.getEmail(), hashedPassword, new String(Base64.encode(salt)));
+			return message;
 		}
 		else{
-			Message message = new Message();
 			result.getFieldErrors().stream().forEach(f -> message.addMessage(f.getDefaultMessage()));
 			return message;
 		}
 	}
 	
+	@RequestMapping(path="/user/login", method=RequestMethod.POST)
+	public AppUser login(@RequestParam String email, @RequestParam String password){
+		
+		return new AppUser();
+	}
 
 }

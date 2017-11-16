@@ -7,13 +7,13 @@ import org.hibernate.validator.constraints.NotBlank;
 
 public class AppUser {
 	private int userId;
-	@NotBlank (message="Email is required.") @Email (message="Please enter a valid email.")
+	@NotBlank (message="Email is required.") @Email (message="Enter a valid email.")
 	private String email;
 	@NotBlank (message="Password is required.")
 	private String password;
 	
 	private boolean goodPassword;
-	@AssertTrue(message = "That password is bad.")
+	@AssertTrue(message = "Enter a valid.")
 	public boolean isGoodPassword(){
 		if(password == null){
 			return false;
