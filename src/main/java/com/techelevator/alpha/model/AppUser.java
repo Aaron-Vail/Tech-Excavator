@@ -1,9 +1,35 @@
 package com.techelevator.alpha.model;
 
+import javax.validation.constraints.AssertTrue;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+
 public class AppUser {
 	private int userId;
+	@NotBlank (message="Email is required.") @Email (message="Please enter a valid email.")
 	private String email;
+	@NotBlank (message="Password is required.")
 	private String password;
+	
+	private boolean goodPassword;
+	@AssertTrue(message = "That password is bad.")
+	public boolean isGoodPassword(){
+		if(password == null){
+			return false;
+		}
+		boolean length = (password.length() >= 6);
+		boolean containsUpper = false;
+		for(int i = 0; i < password.length(); i++){
+			if(Character.isUpperCase(password.charAt(i))){
+				containsUpper = true;
+				break;
+			}
+		}
+		return (length && containsUpper);
+	}
+	
+	
 	
 	public String getEmail() {
 		return email;

@@ -1,14 +1,18 @@
 package com.techelevator.alpha.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Message {
-	public String message;
+	private List<String> messages = new ArrayList<>();
 
-	public String getMessage() {
-		return message;
+	public List<String> getMessages() {
+		return messages;
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
+	public void addMessage(String message) {
+		this.messages.add(message);
 	}
-
+	
+	
 }
