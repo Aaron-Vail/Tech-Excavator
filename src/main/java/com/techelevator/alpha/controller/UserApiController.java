@@ -2,6 +2,7 @@ package com.techelevator.alpha.controller;
 
 import java.awt.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -21,6 +22,8 @@ import com.techelevator.alpha.model.AppUserDAO;
 import com.techelevator.alpha.model.Message;
 import com.techelevator.alpha.security.PasswordHasher;
 
+
+//Change later
 @CrossOrigin(origins = "*")
 @RestController 
 public class UserApiController {
@@ -51,14 +54,14 @@ public class UserApiController {
 	}
 	
 	@RequestMapping(path="/user/login", method=RequestMethod.POST)
-	public AppUser login(@RequestParam String email, @RequestParam String password, HttpSession session){
+	public AppUser login(@RequestParam String email, @RequestParam String password, HttpServletRequest request){
 		if(! appUserDao.searchForUserNameAndPassword(email, password)){
 			return new AppUser();
 		}
 		
 		AppUser user = appUserDao.getUserInfo(email);
-		
-		session.setAttribute("currentUser", user);
+		request.changeSessionId();
+		request.getSession().setAttribute("currentUser", user);
 		
 		return user;
 	}

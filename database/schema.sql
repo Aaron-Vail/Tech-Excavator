@@ -20,12 +20,6 @@ CREATE TABLE garden(
     CONSTRAINT pk_garden_id PRIMARY KEY (garden_id)
 );
 
-CREATE TABLE plot(
-    plot_id SERIAL,
-    garden_id INT NOT NULL REFERENCES garden(garden_id),
-    plot_json VARCHAR(1020),
-    CONSTRAINT pk_plot_id PRIMARY KEY (plot_id)
-);
 CREATE TABLE plant(
     plant_id SERIAL,
     scientific_name VARCHAR(255) NOT NULL,
@@ -34,8 +28,17 @@ CREATE TABLE plant(
     area_per_plant DECIMAL NOT NULL,
     desired_light VARCHAR(255) NOT NULL,
     image_link VARCHAR(255) NOT NULL,
-    planting_directions VARCHAR(1020) NOT NULL,
+    planting_directions TEXT NOT NULL,
     CONSTRAINT pk_plant_id PRIMARY KEY (plant_id)
 );
+
+CREATE TABLE plot(
+    plot_id SERIAL,
+    garden_id INT NOT NULL REFERENCES garden(garden_id),
+    plot_json TEXT,
+    plant_id INT NOT NULL REFERENCES plant(plant_id),
+    CONSTRAINT pk_plot_id PRIMARY KEY (plot_id)
+);
+
 
 COMMIT;
