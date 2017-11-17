@@ -53,10 +53,10 @@
                       <p class="pw_requirements">At Least 6 Characters and 1 Capital Letter</p>
                     </div>
                     <div class="form-group">
-                      <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+                      <input type="text" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
                     </div>
                     <div class="form-group">
-                      <input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+                      <input type="text" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
                     </div>
                     <div class="form-group">
                       <div class="row">

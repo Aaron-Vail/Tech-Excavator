@@ -1,5 +1,10 @@
 $(function() {
 
+	//oneUppercase - method to require uppercase letter in password
+	$.validator.addMethod("oneUppercase", function(value) {
+		return value.match(/[A-Z]/);
+	});
+
 	$("#login-form").validate({
 		errorClass: 'field-validation-error',
 		rules: {
@@ -8,14 +13,6 @@ $(function() {
 			},
 			"password": {
 				required: true,
-			},
-		},
-		messages: {
-			"email": {
-				required: "*",
-			},
-			"password": {
-				required: "*",
 			},
 		},
 	});
@@ -30,23 +27,21 @@ $(function() {
 			"password": {
 				required: true,
 				minlength: 6,
+				oneUppercase: true,
 			},
 			"confirm-password": {
-				required: true,
-				equalTo: "#Password",
+				equalTo: "#password",
 			},
 		},
 		messages: {
 			"email": {
-				required: "*",
 				email: "Please enter a valid email address",
 			},
 			"password": {
-				required: "*",
 				minlength: "Password must be 6 or more characters",
+				oneUppercase: "Password must contain at least one uppercase letter",
 			},
 			"confirm-password": {
-				required: "*",
 				equalTo: "Password does not match",
 			},
 		},
@@ -54,3 +49,9 @@ $(function() {
 	});
 
 });
+
+
+
+
+
+
