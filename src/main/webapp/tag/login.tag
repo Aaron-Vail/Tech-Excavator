@@ -278,20 +278,19 @@
     //AJAX
     this.login = function(event) {
       $.ajax({
-        url: root + "user/login",
         type: "POST",
+        url: root + "user/login",
         data: {
           email: email,
           password: password,
         },
-        dataType: "json"
-      }).done(function(data) {
-        if(data == "success") {
-          alert("You did it, I think...");
-        } else {
-          alert("You suck!");
-        }
-      })
+        success: function(data) {
+        },
+        error: function(xhr, status, error) {
+          // check status && error
+        },
+        dataType: "json",
+      }).
       event.preventDefault();
     }
 
