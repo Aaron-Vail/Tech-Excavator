@@ -20,4 +20,15 @@ CREATE TABLE garden(
     CONSTRAINT pk_garden_id PRIMARY KEY (garden_id)
 );
 
+CREATE TABLE plant(
+    plant_id SERIAL,
+    scientific_name VARCHAR(255) NOT NULL,
+    common_name VARCHAR(255) NOT NULL,
+    price_per_plant DECIMAL NOT NULL,
+    area_per_plant DECIMAL NOT NULL,
+    desired_light VARCHAR(255) NOT NULL,
+    image_link VARCHAR(255) NOT NULL,
+    planting_directions VARCHAR(1020) NOT NULL
+)
+
 COMMIT;

@@ -24,7 +24,7 @@ public class AppUser {
 	private String password;
 	
 	private boolean goodPassword;
-	@AssertTrue(message = "Enter a valid.")
+	@AssertTrue(message = "Enter a valid password.")
 	public boolean isGoodPassword(){
 		if(password == null){
 			return false;

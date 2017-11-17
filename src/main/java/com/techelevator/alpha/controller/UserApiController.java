@@ -2,6 +2,7 @@ package com.techelevator.alpha.controller;
 
 import java.awt.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.bouncycastle.util.encoders.Base64;
@@ -50,11 +51,26 @@ public class UserApiController {
 	}
 	
 	@RequestMapping(path="/user/login", method=RequestMethod.POST)
-	public AppUser login(@RequestParam String email, @RequestParam String password){
+	public AppUser login(@RequestParam String email, @RequestParam String password, HttpSession session){
 		if(! appUserDao.searchForUserNameAndPassword(email, password)){
 			return new AppUser();
 		}
-		return appUserDao.getUserInfo(email);
+		
+		AppUser user = appUserDao.getUserInfo(email);
+		
+		session.setAttribute("currentUser", user);
+		
+		return user;
+	}
+	
+	@RequestMapping(path="/user/logout", method=RequestMethod.POST)
+	public void logout(HttpSession session){
+		session.removeAttribute("currentUser");
+	}
+	
+	@RequestMapping(path="/user/currentUser", method = RequestMethod.GET)
+	public AppUser getCurrentUser(HttpSession session){
+		return (AppUser)session.getAttribute("currentUser");
 	}
 
 }
