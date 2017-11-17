@@ -60,6 +60,8 @@ public class UserApiController {
 		}
 		
 		AppUser user = appUserDao.getUserInfo(email);
+		
+		request.getSession(true);
 		request.changeSessionId();
 		request.getSession().setAttribute("currentUser", user);
 		
