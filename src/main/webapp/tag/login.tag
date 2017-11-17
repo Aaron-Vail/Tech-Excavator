@@ -8,7 +8,7 @@
           <h1 class="app_title">Tech Excavator</h1>
             <div class="description">
               <p class="caption">
-                Choose your crops  |  Find your flowers  |  Plot your land  |  Build your garden
+                Choose your crops | Find your flowers | Plot your land | Build your garden
               </p>
             </div>
         </div>
@@ -31,6 +31,7 @@
               <div class="row">
                 <div class="col-lg-12">
                   <form id="login-form" action="../html/home.html" method="POST" role="form" style="display: block;">
+                    <p>{errorMessage}</p>
                     <div class="form-group">
                       <input type="text" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
                     </div>
@@ -40,28 +41,29 @@
                     <div class="form-group">
                       <div class="row">
                         <div class="col-lg-12">
-                          <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+                          <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In" onclick="{login}">
                         </div>
                       </div>
                     </div>
                   </form>
-                  <form id="register-form" action="#" method="post" role="form" style="display: none;">
+                  <form id="register-form" action="../html.login.html" method="post" role="form" style="display: none;">
+                    <p>{errorMessage}</p>
                     <div class="form-group">
-                      <input type="text" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+                      <input type="text" name="email" id="register-email" tabindex="1" class="form-control" placeholder="Email Address" value="">
                     </div>
                     <div class="form-group pw_req_div">
                       <p class="pw_requirements">At Least 6 Characters and 1 Capital Letter</p>
                     </div>
                     <div class="form-group">
-                      <input type="text" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+                      <input type="password" name="password" id="register-password" tabindex="2" class="form-control" placeholder="Password">
                     </div>
                     <div class="form-group">
-                      <input type="text" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+                      <input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
                     </div>
                     <div class="form-group">
                       <div class="row">
                         <div class="col-lg-12">
-                          <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+                          <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now" onclick="{register}">
                         </div>
                       </div>
                     </div>
@@ -74,6 +76,7 @@
       </div>
     </div>
   </div>
+
 
   <!-- css -->
   <style>
@@ -258,12 +261,45 @@
     }
   </style>
 
+
   <!-- script -->
   <script>
 
+    //Variables
+    this.errorMessage = "";
+    this.email=$("#email").val();
+    this.password=$("#password").val();
+    var root = "http://localhost:8080/capstone/";
+
+    //RIOT Mount
     this.on('mount', function() {
     });
 
+    //AJAX
+    this.login = function(event) {
+      $.ajax({
+        url: root + "user/login",
+        type: "POST",
+        data: {
+          email: email,
+          password: password,
+        },
+        dataType: "json"
+      }).done(function(data) {
+        if(data == "success") {
+          alert("You did it, I think...");
+        } else {
+          alert("You suck!");
+        }
+      })
+      event.preventDefault();
+    }
+
+    this.register = function(event) {
+      event.preventDefault();
+    }
+
+    //Transition from Login to Register tabs and back
     $(function() {
       $('#login-form-link').click(function(e) {
         $("#login-form").delay(100).fadeIn(100);

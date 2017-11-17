@@ -20,24 +20,24 @@ $(function() {
 	$("#register-form").validate({
 		errorClass: 'field-validation-error',
 		rules: {
-			"email": {
+			"register-email": {
 				required: true,
 				email: true,
 			},
-			"password": {
+			"register-password": {
 				required: true,
 				minlength: 6,
 				oneUppercase: true,
 			},
 			"confirm-password": {
-				equalTo: "#password",
+				equalTo: "#register-password",
 			},
 		},
 		messages: {
-			"email": {
+			"register-email": {
 				email: "Please enter a valid email address",
 			},
-			"password": {
+			"register-password": {
 				minlength: "Password must be 6 or more characters",
 				oneUppercase: "Password must contain at least one uppercase letter",
 			},
