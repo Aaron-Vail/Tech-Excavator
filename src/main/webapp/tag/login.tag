@@ -30,7 +30,7 @@
             <div class="panel-body">
               <div class="row">
                 <div class="col-lg-12">
-                  <form id="login-form" action="../html/home.html" method="POST" role="form" style="display: block;">
+                  <form id="login-form" action="#" method="POST" role="form" style="display: block;">
                     <p>{errorMessage}</p>
                     <div class="form-group">
                       <input type="text" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
@@ -46,7 +46,7 @@
                       </div>
                     </div>
                   </form>
-                  <form id="register-form" action="../html.login.html" method="post" role="form" style="display: none;">
+                  <form id="register-form" action="#" method="post" role="form" style="display: none;">
                     <p>{errorMessage}</p>
                     <div class="form-group">
                       <input type="text" name="email" id="register-email" tabindex="1" class="form-control" placeholder="Email Address" value="">
@@ -277,21 +277,16 @@
 
     //AJAX
     this.login = function(event) {
+      event.stopPropagation();
+      event.preventDefault();
       $.ajax({
         type: "POST",
-        url: root + "user/login",
-        data: {
-          email: email,
-          password: password,
-        },
-        success: function(data) {
-        },
-        error: function(xhr, status, error) {
-          // check status && error
-        },
+        url: 'http://localhost:8080/capstone/user/login?password=Password&email=trial@user.edu',
         dataType: "json",
-      }).
-      event.preventDefault();
+      }).then(function(data){
+        alert(data.userId);
+      });
+
     }
 
     this.register = function(event) {
