@@ -267,8 +267,6 @@
 
     //Variables
     this.errorMessage = "";
-    this.email=$("#email").val();
-    this.password=$("#password").val();
     var root = "http://localhost:8080/capstone/";
 
     //RIOT Mount
@@ -277,20 +275,45 @@
 
     //AJAX
     this.login = function(event) {
+      var email=$("#email").val();
+      var password=$("#password").val();
       event.stopPropagation();
       event.preventDefault();
+
       $.ajax({
         type: "POST",
-        url: 'http://localhost:8080/capstone/user/login?password=Password&email=trial@user.edu',
-        dataType: "json",
+        
+        //I DON'T KNOW OF A BETTER WAY TO DO THIS, WE WILL HAVE TO ASK JOE
+        url: root + 'user/login?email=' + email + "&password=" + password,
+
       }).then(function(data){
+
+        //PUT REDIRECT STUFF HERE
+        
+        //THIS ALERT GIVES THE ID OF THE RETURNED USER, OR 0 IF THE LOGIN FAILS
         alert(data.userId);
       });
-
     }
 
     this.register = function(event) {
+      var email=$("#register-email").val();
+      var password=$("#register-password").val();
+      event.stopPropagation();
       event.preventDefault();
+
+      $.ajax({
+        type: "POST",
+        
+        //I DON'T KNOW OF A BETTER WAY TO DO THIS, WE WILL HAVE TO ASK JOE
+        url: root + 'user/register?email=' + email + "&password=" + password,
+
+      }).then(function(data){
+
+        //PUT REDIRECT STUFF HERE
+
+        //THIS ALERT WILL SHOW NOTHING IF REGISTRATION SUCCEEDS.  THE ONLY THING THAT SHOUlD SHOW NATURALLY IS THE EMAIL IS UNAVAILABLE MESSAGE
+          alert(data.messages);
+      });
     }
 
     //Transition from Login to Register tabs and back

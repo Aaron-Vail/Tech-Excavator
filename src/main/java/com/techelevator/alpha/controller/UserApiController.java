@@ -12,6 +12,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,13 +55,13 @@ public class UserApiController {
 		}
 	}
 	
-	@RequestMapping(path="/user/login", method=RequestMethod.POST)
-	public AppUser login(@RequestParam String email, @RequestParam String password, HttpServletRequest request){
-		if(! appUserDao.searchForUserNameAndPassword(email, password)){
+	@PostMapping("/user/login")
+	public AppUser login(@ModelAttribute AppUser loginUser, HttpServletRequest request){
+		if(! appUserDao.searchForUserNameAndPassword(loginUser.getEmail(), loginUser.getPassword())){
 			return new AppUser();
 		}
 		
-		AppUser user = appUserDao.getUserInfo(email);
+		AppUser user = appUserDao.getUserInfo(loginUser.getEmail());
 		
 		request.getSession(true);
 		request.changeSessionId();
