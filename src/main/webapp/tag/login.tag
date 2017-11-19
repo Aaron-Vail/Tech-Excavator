@@ -1,6 +1,7 @@
+<!-- THIS IS A RIOT COMPONENT - ALL OF THIS CODE IS PLACED IN THE login.html USING <login></login> -->
 <login>
 
-  <!-- html -->
+  <!-- HTML SPECIFIC TO THIS COMPONENT -->
   <div class="jumbotron vertical-center">
     <div class="container">
       <div class="row">
@@ -31,12 +32,11 @@
               <div class="row">
                 <div class="col-lg-12">
                   <form id="login-form" action="#" method="POST" role="form" style="display: block;">
-                    <p>{errorMessage}</p>
                     <div class="form-group">
-                      <input type="text" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+                      <input type="text" name="login-email" id="login-email" tabindex="1" class="form-control" placeholder="Email Address" value="">
                     </div>
                     <div class="form-group">
-                      <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+                      <input type="password" name="login-password" id="login-password" tabindex="2" class="form-control" placeholder="Password">
                     </div>
                     <div class="form-group">
                       <div class="row">
@@ -46,16 +46,15 @@
                       </div>
                     </div>
                   </form>
-                  <form id="register-form" action="#" method="post" role="form" style="display: none;">
-                    <p>{errorMessage}</p>
+                  <form id="register-form" action="#" method="POST" role="form" style="display: none;">
                     <div class="form-group">
-                      <input type="text" name="email" id="register-email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+                      <input type="text" name="register-email" id="register-email" tabindex="1" class="form-control" placeholder="Email Address" value="">
                     </div>
                     <div class="form-group pw_req_div">
                       <p class="pw_requirements">At Least 6 Characters and 1 Capital Letter</p>
                     </div>
                     <div class="form-group">
-                      <input type="password" name="password" id="register-password" tabindex="2" class="form-control" placeholder="Password">
+                      <input type="password" name="register-password" id="register-password" tabindex="2" class="form-control" placeholder="Password">
                     </div>
                     <div class="form-group">
                       <input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
@@ -78,7 +77,7 @@
   </div>
 
 
-  <!-- css -->
+  <!-- CSS SPECIFIC TO THIS COMPONENT-->
   <style>
     .app_title {
       font-family: 'Fugaz One';
@@ -262,61 +261,125 @@
   </style>
 
 
-  <!-- script -->
+  <!-- JAVASCRIPT SPECIFIC TO THIS COMPONENT -->
   <script>
 
-    //Variables
-    this.errorMessage = "";
+    //VALIDATION  
+    $(function() {
+      //oneUppercase - method to require uppercase letter in password
+      $.validator.addMethod("oneUppercase", function(value) {
+        return value.match(/[A-Z]/);
+      });
+
+      $("#login-form").validate({
+        rules: {
+          "login-email": {
+            required: true,
+          },
+          "login-password": {
+            required: true,
+          }
+        }
+      });
+
+      $("#register-form").validate({
+        rules: {
+          "register-email": {
+            required: true,
+            email: true,
+          },
+          "register-password": {
+            required: true,
+            minlength: 6,
+            oneUppercase: true,
+          },
+          "confirm-password": {
+            required: true,
+            minlength: 6,
+            oneUppercase: true,
+            equalTo: "#register-password",
+          }
+        },
+        messages: {
+          "register-email": {
+            email: "Please enter a valid email address",
+          },
+          "register-password": {
+            minlength: "Password must be 6 or more characters",
+            oneUppercase: "Password must contain at least one uppercase letter",
+          },
+          "confirm-password": {
+            equalTo: "Password does not match",
+          }
+        }
+      });
+    });
+
+    //VARIABLES
     var root = "http://localhost:8080/capstone/";
 
-    //RIOT Mount
+    //RIOT MOUNT
     this.on('mount', function() {
     });
 
-    //AJAX
+    //AJAX LOGIN
     this.login = function(event) {
-      var email=$("#email").val();
-      var password=$("#password").val();
+      var email=$("#login-email").val();
+      var password=$("#login-password").val();
       event.stopPropagation();
       event.preventDefault();
-
       $.ajax({
         type: "POST",
-        
         //I DON'T KNOW OF A BETTER WAY TO DO THIS, WE WILL HAVE TO ASK JOE
         url: root + 'user/login?email=' + email + "&password=" + password,
-
       }).then(function(data){
-
-        //PUT REDIRECT STUFF HERE
-        
-        //THIS ALERT GIVES THE ID OF THE RETURNED USER, OR 0 IF THE LOGIN FAILS
-        alert(data.userId);
+        if(data.userId == 0) {
+          alert("Please enter a valid email address and password.");
+          //resets input fields
+          $("#login-email").val("");
+          $("#login-password").val("");
+        } else {
+          alert("userId: " + data.userId + "\n"
+              + "gardens: " + data.gardens.length + "\n"
+              + "email address: " + data.email + "\n"
+              + "is admin: " + data.admin);
+            window.location.href = "../html/home.html";
+        }
       });
     }
 
+    //AJAX REGISTRATION
     this.register = function(event) {
       var email=$("#register-email").val();
       var password=$("#register-password").val();
       event.stopPropagation();
       event.preventDefault();
-
       $.ajax({
         type: "POST",
-        
         //I DON'T KNOW OF A BETTER WAY TO DO THIS, WE WILL HAVE TO ASK JOE
         url: root + 'user/register?email=' + email + "&password=" + password,
-
       }).then(function(data){
-
-        //PUT REDIRECT STUFF HERE
-
-        //THIS ALERT WILL SHOW NOTHING IF REGISTRATION SUCCEEDS.  THE ONLY THING THAT SHOUlD SHOW NATURALLY IS THE EMAIL IS UNAVAILABLE MESSAGE
-          alert(data.messages);
+        if(data.messages == "0") {
+          alert("That email address is already being used.");
+          resetRegistrationInputFields();
+         } else if(data.messages == "") {
+            alert("You succesfully registered. You can now login.");
+            resetRegistrationInputFields();
+         } else {
+            alert(data.messages);
+            resetRegistrationInputFields();
+          }
       });
     }
 
-    //Transition from Login to Register tabs and back
+    //CLEARS INPUT FIELD AFTER BUTTONS CLICKED
+    function resetRegistrationInputFields() {
+      $("#register-email").val("");
+      $("#register-password").val("");
+      $("#confirm-password").val("");
+    }
+
+    //TRANSITION FROM LOGIN TO REGISTER TABS AND BACK
     $(function() {
       $('#login-form-link').click(function(e) {
         $("#login-form").delay(100).fadeIn(100);

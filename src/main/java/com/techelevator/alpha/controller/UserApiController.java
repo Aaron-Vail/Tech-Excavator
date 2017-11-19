@@ -41,7 +41,8 @@ public class UserApiController {
 		Message message = new Message();
 		
 		if(! appUserDao.isEmailAvailable(newUser.getEmail())){
-			message.addMessage("That email is unavaiable.");
+//			Note From Bobby: I changed message to return 0 if email address is already being used. Is now being handled in front end.
+			message.addMessage("0");
 			return message;
 		}else if(! result.hasErrors()){
 			byte[] salt = passwordHasher.generateRandomSalt();
