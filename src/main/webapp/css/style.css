@@ -1,0 +1,77 @@
+.navbar {
+	background-color: #2E7F39;
+	padding-top: 25px;
+	padding-bottom: 25px;
+	margin-bottom: 0px;
+	border: 0px white;
+	border-radius: 0px;
+}
+
+.navbar-default .navbar-brand {
+	color: white;
+	font-family: 'Fugaz One';
+	font-size: 5rem;
+	padding-left: 50px;
+}
+
+.navbar-default .navbar-nav > li > a {
+	color: white;
+}
+
+#usersEmailAddress {
+	font-family: 'Barlow';
+	font-size: 1.5rem;
+	padding-right: 5px;
+}
+
+#dropdownMenu1 {
+	width: 35%;
+	border-radius: 0px;
+	text-align: left;
+	padding-left: 25px;
+	background-color: white;
+}
+
+#gardenDropDownItems {
+	width: 100%;
+	border-radius: 0px;
+	text-align: left;
+	padding-left: 5px;
+}
+
+.caret {
+	float: right;
+	margin-top: 7px;
+}
+
+.input-group-addon {
+	border-radius: 0px;
+}
+
+#userDropDown {
+	padding-right: 50px;
+}
+
+.dropdown {
+	display: inline;
+	padding-right: 0px;
+	border-right: 0px;
+}
+
+#dropdownMenu1, #gardensButton, #minusButton, #plusButton, #saveButton, #shareButton, #shoppingListButton {
+	border-radius: 0px;
+	width: 100%;
+}
+
+.col-md-1, .col-md-6 {
+	padding: 0;
+}
+
+.row.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.container-fluid {
+	padding: 0;
+}

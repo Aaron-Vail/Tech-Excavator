@@ -1,4 +1,4 @@
-<!-- THIS IS A RIOT COMPONENT - ALL OF THIS CODE IS PLACED IN THE login.html USING <login></login> -->
+<!-- THIS IS A RIOT COMPONENT - ALL OF THIS CODE IS PLACED IN login.html USING <login></login> -->
 <login>
 
   <!-- HTML SPECIFIC TO THIS COMPONENT -->
@@ -342,10 +342,6 @@
           $("#login-email").val("");
           $("#login-password").val("");
         } else {
-          alert("userId: " + data.userId + "\n"
-              + "gardens: " + data.gardens.length + "\n"
-              + "email address: " + data.email + "\n"
-              + "is admin: " + data.admin);
           if(data.admin == true) {
             window.location.href = "../html/admin.html";
           } else {
