@@ -62,7 +62,7 @@
                     <div class="form-group">
                       <div class="row">
                         <div class="col-lg-12">
-                          <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now" onclick="{register}">
+                          <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
                         </div>
                       </div>
                     </div>
@@ -264,6 +264,8 @@
   <!-- JAVASCRIPT SPECIFIC TO THIS COMPONENT -->
   <script>
 
+    var self = this;
+
     //VALIDATION  
     $(function() {
       //oneUppercase - method to require uppercase letter in password
@@ -294,9 +296,6 @@
             oneUppercase: true,
           },
           "confirm-password": {
-            required: true,
-            minlength: 6,
-            oneUppercase: true,
             equalTo: "#register-password",
           }
         },
@@ -311,12 +310,13 @@
           "confirm-password": {
             equalTo: "Password does not match",
           }
-        }
+        },
+        submitHandler: self.register,
       });
     });
 
     //VARIABLES
-    var root = "http://localhost:8080/capstone/";
+    // var root = "http://localhost:8080/capstone/";
 
     //RIOT MOUNT
     this.on('mount', function() {
@@ -330,8 +330,11 @@
       event.preventDefault();
       $.ajax({
         type: "POST",
-        //I DON'T KNOW OF A BETTER WAY TO DO THIS, WE WILL HAVE TO ASK JOE
-        url: root + 'user/login?email=' + email + "&password=" + password,
+        url: GARDEN.root + 'user/login',
+        data: {
+          email: email,
+          password: password
+        }
       }).then(function(data){
         if(data.userId == 0) {
           alert("Please enter a valid email address and password.");
@@ -343,21 +346,28 @@
               + "gardens: " + data.gardens.length + "\n"
               + "email address: " + data.email + "\n"
               + "is admin: " + data.admin);
+          if(data.admin == true) {
+            window.location.href = "../html/admin.html";
+          } else {
             window.location.href = "../html/home.html";
+          }
         }
       });
     }
 
     //AJAX REGISTRATION
-    this.register = function(event) {
+    this.register = function(form, event) {
       var email=$("#register-email").val();
       var password=$("#register-password").val();
       event.stopPropagation();
       event.preventDefault();
       $.ajax({
         type: "POST",
-        //I DON'T KNOW OF A BETTER WAY TO DO THIS, WE WILL HAVE TO ASK JOE
-        url: root + 'user/register?email=' + email + "&password=" + password,
+        url: GARDEN.root + 'user/register',
+        data: {
+          email: email,
+          password: password
+        }
       }).then(function(data){
         if(data.messages == "0") {
           alert("That email address is already being used.");
