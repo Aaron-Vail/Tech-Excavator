@@ -296,9 +296,6 @@
             oneUppercase: true,
           },
           "confirm-password": {
-            // required: true,
-            // minlength: 6,
-            // oneUppercase: true,
             equalTo: "#register-password",
           }
         },
@@ -319,7 +316,7 @@
     });
 
     //VARIABLES
-    var root = "http://localhost:8080/capstone/";
+    // var root = "http://localhost:8080/capstone/";
 
     //RIOT MOUNT
     this.on('mount', function() {
@@ -333,7 +330,7 @@
       event.preventDefault();
       $.ajax({
         type: "POST",
-        url: root + 'user/login',
+        url: GARDEN.root + 'user/login',
         data: {
           email: email,
           password: password
@@ -349,7 +346,11 @@
               + "gardens: " + data.gardens.length + "\n"
               + "email address: " + data.email + "\n"
               + "is admin: " + data.admin);
+          if(data.admin == true) {
+            window.location.href = "../html/admin.html";
+          } else {
             window.location.href = "../html/home.html";
+          }
         }
       });
     }
@@ -362,7 +363,7 @@
       event.preventDefault();
       $.ajax({
         type: "POST",
-        url: root + 'user/register',
+        url: GARDEN.root + 'user/register',
         data: {
           email: email,
           password: password

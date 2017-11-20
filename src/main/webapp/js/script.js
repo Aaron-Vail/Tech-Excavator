@@ -1,17 +1,20 @@
 $(function() {
-	alert("userId: " + userId + "\n"
-	    + "gardens: " + gardens.length + "\n"
-	    + "email address: " + email + "\n"
-        + "is admin: " + admin);
-
+	var userId;
+	var gardens;
+	var email;
+	var admin;
 	$.ajax({
-		url: "/user/currentUser",
+		url: GARDEN.root + "user/currentUser",
 		type: "GET",
-		dataType: "json"
+		dataType: "json",
 	}).done(function(data) {
-		var userId = data.userId;
-		var gardens = data.gardens;
-		var email = data.email;
-		var admin = data.admin
-	})
+		$("#spanUserId").text(data.userId);
+		$("#spanGardens").text(data.gardens.length);
+		for(var i = 0; i < data.gardens.length; i++) {
+			$("#gardenList").append('<li>Name: '+ data.gardens[i].gardenName + ' Id: ' + data.gardens[i].gardenId + '</li>');
+		}
+		$("#spanEmailAddress").text(data.email);
+		$("#spanAdmin").text(data.admin);
+	});
+	
 });
