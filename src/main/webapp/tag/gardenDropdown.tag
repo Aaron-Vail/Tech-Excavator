@@ -95,12 +95,16 @@
 				$("#usersEmailAddress").text(data.email);
 				self.update();
 			});
-   		 });
+   		 })
 
-		
 		//Get garden by Id
+
 		this.getGardenById = function(event) {
-			alert(self.gardens[].gardenId);
+			var selectedIndex = null;
+			$('#gardenDropDownItems a').on('click', function(){
+				selectedIndex = $(this).closest('li').index();
+			});
+			alert(self.gardens[selectedIndex].gardenId);
 			$.ajax({
 				url: GARDEN.root + "getGarden",
 				type: "GET",
@@ -109,9 +113,6 @@
 				alert("You've made it this far");
 			});
 		}
-
-// #gardenDropDownItems
-
 
 	</script>
 
