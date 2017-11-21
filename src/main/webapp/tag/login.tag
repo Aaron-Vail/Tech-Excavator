@@ -336,7 +336,7 @@
           password: password
         }
       }).then(function(data){
-        if(data.userId == 0) {
+        if(data == "invalid") {
           alert("Please enter a valid email address and password.");
           //resets input fields
           $("#login-email").val("");

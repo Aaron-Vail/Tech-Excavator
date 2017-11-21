@@ -1,25 +1,19 @@
 $(function() {
 
-	//Get all gardens by currentUserId
-	$.ajax({
-		url: GARDEN.root + "user/currentUser",
-		type: "GET",
-		dataType: "json",
-	}).done(function(data) {
-		// $("#spanUserId").text(data.userId);
-		// $("#spanGardens").text(data.gardens.length);
-		for(var i = 0; i < data.gardens.length; i++) {
-			$("#gardenDropDownItems").append('<li><a href="#">' + data.gardens[i].gardenName + '</a></li>');
-		}
-		$("#usersEmailAddress").text(data.email);
-		// $("#spanAdmin").text(data.admin);
-	});
 
+	//Logout
+	document.getElementById ("logoutButton").addEventListener ("click", function(){
+		$.ajax({
+			url: GARDEN.root + "user/logout",
+			type: "POST"
+		}).done(function(data) {
+			window.location.href = "../html/login.html";
+		});
+	});
 
 	//Makes it so button doesn't remain grey after you click on it
 	$(".btn").mouseup(function(){
 	    $(this).blur();
 	})
-	
 	
 });

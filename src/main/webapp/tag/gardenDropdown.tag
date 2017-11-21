@@ -7,13 +7,26 @@
 	  	<div class="col-md-1">
 	  		<button id="gardensButton" type="button" class="btn btn-default btn-static">Gardens</button>
 	  	</div>
-	  	<div class="col-md-6 dropdown">
+<!-- 	<div class="col-md-6 dropdown">
 	  		<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Name of Garden Goes Here<span class="caret"></span>
 			</button>
-			<ul class="dropdown-menu" id="gardenDropDownItems" aria-labelledby="dropdownMenu1"></ul>
+			<ul class="dropdown-menu" id="gardenDropDownItems" aria-labelledby="dropdownMenu1">
+				<li each={ gardens }>{gardenName}</li>
+			</ul>
+	  	</div> -->
+	  	<div class="col-md-6 dropdown">
+	  		<select class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+			  <option value="volvo">Volvo</option>
+			  <option value="saab">Saab</option>
+			  <option value="mercedes">Mercedes</option>
+			  <option value="audi">Audi</option>
+			</select>
+<!-- 			<ul class="dropdown-menu" id="gardenDropDownItems" aria-labelledby="dropdownMenu1">
+				<li each={ gardens }>{gardenName}</li>
+			</ul> -->
 	  	</div>
 	  	<div class="col-md-1">
-	  		<button id="plusButton" type="button" class="btn btn-default" data-toggle="modal" data-target="#newGardenModal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+	  		<button id="plusButton" type="button" class="btn btn-default" data-toggle="modal" data-target="#newGardenModal" onclick="{createNewGarden}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
 	  	</div>
 	  	<div class="col-md-1">
 	  		<button id="minusButton" type="button" class="btn btn-default" data-toggle="modal" data-target="#deleteGardenModal"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
@@ -78,6 +91,57 @@
 	<!-- Javascript SPECIFIC TO THIS COMPONENT -->
 	<script>
 		var self = this;
+		self.gardens = [];
+
+		//RIOT Mount
+		this.on('mount', function() {
+			//Get all gardens by currentUserId
+			$.ajax({
+				url: GARDEN.root + "user/currentUser",
+				type: "GET",
+				dataType: "json",
+			}).done(function(data) {
+				GARDEN.gardens = data.gardens;
+				self.gardens = data.gardens;
+				$("#usersEmailAddress").text(data.email);
+				self.update();
+			});
+   		});
+
+
+
+		this.createNewGarden = function(event) {
+			var gardenName = $("#new-garden-input").val();
+
+		}
+
+	  // this.login = function(event) {
+   //    var email=$("#login-email").val();
+   //    var password=$("#login-password").val();
+   //    event.stopPropagation();
+   //    event.preventDefault();
+   //    $.ajax({
+   //      type: "POST",
+   //      url: GARDEN.root + 'user/login',
+   //      data: {
+   //        email: email,
+   //        password: password
+   //      }
+   //    }).then(function(data){
+   //      if(data == "invalid") {
+   //        alert("Please enter a valid email address and password.");
+   //        //resets input fields
+   //        $("#login-email").val("");
+   //        $("#login-password").val("");
+   //      } else {
+   //        if(data.admin == true) {
+   //          window.location.href = "../html/admin.html";
+   //        } else {
+   //          window.location.href = "../html/home.html";
+   //        }
+   //      }
+   //    });
+   //  }
 	</script>
 
 </gardenDropdown>
