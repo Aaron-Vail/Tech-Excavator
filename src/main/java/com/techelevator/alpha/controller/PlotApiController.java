@@ -23,7 +23,11 @@ public class PlotApiController {
 	
 	@RequestMapping(path = "/createPlot", method = RequestMethod.POST)
 	public Long newPlot(@ModelAttribute Plot plot, HttpSession session){
-		return plotDao.createPlot(plot, ((AppUser)session.getAttribute("currentUser")).getUserId());
+		//return plotDao.createPlot(plot, ((AppUser)session.getAttribute("currentUser")).getUserId());
+		
+		//Temporary for testing
+		return plotDao.createPlot(plot, 1L);
+		
 	}
 	
 	@RequestMapping(path = "/savePlot", method = RequestMethod.PUT)

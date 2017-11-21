@@ -7,6 +7,8 @@ public class Plot {
 	private int plantId;
 	private String lightLevel;
 	private int gardenId;
+	
+	
 	public int getPlotId() {
 		return plotId;
 	}
