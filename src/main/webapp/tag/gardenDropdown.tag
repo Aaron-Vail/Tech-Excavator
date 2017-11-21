@@ -7,24 +7,24 @@
 	  	<div class="col-md-1">
 	  		<button id="gardensButton" type="button" class="btn btn-default btn-static">Gardens</button>
 	  	</div>
-<!-- 	<div class="col-md-6 dropdown">
+		<div class="col-md-6 dropdown">
 	  		<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Name of Garden Goes Here<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" id="gardenDropDownItems" aria-labelledby="dropdownMenu1">
 				<li each={ gardens }>{gardenName}</li>
 			</ul>
-	  	</div> -->
-	  	<div class="col-md-6 dropdown">
+	  	</div>
+<!-- 	  	<div class="col-md-6 dropdown">
 	  		<select class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 			  <option value="volvo">Volvo</option>
 			  <option value="saab">Saab</option>
 			  <option value="mercedes">Mercedes</option>
 			  <option value="audi">Audi</option>
 			</select>
-<!-- 			<ul class="dropdown-menu" id="gardenDropDownItems" aria-labelledby="dropdownMenu1">
+			<ul class="dropdown-menu" id="gardenDropDownItems" aria-labelledby="dropdownMenu1">
 				<li each={ gardens }>{gardenName}</li>
-			</ul> -->
-	  	</div>
+			</ul>
+	  	</div> -->
 	  	<div class="col-md-1">
 	  		<button id="plusButton" type="button" class="btn btn-default" data-toggle="modal" data-target="#newGardenModal" onclick="{createNewGarden}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
 	  	</div>
