@@ -22,7 +22,7 @@ public class JDBCGardenDao implements GardenDao {
 	@Override
 	public Garden getGarden(long gardenId, long userId) {
 		Garden garden = new Garden();
-		SqlRowSet result = jdbcTemplate.queryForRowSet("SELECT * FROM garden g JOIN region r ON g.region_id = r.region_id WHERE user_id = ? AND garden_id = ? AND date_deleted IS NULL",userId, gardenId);
+		SqlRowSet result = jdbcTemplate.queryForRowSet("SELECT * FROM garden g JOIN region r ON g.region = r.region_id WHERE user_id = ? AND garden_id = ? AND date_deleted IS NULL",userId, gardenId);
 		if(result.next()){
 			garden.setGardenId(result.getLong("garden_id"));
 			garden.setGardenName(result.getString("garden_name"));

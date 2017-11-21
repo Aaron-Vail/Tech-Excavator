@@ -30,7 +30,6 @@
   <link rel="stylesheet" href="../css/style.css">
   <!-- Custom JS for login page -->
   <script src="../js/script.js"></script>
-  <script src="../js/canvas.js"></script>
   <script src="../js/fabric.min.js"></script>
 </head>
 
@@ -59,11 +58,15 @@
 
   <!-- RIOT gardenDropdown.tag -->
   <gardenDropdown></gardenDropdown>
+  <gardenCanvas></gardenCanvas>
 
   <!-- RIOT -->
   <script src="https://rawgit.com/riot/riot/master/riot%2Bcompiler.min.js"></script>
   <script src="../tag/gardenDropdown.tag" type="riot/tag"></script>
+  <script src="../tag/gardenCanvas.tag" type="riot/tag"></script>
+  
   <script>riot.mount('gardenDropdown')</script>
+  <script>riot.mount('gardenCanvas')</script>
 </body>
 
 </html>
