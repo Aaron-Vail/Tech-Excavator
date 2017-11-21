@@ -1,4 +1,6 @@
 $(function() {
+
+	//Get all gardens by currentUserId
 	$.ajax({
 		url: GARDEN.root + "user/currentUser",
 		type: "GET",
@@ -12,5 +14,12 @@ $(function() {
 		$("#usersEmailAddress").text(data.email);
 		// $("#spanAdmin").text(data.admin);
 	});
+
+
+	//Makes it so button doesn't remain grey after you click on it
+	$(".btn").mouseup(function(){
+	    $(this).blur();
+	})
+	
 	
 });
