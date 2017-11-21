@@ -35,8 +35,9 @@ INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant
 INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('Oleracea', 'Kale', '0.08', '2', 'sun', 'https://cdn.pixabay.com/photo/2015/03/26/09/40/plant-690051_960_720.jpg', 'Average Water Needs', '3');
 INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('Oleracea var. botrytis', 'Cauliflower', '0.02', '3', 'sun', 'https://cdn.pixabay.com/photo/2016/10/15/00/50/romanesco-broccoli-1741608_960_720.jpg', 'Average Water Needs', '3');
 INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('Vulgaris subsp. cicla', 'Spinach', '0.03', '1', 'shade', 'https://cdn.pixabay.com/photo/2017/04/09/21/35/spinach-2216967_960_720.jpg', 'Average Water Needs', '3');
-
-
+INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('Frost yam', 'Snow yam', '0.11', '1', 'shade', 'https://atmedia.imgix.net/9592e734016972fdb7adeb59dbfe67c1d79132e3?auto=format&q=45&w=800.0&fit=max&cs=strip', 'This little yam was hiding beneath the snow','1');
+INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('Persea americana', 'Avacado', '2.00', '12', 'sun', 'https://images.pexels.com/photos/142890/pexels-photo-142890.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb', 'Water frequently', '5');
+INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('Vitis labrusca Concord', 'Concord grape', '0.07', '10', 'shade', 'https://images.pexels.com/photos/197907/pexels-photo-197907.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb', 'Water weekly', '4');
 
 COMMIT;
 
