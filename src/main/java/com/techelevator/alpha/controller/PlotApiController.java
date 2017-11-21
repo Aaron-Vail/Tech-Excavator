@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techelevator.alpha.model.AppUser;
+import com.techelevator.alpha.model.Plot;
+import com.techelevator.alpha.model.PlotDAO;
 
 //Change later
 @CrossOrigin(origins = "*")
@@ -17,11 +19,16 @@ import com.techelevator.alpha.model.AppUser;
 public class PlotApiController {
 
 	@Autowired
-	PlotDao plotDao;
+	PlotDAO plotDao;
 	
-	@RequestMapping(path = "/newPlot", method = RequestMethod.POST)
+	@RequestMapping(path = "/createPlot", method = RequestMethod.POST)
 	public Long newPlot(@ModelAttribute Plot plot, HttpSession session){
-		return plotDao.newPlot(plot, ((AppUser)session.getAttribute("currentUser")).getUserId());
+		return plotDao.createPlot(plot, ((AppUser)session.getAttribute("currentUser")).getUserId());
+	}
+	
+	@RequestMapping(path = "/savePlot", method = RequestMethod.PUT)
+	public void savePlot(@ModelAttribute Plot plot, HttpSession session){
+		plotDao.savePlot(plot, ((AppUser)session.getAttribute("currentUser")).getUserId());
 	}
 	
 	

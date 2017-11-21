@@ -57,9 +57,9 @@ public class UserApiController {
 	}
 	
 	@PostMapping("/user/login")
-	public AppUser login(@ModelAttribute AppUser loginUser, HttpServletRequest request){
+	public String login(@ModelAttribute AppUser loginUser, HttpServletRequest request){
 		if(! appUserDao.searchForUserNameAndPassword(loginUser.getEmail(), loginUser.getPassword())){
-			return new AppUser();
+			return "invalid";
 		}
 		
 		AppUser user = appUserDao.getUserInfo(loginUser.getEmail());
@@ -68,7 +68,7 @@ public class UserApiController {
 		request.changeSessionId();
 		request.getSession().setAttribute("currentUser", user);
 		
-		return user;
+		return "success";
 	}
 	
 	@RequestMapping(path="/user/logout", method=RequestMethod.POST)
@@ -78,7 +78,9 @@ public class UserApiController {
 	
 	@RequestMapping(path="/user/currentUser", method = RequestMethod.GET)
 	public AppUser getCurrentUser(HttpSession session){
-		return (AppUser)session.getAttribute("currentUser");
+		AppUser noId = (AppUser)session.getAttribute("currentUser");
+		noId.setUserId(0L);
+		return noId;
 	}
 
 }
