@@ -39,6 +39,7 @@ CREATE TABLE garden(
     plot_json TEXT,
     user_id INT NOT NULL REFERENCES app_user(user_id),
     region INT REFERENCES region(region_id),
+    date_deleted DATE,
     CONSTRAINT pk_garden_id PRIMARY KEY (garden_id)
 );
 
