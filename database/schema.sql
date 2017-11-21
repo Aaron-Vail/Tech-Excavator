@@ -48,7 +48,7 @@ CREATE TABLE plot(
     user_id INT NOT NULL REFERENCES app_user(user_id),
     plot_name VARCHAR(255),
     light_level VARCHAR(255),
-    garden_id INT NOT NULL REFERENCES garden(garden_id),
+    garden_id INT REFERENCES garden(garden_id),
     plant_id INT REFERENCES plant(plant_id),
     CONSTRAINT pk_plot_id PRIMARY KEY (plot_id)
 );
