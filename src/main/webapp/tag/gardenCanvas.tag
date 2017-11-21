@@ -5,7 +5,7 @@
 <canvas id = "c" width = "1470" height = "800"></canvas>
 <div>
     <!-- NEW PLOT MODAL -->
-	<div class="modal fade" id="createNewPlot" tabindex="-1" role="dialog">
+	<div class="modal fade" id="newPlotModal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
 
@@ -21,13 +21,14 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal" id="newPlotCancelButton">Cancel</button>
-                    <button type="button" class="btn btn-primary" id="newPlotSaveButton">Save</button>
+                    <button type="button" class="btn btn-primary" id="newPlotSaveButton" onclick="{createNewPlot}">Save</button>
                 </div>
               </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
           </div><!-- /.modal -->
-    
-    <button id = "savePlot">Save Plot</button>
+        </div>
+    <button id="plusButton" type="button" class="btn btn-default" data-toggle="modal" data-target="#newPlotModal" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+    <button id = "savePlot" onclick="{saveGarden}">Save Plot</button>
     <button id = "loadPlot">Load Plot</button>
     <button id = "getId">Get Id</button>
     <input type = "color" id = "color"/>
@@ -40,7 +41,7 @@
 <script>
     var self = this;
     //Setting up the canvas
-        self.__canvas = new fabric.Canvas('c');
+        var canvas = this.__canvas = new fabric.Canvas('c');
          fabric.Object.prototype.transparentCorners = false;
          fabric.Object.prototype.originX = fabric.Object.prototype.originY = 'center';
 
@@ -51,7 +52,8 @@
                type: "GET",
              }).then(function(data){
                 if(data.plotJson != null){
-                    self.__canvas.loadFromJSON(data.json);
+                    canvas.loadFromJSON(data.json);
+                    canvas.renderAll();
                 }
              });
        
@@ -86,7 +88,7 @@
                // bot-right corner
                if(obj.top > bounds.br.y || obj.left > bounds.br.x ){
                    obj.top = Math.min(obj.top, '800'  );  
-                   obj.left = Math.min(obj.left, '800' )  
+                   obj.left = Math.min(obj.left, '1470' )  
                }
        
        });
@@ -94,7 +96,8 @@
     
     //We need to add buttons for everything below
        //Add new rectangle button
-       $("#newPlotSaveButton").on('click',function(event){
+       this.createNewPlot = function(event){
+
             var plotId;
             $.ajax({
                 url: GARDEN.root + "createPlot",
@@ -128,28 +131,25 @@
        
                rectangle.id = plotId;
     
-               self.__canvas.add(rectangle);
-               self.__canvas.renderAll();
+               canvas.add(rectangle);
+               canvas.renderAll();
            });
-            });
+           $("#newPlotModal").modal('hide');
+        };
     
                
        //Save a canvas button
-           $("#savePlot").on('click', function(){
+           this.saveGarden = function(){
              var json = JSON.stringify(canvas);
              var gardenId;
              $.ajax({
-               url: GARDEN.root + "saveGarden",
-               type: "POST",
-               data:{
-                 "json": json,
-                 "garden_id": gardenId
-               }
+               url: GARDEN.root + "saveGarden?gardenId=3&plotJson=" + json,
+               type: "PUT",
              }).then(function(){
                alert("Posted");
              });
        
-           });
+           };
     //Needs to trigger when the garden is selected
        //Load a canvas from the database
            $("#loadPlot").on('click', function(){
