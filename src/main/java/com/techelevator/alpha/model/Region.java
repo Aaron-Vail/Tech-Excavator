@@ -4,6 +4,7 @@ public class Region {
 
 	private int regionId;
 	private String climate;
+	
 	public int getRegionId() {
 		return regionId;
 	}
