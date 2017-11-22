@@ -315,9 +315,6 @@
       });
     });
 
-    //VARIABLES
-    // var root = "http://localhost:8080/capstone/";
-
     //RIOT MOUNT
     this.on('mount', function() {
     });
