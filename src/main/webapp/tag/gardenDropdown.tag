@@ -84,13 +84,14 @@
 	<!-- Javascript SPECIFIC TO THIS COMPONENT -->
 	<script>
 
+		riot.observable(GARDEN);
+
 		var self = this;
 		self.gardens = [];
 
-
 		//RIOT Mount
 		this.on('mount', function() {
-			//Get all gardens by currentUserId
+			//Get all gardens by currentUserId and store in self.gardens array above
 			$.ajax({
 				url: GARDEN.root + "user/currentUser",
 				type: "GET",
@@ -103,26 +104,18 @@
 			});
    		 })
 
-		GARDEN.selectedGarden = $("#gardenDropDownItems option:selected").index() - 1;
-		// GARDEN.gardenForCanvas = self.gardens[GARDEN.selectedGarden].plotsJson;
-		// GARDEN.trigger('gardenUpdated');
+		this.on('update', function() {
+			$("select").on("change", function() {
+				GARDEN.selectedGardenIndex = $("#gardenDropDownItems option:selected").index() - 1;
+				GARDEN.currentGarden = self.gardens[GARDEN.selectedGardenIndex];
+				GARDEN.trigger('gardenSelectionUpdated');
+			});
+		})
 
-		// this.on('update', function() {
-		// 	$("select").on("change", function() {
-		// 		alert("Testaroo");
-		// 		GARDEN.selectedGarden = $("#gardenDropDownItems option:selected").index() - 1;
-		// 		$.ajax({
-		// 			url: GARDEN.root + "getGarden",
-		// 			type: "GET",
-		// 			data: {
-		// 				gardenId: self.gardens[GARDEN.selectedGarden].gardenId,
-		// 			},
-		// 			dataType: "json",
-		// 		}).then(function(data) {
-		// 			alert("You've made it this far");
-		// 		});
-		// 	});
-		// })
+		GARDEN.on('gardenSelectionUpdated', function() {
+			var garden = GARDEN.currentGarden;
+			alert(garden.gardenId);
+		})
 
 	</script>
 
