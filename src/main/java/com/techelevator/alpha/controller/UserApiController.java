@@ -78,9 +78,8 @@ public class UserApiController {
 	
 	@RequestMapping(path="/user/currentUser", method = RequestMethod.GET)
 	public AppUser getCurrentUser(HttpSession session){
-		AppUser noId = (AppUser)session.getAttribute("currentUser");
-		noId.setUserId(0);
-		return noId;
+		System.out.println(((AppUser)session.getAttribute("currentUser")).getUserId());
+		return (AppUser)session.getAttribute("currentUser");
 	}
 
 }

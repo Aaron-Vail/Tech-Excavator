@@ -8,11 +8,13 @@ import javax.validation.constraints.AssertTrue;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties({"password","goodPassword"})
 public class AppUser {
 	
+	@JsonIgnore
 	private long userId = 0;
 	private List<Garden> gardens = new ArrayList<>();
 	private boolean isAdmin = false;

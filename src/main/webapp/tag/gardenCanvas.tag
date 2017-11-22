@@ -43,21 +43,8 @@
          fabric.Object.prototype.transparentCorners = false;
          fabric.Object.prototype.originX = fabric.Object.prototype.originY = 'center';
 
-         self.on('mount', function(){
-             $.ajax({
-                 url: GARDEN.root + "getGarden?gardenId=3",
-  //             url: GARDEN.root + "getGarden?gardenId=" + GARDEN.selectedGarden.gardenId,
-               type: "GET",
-             }).then(function(data){
-                if(data.plotJson != null){
-                    canvas.loadFromJSON(data.json);
-                    canvas.renderAll();
-                }
-             });
-       
-       
-           });
-       
+
+
     //Keeps the objects in the canvas, needs to be fixed
        canvas.observe("object:moving", function(e){
              var obj = e.target;
@@ -139,36 +126,30 @@
        //Save a canvas button
            this.saveGarden = function(){
              var json = JSON.stringify(canvas);
-             alert(json);
-             var gardenId;
+             alert(GARDEN.selectedGarden.gardenId);
              $.ajax({
                url: GARDEN.root + "saveGarden",
-               type: "PUT",
+               type: "POST",
                data:{
-                    'gardenId':4,
-                    'plotJson':json,
+                    'gardenId': GARDEN.currentGarden.gardenId,
+                    'plotsJson': json,
                }
              }).then(function(){
-               alert("Posted");
+               alert("Posted: Make sure to get current user");
              });
        
            };
     //Needs to trigger when the garden is selected
-       //Load a canvas from the database
+       //Load a canvas from selected object
            this.loadGarden = function(){
-             $.ajax({
-               url: GARDEN.root + "getGarden?gardenId=" + GARDEN.currentGarden.gardenId,
-               type: "GET",
-             }).then(function(data){
-               canvas.loadFromJSON(data.json);
-             });
+               canvas.loadFromJSON(GARDEN.currentGarden.plotsJson)
             };
     
-           $("#setId").on('click', function(){
-             if(canvas.getActiveObject() != null){
-                canvas.getActiveObject().id = 'Butt';
-             }
-           });
+        //    $("#setId").on('click', function(){
+        //      if(canvas.getActiveObject() != null){
+        //         canvas.getActiveObject().id = 'Butt';
+        //      }
+        //    });
        
            this.getId = function(){
              alert(canvas.getActiveObject().id);
