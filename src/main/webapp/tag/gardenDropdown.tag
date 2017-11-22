@@ -47,11 +47,19 @@
 	        <input type="text" name="new-garden-input" id="new-garden-input" class="form-control" placeholder="Grandpa's potato patch">
 	      </div>
 	      <div class="dropdown">
-		  <button class="btn btn-default dropdown-toggle" type="button" id="regionDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select the region<span class="caret"></span>
-		  </button>
-		  <ul class="dropdown-menu" id="regionDropdownMenuOptions" aria-labelledby="dropdownMenu1">
+<!-- 		  <button class="btn btn-default dropdown-toggle" type="button" id="regionDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select the region<span class="caret"></span>
+		  </button> -->
+		<!-- 		  <ul class="dropdown-menu" id="regionDropdownMenuItems" aria-labelledby="dropdownMenu1">
 		    <li><a href="#">Regions go here</a></li>
-		  </ul>
+		  </ul> -->
+		  	<select id="regionDropdownMenuItems">
+		  	  <option style="display:none;" selected>Please select a region</option>
+			  <option value="cold">Cold</option>
+			  <option value="cool">Cool</option>
+			  <option value="moderate">Moderate</option>
+			  <option value="warm">Warm</option>
+			  <option value="hot">Hot</option>
+			</select>
 		</div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal" id="newGardenCancelButton">Cancel</button>
@@ -83,9 +91,6 @@
 
 	<!-- Javascript SPECIFIC TO THIS COMPONENT -->
 	<script>
-
-		
-
 		var self = this;
 		self.gardens = [];
 
@@ -102,26 +107,23 @@
 				$("#usersEmailAddress").text(data.email);
 				self.update();
 			});
+			//Capture selected garden object and place in GARDEN.currentGarden for global access
 			$("select").on("change", function() {
 				GARDEN.selectedGardenIndex = $("#gardenDropDownItems option:selected").index() - 1;
 				GARDEN.currentGarden = self.gardens[GARDEN.selectedGardenIndex];
 				GARDEN.trigger('gardenSelectionUpdated');
 			});
-   		 })
 
-		// this.on('update', function() {
-		// 	$("select").on("change", function() {
-		// 		GARDEN.selectedGardenIndex = $("#gardenDropDownItems option:selected").index() - 1;
-		// 		GARDEN.currentGarden = self.gardens[GARDEN.selectedGardenIndex];
-		// 		GARDEN.trigger('gardenSelectionUpdated');
-		// 	});
-		// })
+			// //CREATE NEW GARDEN
+			// $("#newGardenSaveButton").on("click", function() {
+			// 	$.ajax({
+			// 		url: GARDEN.root + "newGarden",
+			// 		type: "POST",
 
-		GARDEN.on('gardenSelectionUpdated', function() {
-			var garden = GARDEN.currentGarden;
-			alert(garden.gardenId);
-		})
+			// 	})
+			// })
 
+   		})
 	</script>
 
 </gardenDropdown>
