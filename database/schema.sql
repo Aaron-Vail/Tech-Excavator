@@ -36,7 +36,7 @@ CREATE TABLE plant(
 CREATE TABLE garden(
     garden_id SERIAL,
     garden_name VARCHAR(255) NOT NULL,
-    plot_json TEXT,
+    plot_json TEXT DEFAULT 'empty' NOT NULL,
     user_id INT NOT NULL REFERENCES app_user(user_id),
     region INT REFERENCES region(region_id),
     date_deleted DATE,
