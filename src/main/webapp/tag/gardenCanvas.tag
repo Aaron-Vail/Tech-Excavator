@@ -29,7 +29,7 @@
     <button id = "saveGarden" onclick="{saveGarden}">Save Garden</button>
     <button id = "loadPlot" onclick="{loadPlot}">Load Plot</button>
     <button id = "getId" onclick="{getId}">Get Id</button>
-    <input type = "color" id = "color"/>
+    <input type = "color" id = "color" value = "#9e6c3a" onchange="{colorSelector}"/>
     <button id = "colorBtn" onclick="{colorBtn}">Change Selection's Color</button>
     <span id = "height"></span>
     <span id = "width"></span>
@@ -39,7 +39,9 @@
 <script>
     var self = this;
     //Setting up the canvas
-        var canvas = this.__canvas = new fabric.Canvas('c');
+        var canvas = this.__canvas = new fabric.Canvas('c',{
+            backgroundColor: 'rgb(249, 252, 252)',
+        });
          fabric.Object.prototype.transparentCorners = false;
          fabric.Object.prototype.originX = fabric.Object.prototype.originY = 'center';
 
@@ -103,6 +105,10 @@
                    fill: $("#color").val(),
                    width: 200,
                    height: 200,
+                   cornerStyle: "circle",
+                   opacity: 0.9,
+                   rx:4,
+                   ry:4,
                });
                
                //Extending the rectangle to include an id
@@ -154,9 +160,13 @@
            this.getId = function(){
              alert(canvas.getActiveObject().id);
            };
-       
+           this.colorSelector =  function(){
+                canvas.getActiveObject().set("fill", $("#color").val());
+                canvas.renderAll();
+           };
            this.colorBtn = function(){
                 canvas.getActiveObject().set("fill", $("#color").val());
+                canvas.renderAll();
            };
     
     //These are the height and width changers, will need to be updated on the next sprint
