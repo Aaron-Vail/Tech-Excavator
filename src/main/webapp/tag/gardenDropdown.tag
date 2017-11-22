@@ -108,20 +108,6 @@
 				GARDEN.trigger('gardenSelectionUpdated');
 			});
    		 })
-
-		// this.on('update', function() {
-		// 	$("select").on("change", function() {
-		// 		GARDEN.selectedGardenIndex = $("#gardenDropDownItems option:selected").index() - 1;
-		// 		GARDEN.currentGarden = self.gardens[GARDEN.selectedGardenIndex];
-		// 		GARDEN.trigger('gardenSelectionUpdated');
-		// 	});
-		// })
-
-		GARDEN.on('gardenSelectionUpdated', function() {
-			var garden = GARDEN.currentGarden;
-			alert(garden.gardenId);
-		})
-
 	</script>
 
 </gardenDropdown>
