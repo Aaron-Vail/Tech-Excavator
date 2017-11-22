@@ -84,7 +84,7 @@
 	<!-- Javascript SPECIFIC TO THIS COMPONENT -->
 	<script>
 
-		riot.observable(GARDEN);
+		
 
 		var self = this;
 		self.gardens = [];
@@ -102,15 +102,20 @@
 				$("#usersEmailAddress").text(data.email);
 				self.update();
 			});
-   		 })
-
-		this.on('update', function() {
 			$("select").on("change", function() {
 				GARDEN.selectedGardenIndex = $("#gardenDropDownItems option:selected").index() - 1;
 				GARDEN.currentGarden = self.gardens[GARDEN.selectedGardenIndex];
 				GARDEN.trigger('gardenSelectionUpdated');
 			});
-		})
+   		 })
+
+		// this.on('update', function() {
+		// 	$("select").on("change", function() {
+		// 		GARDEN.selectedGardenIndex = $("#gardenDropDownItems option:selected").index() - 1;
+		// 		GARDEN.currentGarden = self.gardens[GARDEN.selectedGardenIndex];
+		// 		GARDEN.trigger('gardenSelectionUpdated');
+		// 	});
+		// })
 
 		GARDEN.on('gardenSelectionUpdated', function() {
 			var garden = GARDEN.currentGarden;
