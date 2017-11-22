@@ -37,7 +37,7 @@ public class GardenApiController {
 		gardenDao.deleteGarden(gardenId, ((AppUser)session.getAttribute("currentUser")).getUserId());
 	}
 	
-	@RequestMapping(path = "/saveGarden", method = RequestMethod.PUT)
+	@RequestMapping(path = "/saveGarden", method = RequestMethod.POST)
 	public void saveGarden(HttpSession session, @ModelAttribute Garden garden){
 		gardenDao.saveGarden(garden, ((AppUser)session.getAttribute("currentUser")).getUserId());
 	}

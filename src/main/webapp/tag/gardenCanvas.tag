@@ -1,10 +1,9 @@
 <!-- THIS IS A RIOT COMPONENT - ALL OF THIS CODE IS PLACED IN home.html USING <gardenCanvas></gardenCanvas> -->
 
 <gardenCanvas>
-
-<canvas id = "c" width = "1470" height = "800"></canvas>
+        
 <div>
-    <!-- NEW PLOT MODAL -->
+
 	<div class="modal fade" id="newPlotModal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -23,16 +22,15 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal" id="newPlotCancelButton">Cancel</button>
                     <button type="button" class="btn btn-primary" id="newPlotSaveButton" onclick="{createNewPlot}">Save</button>
                 </div>
-              </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-          </div><!-- /.modal -->
+            </div>
         </div>
-    <button id="plusButton" type="button" class="btn btn-default" data-toggle="modal" data-target="#newPlotModal" ><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
-    <button id = "savePlot" onclick="{saveGarden}">Save Plot</button>
-    <button id = "loadPlot">Load Plot</button>
-    <button id = "getId">Get Id</button>
+    </div>
+    <button id="newPlotModalBtn" data-toggle="modal" data-target="#newPlotModal" >New Plot</button>
+    <button id = "saveGarden" onclick="{saveGarden}">Save Garden</button>
+    <button id = "loadPlot" onclick="{loadPlot}">Load Plot</button>
+    <button id = "getId" onclick="{getId}">Get Id</button>
     <input type = "color" id = "color"/>
-    <button id = "colorBtn">Change Selection's Color</button>
+    <button id = "colorBtn" onclick="{colorBtn}">Change Selection's Color</button>
     <span id = "height"></span>
     <span id = "width"></span>
 </div>
@@ -48,7 +46,7 @@
          self.on('mount', function(){
              $.ajax({
                  url: GARDEN.root + "getGarden?gardenId=3",
-  //             url: GARDEN.root + "getGarden?gardenId=" + GARDEN.currentGarden.gardenId,
+  //             url: GARDEN.root + "getGarden?gardenId=" + GARDEN.selectedGarden.gardenId,
                type: "GET",
              }).then(function(data){
                 if(data.plotJson != null){
@@ -61,7 +59,7 @@
            });
        
     //Keeps the objects in the canvas, needs to be fixed
-       self.__canvas.observe("object:moving", function(e){
+       canvas.observe("object:moving", function(e){
              var obj = e.target;
                 // if object is too big ignore
        
@@ -141,10 +139,15 @@
        //Save a canvas button
            this.saveGarden = function(){
              var json = JSON.stringify(canvas);
+             alert(json);
              var gardenId;
              $.ajax({
-               url: GARDEN.root + "saveGarden?gardenId=3&plotJson=" + json,
+               url: GARDEN.root + "saveGarden",
                type: "PUT",
+               data:{
+                    'gardenId':4,
+                    'plotJson':json,
+               }
              }).then(function(){
                alert("Posted");
              });
@@ -152,37 +155,35 @@
            };
     //Needs to trigger when the garden is selected
        //Load a canvas from the database
-           $("#loadPlot").on('click', function(){
+           this.loadGarden = function(){
              $.ajax({
                url: GARDEN.root + "getGarden?gardenId=" + GARDEN.currentGarden.gardenId,
                type: "GET",
              }).then(function(data){
-               self.__canvas.loadFromJSON(data.json);
+               canvas.loadFromJSON(data.json);
              });
-       
-       
-           });
+            };
     
            $("#setId").on('click', function(){
-             if(self.__canvas.getActiveObject() != null){
-                self.__canvas.getActiveObject().id = 'Butt';
+             if(canvas.getActiveObject() != null){
+                canvas.getActiveObject().id = 'Butt';
              }
            });
        
-           $("#getId").on("click", function(){
-             alert(self.__canvas.getActiveObject().id);
-           });
+           this.getId = function(){
+             alert(canvas.getActiveObject().id);
+           };
        
-           $("#colorBtn").on("click", function(){
-            self.__canvas.getActiveObject().set("fill", $("#color").val());
-           });
+           this.colorBtn = function(){
+                canvas.getActiveObject().set("fill", $("#color").val());
+           };
     
     //These are the height and width changers, will need to be updated on the next sprint
-    self.__canvas.observe("object:selected",function(e){
+        canvas.observe("object:selected",function(e){
            $("#height").text(Math.round(e.target.height * e.target.scaleY));
            $('#width').text(Math.round(e.target.width * e.target.scaleX));
          });
-         self.__canvas.observe("object:scaling",function(e){
+        canvas.observe("object:scaling",function(e){
            $("#height").text(Math.round(e.target.height * e.target.scaleY));
            $('#width').text(Math.round(e.target.width * e.target.scaleX));
          });

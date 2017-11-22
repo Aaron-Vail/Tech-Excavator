@@ -57,12 +57,14 @@ public class JDBCAppUserDAO implements AppUserDAO {
 		user.setEmail(email);
 		user.setAdmin(results.getBoolean("admin"));
 		
-		String sqlSearchForGardens = "SELECT * FROM garden WHERE user_id = ?";
+		String sqlSearchForGardens = "SELECT * FROM garden g JOIN region r ON g.region = r.region_id WHERE user_id = ?";
 		results = jdbcTemplate.queryForRowSet(sqlSearchForGardens, user.getUserId());
 		
 		while(results.next()){
 			Garden garden = new Garden();
 			garden.setGardenId(results.getLong("garden_id"));
+			garden.setRegion(results.getString("climate"));
+			garden.setPlotsJson(results.getString("plot_json"));
 			garden.setGardenName(results.getString("garden_name"));
 			user.addGarden(garden);
 		}
