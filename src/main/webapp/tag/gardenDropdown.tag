@@ -87,6 +87,7 @@
 		var self = this;
 		self.gardens = [];
 
+
 		//RIOT Mount
 		this.on('mount', function() {
 			//Get all gardens by currentUserId
@@ -102,22 +103,26 @@
 			});
    		 })
 
-		this.on('update', function() {
-			$("select").on("change", function() {
-				alert("Testaroo");
-				GARDEN.selectedGarden = $("#gardenDropDownItems option:selected").index() - 1;
-				$.ajax({
-					url: GARDEN.root + "getGarden",
-					type: "GET",
-					data: {
-						gardenId: self.gardens[GARDEN.selectedGarden].gardenId,
-					},
-					dataType: "json",
-				}).then(function(data) {
-					alert("You've made it this far");
-				});
-			});
-		})
+		GARDEN.selectedGarden = $("#gardenDropDownItems option:selected").index() - 1;
+		// GARDEN.gardenForCanvas = self.gardens[GARDEN.selectedGarden].plotsJson;
+		// GARDEN.trigger('gardenUpdated');
+
+		// this.on('update', function() {
+		// 	$("select").on("change", function() {
+		// 		alert("Testaroo");
+		// 		GARDEN.selectedGarden = $("#gardenDropDownItems option:selected").index() - 1;
+		// 		$.ajax({
+		// 			url: GARDEN.root + "getGarden",
+		// 			type: "GET",
+		// 			data: {
+		// 				gardenId: self.gardens[GARDEN.selectedGarden].gardenId,
+		// 			},
+		// 			dataType: "json",
+		// 		}).then(function(data) {
+		// 			alert("You've made it this far");
+		// 		});
+		// 	});
+		// })
 
 	</script>
 
