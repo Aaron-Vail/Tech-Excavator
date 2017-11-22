@@ -63,7 +63,7 @@ public class JDBCAppUserDAO implements AppUserDAO {
 		while(results.next()){
 			Garden garden = new Garden();
 			garden.setGardenId(results.getLong("garden_id"));
-			garden.setRegion(results.getString("climate"));
+			garden.setRegion(results.getInt("region"));
 			garden.setPlotsJson(results.getString("plot_json"));
 			garden.setGardenName(results.getString("garden_name"));
 			user.addGarden(garden);

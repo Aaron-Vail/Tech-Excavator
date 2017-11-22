@@ -3,7 +3,8 @@ package com.techelevator.alpha.model;
 public class Garden {
 	private long gardenId;
 	private String gardenName;
-	private String region;
+	private int region;
+	private String climate;
 	private String plotsJson = null;
 
 	public long getGardenId() {
@@ -18,10 +19,10 @@ public class Garden {
 	public void setGardenName(String name) {
 		this.gardenName = name;
 	}
-	public String getRegion() {
+	public int getRegion() {
 		return region;
 	}
-	public void setRegion(String region) {
+	public void setRegion(int region) {
 		this.region = region;
 	}
 	public String getPlotsJson() {
@@ -29,5 +30,11 @@ public class Garden {
 	}
 	public void setPlotsJson(String plotsJson) {
 		this.plotsJson = plotsJson;
+	}
+	public String getClimate() {
+		return climate;
+	}
+	public void setClimate(String climate) {
+		this.climate = climate;
 	}
 }
