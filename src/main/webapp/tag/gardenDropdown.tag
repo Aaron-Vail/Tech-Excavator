@@ -8,11 +8,15 @@
 	  		<button id="gardensButton" type="button" class="btn btn-default btn-static">Gardens</button>
 	  	</div>
 	  	<div class="col-md-6 dropdown">
-	  		<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select a Garden<span class="caret"></span>
+<!-- 	  	<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select a 						Garden<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" id="gardenDropDownItems" aria-labelledby="dropdownMenu1">
 				<li><a href="#" each={ gardens } onclick={getGardenById}>{gardenName}</a></li>
-			</ul>
+			</ul> -->
+			<select id="gardenDropDownItems">
+			  <option>Please select a garden</option>	
+			  <option each={ gardens } onchange={getGardenById} value={gardenId}>{gardenName}</option>
+			</select>
 	  	</div>
 	  	<div class="col-md-1">
 	  		<button id="plusButton" type="button" class="btn btn-default" data-toggle="modal" data-target="#newGardenModal" onclick="{createNewGarden}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
@@ -79,6 +83,7 @@
 
 	<!-- Javascript SPECIFIC TO THIS COMPONENT -->
 	<script>
+
 		var self = this;
 		self.gardens = [];
 
@@ -97,22 +102,22 @@
 			});
    		 })
 
-		//Get garden by Id
-
-		this.getGardenById = function(event) {
-			var selectedIndex = null;
-			$('#gardenDropDownItems a').on('click', function(){
-				selectedIndex = $(this).closest('li').index();
+		this.on('update', function() {
+			$("select").on("change", function() {
+				alert("Testaroo");
+				GARDEN.selectedGarden = $("#gardenDropDownItems option:selected").index() - 1;
+				$.ajax({
+					url: GARDEN.root + "getGarden",
+					type: "GET",
+					data: {
+						gardenId: self.gardens[GARDEN.selectedGarden].gardenId,
+					},
+					dataType: "json",
+				}).then(function(data) {
+					alert("You've made it this far");
+				});
 			});
-			alert(self.gardens[selectedIndex].gardenId);
-			$.ajax({
-				url: GARDEN.root + "getGarden",
-				type: "GET",
-				dataType: "json",
-			}).done(function(data) {
-				alert("You've made it this far");
-			});
-		}
+		})
 
 	</script>
 

@@ -1,5 +1,20 @@
 $(function() {
 
+		// $("select").on("change", function() {
+		// 	alert("welcome");
+		// 	GARDEN.selectedGarden = $("#gardenDropDownItems option:selected").index() - 1;
+		// 	alert(GARDEN.selectedGarden);
+		// 	$.ajax({
+		// 		url: GARDEN.root + "getGarden",
+		// 		type: "GET",
+		// 		data: {
+		// 			gardenId: GARDEN.selectedGarden.gardenId
+		// 		},
+		// 		dataType: "json",
+		// 	}).done(function(data) {
+		// 		alert("You've made it this far");
+		// 	});
+		// });
 
 	//Logout
 	document.getElementById ("logoutButton").addEventListener ("click", function(){
@@ -15,5 +30,5 @@ $(function() {
 	$(".btn").mouseup(function(){
 	    $(this).blur();
 	})
-	
+
 });
