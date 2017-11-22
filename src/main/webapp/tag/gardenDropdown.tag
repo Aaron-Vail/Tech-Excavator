@@ -114,16 +114,6 @@
 				GARDEN.trigger('gardenSelectionUpdated');
 			});
 
-			// //CREATE NEW GARDEN
-			// $("#newGardenSaveButton").on("click", function() {
-			// 	$.ajax({
-			// 		url: GARDEN.root + "newGarden",
-			// 		type: "POST",
-
-			// 	})
-			// })
-
-   		})
 	</script>
 
 </gardenDropdown>

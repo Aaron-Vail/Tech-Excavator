@@ -27,7 +27,7 @@ public class JDBCGardenDao implements GardenDao {
 			garden.setGardenId(result.getLong("garden_id"));
 			garden.setGardenName(result.getString("garden_name"));
 			garden.setPlotsJson(result.getString("plot_json"));
-			garden.setRegion(result.getString("climate"));
+			garden.setRegion(result.getInt("region"));
 			return garden;
 		}
 		return null;

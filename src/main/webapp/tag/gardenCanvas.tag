@@ -129,33 +129,42 @@
         };
     
                
+
        //Save a canvas button
-           this.saveGarden = function(){
-             var json = JSON.stringify(canvas);
-             alert(GARDEN.selectedGarden.gardenId);
-             $.ajax({
-               url: GARDEN.root + "saveGarden",
-               type: "POST",
-               data:{
+       this.saveGarden = function(){
+            var json = JSON.stringify(canvas);
+            alert(GARDEN.currentGarden.gardenId);
+            $.ajax({
+                url: GARDEN.root + "saveGarden",
+                type: "POST",
+                data:{
                     'gardenId': GARDEN.currentGarden.gardenId,
                     'plotsJson': json,
-               }
+                }
              }).then(function(){
-               alert("Posted: Make sure to get current user");
+                alert("Post Save")
+                $.ajax({
+                    url: GARDEN.root + "/user/currentUser",
+                    type: "GET",
+                }).then(function(data){
+                    alert(data.gardens);
+                    GARDEN.gardens = data.gardens;
+                    GARDEN.trigger("updatedGardenPull");
+                });
              });
        
            };
+           
     //Needs to trigger when the garden is selected
-       //Load a canvas from selected object
-           this.loadGarden = function(){
-               canvas.loadFromJSON(GARDEN.currentGarden.plotsJson)
-            };
-    
-        //    $("#setId").on('click', function(){
-        //      if(canvas.getActiveObject() != null){
-        //         canvas.getActiveObject().id = 'Butt';
-        //      }
-        //    });
+
+       this.on('mount', function() {
+
+        //Load a canvas from selected object
+            GARDEN.on('gardenSelectionUpdated', function() {
+                alert(GARDEN.currentGarden.plotsJson);
+                canvas.loadFromJSON(GARDEN.currentGarden.plotsJson)
+            });
+       });
        
            this.getId = function(){
              alert(canvas.getActiveObject().id);
