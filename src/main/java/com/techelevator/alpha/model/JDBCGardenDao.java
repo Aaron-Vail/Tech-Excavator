@@ -46,7 +46,7 @@ public class JDBCGardenDao implements GardenDao {
 
 	@Override
 	public void saveGarden(Garden garden, long userId) {
-		jdbcTemplate.update("UPDATE garden SET plot_jsone = ? WHERE user_id = ? AND garden_id = ?", garden.getPlotsJson(), userId, garden.getGardenId());
+		jdbcTemplate.update("UPDATE garden SET plot_json = ? WHERE user_id = ? AND garden_id = ?", garden.getPlotsJson(), userId, garden.getGardenId());
 		
 	}
 
