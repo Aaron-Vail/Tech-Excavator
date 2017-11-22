@@ -39,6 +39,10 @@ INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant
 INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('Persea americana', 'Avacado', '2.00', '12', 'sun', 'https://images.pexels.com/photos/142890/pexels-photo-142890.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb', 'Water frequently', '5');
 INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('Vitis labrusca Concord', 'Concord grape', '0.07', '10', 'shade', 'https://images.pexels.com/photos/197907/pexels-photo-197907.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb', 'Water weekly', '4');
 
+--Dummy user data
+INSERT INTO app_user (email, hashed_password, salt) VALUES ('trial@user2.edu', 'VDkcZD/a/RrPCsq7BFMEsw==','CBhv/pvtgNgL2YPB46xW2TJ6CwySXJLrweHlzosl/JuelqQo7xHekS1+nzO1f9m5XXfWaPtlo81uYDEK8PQeSPCXRHsGyNNpHVGq+ICHDPyzxzW4/YjFojDzm3R1SOObGgmdNW0QZLSCECuugT//BMoEgEMhx2p4hotiCmAnmqo=');
+INSERT INTO garden (garden_name, region,  user_id) VALUES ('myCarrotPatch', '3', (SELECT user_id FROM app_user WHERE email = 'trial@user2.edu'));
+INSERT INTO garden (garden_name, region, user_id) VALUES ('Maggies farm', '3', (SELECT user_id FROM app_user WHERE email = 'trial@user2.edu'));
 COMMIT;
 
 
