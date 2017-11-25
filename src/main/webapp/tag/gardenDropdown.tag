@@ -8,12 +8,7 @@
 	  		<button id="gardensButton" type="button" class="btn btn-default btn-static">Gardens</button>
 	  	</div>
 	  	<div class="col-md-6 dropdown">
-<!-- 	  	<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select a 						Garden<span class="caret"></span>
-			</button>
-			<ul class="dropdown-menu" id="gardenDropDownItems" aria-labelledby="dropdownMenu1">
-				<li><a href="#" each={ gardens } onclick={getGardenById}>{gardenName}</a></li>
-			</ul> -->
-			<select id="gardenDropDownItems">
+			<select id="gardenDropDownItems" class="form-control">
 			  <option>Please select a garden</option>	
 			  <option each={ gardens } onchange={getGardenById} value={gardenId}>{gardenName}</option>
 			</select>
@@ -47,12 +42,7 @@
 	        <input type="text" name="new-garden-input" id="new-garden-input" class="form-control" placeholder="Grandpa's potato patch">
 	      </div>
 	      <div class="dropdown">
-<!-- 		  <button class="btn btn-default dropdown-toggle" type="button" id="regionDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select the region<span class="caret"></span>
-		  </button> -->
-		<!-- 		  <ul class="dropdown-menu" id="regionDropdownMenuItems" aria-labelledby="dropdownMenu1">
-		    <li><a href="#">Regions go here</a></li>
-		  </ul> -->
-		  	<select id="regionDropdownMenuItems">
+		  	<select id="regionDropdownMenuItems" class="form-control">
 		  	  <option style="display:none;" selected>Please select a region</option>
 			  <option value="cold">Cold</option>
 			  <option value="cool">Cool</option>
@@ -114,6 +104,7 @@
 				GARDEN.trigger('gardenSelectionUpdated');
 			});
 		})
+
 	</script>
 
 </gardenDropdown>
