@@ -39,16 +39,16 @@
 	        <h4 class="modal-title">Enter new garden name:</h4>
 	      </div>
 	      <div class="modal-body">
-	        <input type="text" name="new-garden-input" id="new-garden-input" class="form-control" placeholder="Grandpa's potato patch">
+	        <input type="text" name="new-garden-input" id="new-garden-input" class="form-control" placeholder="Grandpa's Potato Patch">
 	      </div>
 	      <div class="dropdown">
 		  	<select id="regionDropdownMenuItems" class="form-control">
 		  	  <option style="display:none;" selected>Please select a region</option>
-			  <option value="cold">Cold</option>
-			  <option value="cool">Cool</option>
-			  <option value="moderate">Moderate</option>
-			  <option value="warm">Warm</option>
-			  <option value="hot">Hot</option>
+			  <option value="1">Cold</option>
+			  <option value="2">Cool</option>
+			  <option value="3">Moderate</option>
+			  <option value="4">Warm</option>
+			  <option value="5">Hot</option>
 			</select>
 		</div>
 	      <div class="modal-footer">
@@ -86,7 +86,7 @@
 
 		//RIOT Mount
 		this.on('mount', function() {
-			
+
 			//Ran on login to get all gardens by user ID
 			getCurrentGardens();
 
@@ -108,12 +108,30 @@
 					self.update();
 				});
 			}
+
+			//Create new garden
+			$.ajax({
+				url: GARDEN.root + "newGarden",
+				type: "POST",
+				data: {
+					gardenName: gardenName,
+					region: region
+				},
+				dataType: "json"
+			})
+
 			//Capture selected garden object and place in GARDEN.currentGarden for global access
 			$("select").on("change", function() {
 				GARDEN.selectedGardenIndex = $("#gardenDropDownItems option:selected").index() - 1;
 				GARDEN.currentGarden = self.gardens[GARDEN.selectedGardenIndex];
 				GARDEN.trigger('gardenSelectionUpdated');
 			});
+
+			$("#saveButton").on("click", function() {
+				GARDEN.trigger('saveButtonClicked');
+			});
+
+
 		})
 
 	</script>
