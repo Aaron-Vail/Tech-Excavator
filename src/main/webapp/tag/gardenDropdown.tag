@@ -111,8 +111,8 @@
 
 			//Create new garden
 			$("#newGardenSaveButton").on("click", function() {
-				var newGardenName=$("#new-garden-input").val();
-				var newGardenRegion=$("#regionDropdownMenuItems").val();
+				var newGardenName = $("#new-garden-input").val();
+				var newGardenRegion = $("#regionDropdownMenuItems").val();
 				event.stopPropagation();
 				event.preventDefault();
 				$.ajax({
@@ -125,9 +125,27 @@
 					dataType: "json"
 				}).done(function(data) {
 					$('#newGardenModal').modal('hide');
+					$("#new-garden-input").val("");
+					$("#regionDropdownMenuItems").val("Please select a region");
+					getCurrentGardens();
+					$("#gardenDropDownItems").attr("value");
+				});
+			});
+
+			//Delete current garden
+			$("#deleteGardenDeleteButton").on("click", function() {
+				var selectedGardenId = GARDEN.currentGarden.gardenId;
+				$.ajax({
+					url: GARDEN.root + "deleteGarden",
+					type: "POST",
+					data: {
+						gardenId: selectedGardenId
+					}
+				}).done(function(data) {
+					$('#deleteGardenModal').modal('hide');
 					getCurrentGardens();
 				});
-			})
+			});
 
 			//Capture selected garden object and place in GARDEN.currentGarden for global access
 			$("select").on("change", function() {
@@ -142,7 +160,6 @@
 
 
 		})
-
 	</script>
 
 </gardenDropdown>

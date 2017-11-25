@@ -85,11 +85,6 @@ body {
 	padding: 0;
 }
 
-.btn:focus,.btn:active {
-   outline: none !important;
-   box-shadow: none;
-}
-
 .btn-static {
   background-color: white;
   border: 1px solid lightgrey;
@@ -142,3 +137,8 @@ body {
 .modal-footer {
 	border-top: 0;
 }
+
+.btn:focus, .btn:active, .form-control:focus, .form-control:active, .dropdown, option {
+	outline: none !important;
+	box-shadow: none;
+ }
