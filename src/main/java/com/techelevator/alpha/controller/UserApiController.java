@@ -67,7 +67,9 @@ public class UserApiController {
 		request.getSession(true);
 		request.changeSessionId();
 		request.getSession().setAttribute("currentUser", user);
-		
+		if (user.isAdmin()){
+			return "admin";
+		}
 		return "success";
 	}
 	
