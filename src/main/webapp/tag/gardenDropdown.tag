@@ -86,9 +86,17 @@
 
 		//RIOT Mount
 		this.on('mount', function() {
-			//Get all gardens by currentUserId and store in self.gardens array above
+			
+			//Ran on login to get all gardens by user ID
+			getCurrentGardens();
+
+			//Run when updated garden is saved
 			GARDEN.on('updatedGardenPull', function() {
-				alert("Holy poop");
+				getCurrentGardens();
+			})
+
+			//Get all gardens by currentUserId and store in self.gardens array above
+			function getCurrentGardens() {
 				$.ajax({
 					url: GARDEN.root + "user/currentUser",
 					type: "GET",
@@ -99,17 +107,7 @@
 					$("#usersEmailAddress").text(data.email);
 					self.update();
 				});
-			})
-			$.ajax({
-				url: GARDEN.root + "user/currentUser",
-				type: "GET",
-				dataType: "json",
-			}).done(function(data) {
-				GARDEN.gardens = data.gardens;
-				self.gardens = data.gardens;
-				$("#usersEmailAddress").text(data.email);
-				self.update();
-			});
+			}
 			//Capture selected garden object and place in GARDEN.currentGarden for global access
 			$("select").on("change", function() {
 				GARDEN.selectedGardenIndex = $("#gardenDropDownItems option:selected").index() - 1;
