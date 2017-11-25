@@ -143,14 +143,7 @@
                     'plotsJson': json,
                 }
              }).then(function(){
-               // alert("Post Save")
-                $.ajax({
-                    url: GARDEN.root + "/user/currentUser",
-                    type: "GET",
-                }).then(function(data){
-                    GARDEN.gardens = data.gardens;
-                    GARDEN.trigger("updatedGardenPull");
-                });
+                GARDEN.trigger("updatedGardenPull");
              });
        
            };
@@ -192,6 +185,17 @@
            $("#height").text(Math.round(e.target.height * e.target.scaleY));
            $('#width').text(Math.round(e.target.width * e.target.scaleX));
          });
+
+    //Opacity changes on hover
+    canvas.on('mouse:over', function(e) {
+        e.target.set('opacity', 1.0);
+        canvas.renderAll();
+    });
+
+    canvas.on('mouse:out', function(e) {
+        e.target.set('opacity', 0.9);
+        canvas.renderAll();
+    });
     </script>
 
 
