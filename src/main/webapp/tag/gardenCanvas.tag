@@ -131,7 +131,7 @@
                
 
        //Save a canvas button
-       this.saveGarden = function(){
+       GARDEN.on('saveButtonClicked', function(){
             var json = JSON.stringify(canvas.toJSON("id"));
            // alert(json);
            // alert(GARDEN.currentGarden.gardenId);
@@ -146,7 +146,7 @@
                 GARDEN.trigger("updatedGardenPull");
              });
        
-           };
+           });
            
     //Needs to trigger when the garden is selected
 
@@ -188,14 +188,37 @@
 
     //Opacity changes on hover
     canvas.on('mouse:over', function(e) {
-        e.target.set('opacity', 1.0);
-        canvas.renderAll();
+        if(e.target != null){
+            e.target.set('opacity', 1.0);
+            canvas.renderAll();
+        }
     });
 
     canvas.on('mouse:out', function(e) {
-        e.target.set('opacity', 0.9);
-        canvas.renderAll();
+        if(e.target != null){
+            e.target.set('opacity', 0.9);
+            canvas.renderAll();
+        }
     });
+    //Slight size change on moving
+    function animate(e, dir) {
+        if (e.target) {
+          fabric.util.animate({
+            startValue: e.target.get('scaleX'),
+            endValue: e.target.get('scaleX') + (dir ? 0.1 : -0.1),
+            duration: 100,
+            onChange: function(value) {
+              e.target.scale(value);
+              canvas.renderAll();
+            },
+            onComplete: function() {
+              e.target.setCoords();
+            }
+          });
+        }
+      }
+      canvas.on('mouse:down', function(e) { animate(e, 1); });
+      canvas.on('mouse:up', function(e) { animate(e, 0); });
     </script>
 
 
