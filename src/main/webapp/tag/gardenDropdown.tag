@@ -43,13 +43,13 @@
 	      </div>
 	      <div class="dropdown">
 		  	<select id="regionDropdownMenuItems" class="form-control">
-		  	  <option style="display:none;" selected>Please select a region</option>
-			  <option value="1">Cold</option>
-			  <option value="2">Cool</option>
-			  <option value="3">Moderate</option>
-			  <option value="4">Warm</option>
-			  <option value="5">Hot</option>
-			</select>
+					<option style="display:none;" selected>Please select a region</option>
+					<option value="1">Cold</option>
+					<option value="2">Cool</option>
+					<option value="3">Moderate</option>
+					<option value="4">Warm</option>
+					<option value="5">Hot</option>
+				</select>
 		</div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal" id="newGardenCancelButton">Cancel</button>
@@ -110,14 +110,23 @@
 			}
 
 			//Create new garden
-			$.ajax({
-				url: GARDEN.root + "newGarden",
-				type: "POST",
-				data: {
-					gardenName: gardenName,
-					region: region
-				},
-				dataType: "json"
+			$("#newGardenSaveButton").on("click", function() {
+				var newGardenName=$("#new-garden-input").val();
+				var newGardenRegion=$("#regionDropdownMenuItems").val();
+				event.stopPropagation();
+				event.preventDefault();
+				$.ajax({
+					url: GARDEN.root + "newGarden",
+					type: "POST",
+					data: {
+						gardenName: newGardenName,
+						region: newGardenRegion
+					},
+					dataType: "json"
+				}).done(function(data) {
+					$('#newGardenModal').modal('hide');
+					getCurrentGardens();
+				});
 			})
 
 			//Capture selected garden object and place in GARDEN.currentGarden for global access
