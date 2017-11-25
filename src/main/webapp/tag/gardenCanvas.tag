@@ -133,8 +133,8 @@
        //Save a canvas button
        this.saveGarden = function(){
             var json = JSON.stringify(canvas.toJSON("id"));
-            alert(json);
-            alert(GARDEN.currentGarden.gardenId);
+           // alert(json);
+           // alert(GARDEN.currentGarden.gardenId);
             $.ajax({
                 url: GARDEN.root + "saveGarden",
                 type: "POST",
@@ -143,13 +143,16 @@
                     'plotsJson': json,
                 }
              }).then(function(){
-                alert("Post Save")
+               // alert("Post Save")
                 $.ajax({
                     url: GARDEN.root + "/user/currentUser",
                     type: "GET",
                 }).then(function(data){
-                    alert(data.gardens);
+                    alert(data.gardens[1].plotsJson);
+                    alert(data.gardens[0].plotsJson)
                     GARDEN.gardens = data.gardens;
+                    alert(GARDEN.gardens[1].plotsJson)
+                    alert(data.gardens[1].plotsJson)
                     GARDEN.trigger("updatedGardenPull");
                 });
              });
@@ -163,7 +166,12 @@
         //Load a canvas from selected object
             GARDEN.on('gardenSelectionUpdated', function() {
                 alert(GARDEN.currentGarden.plotsJson);
-                canvas.loadFromDatalessJSON(GARDEN.currentGarden.plotsJson)
+                if(GARDEN.currentGarden.plotsJson != 'empty'){
+                    canvas.loadFromDatalessJSON(GARDEN.currentGarden.plotsJson);
+                }else{
+                    canvas.clear();
+                    canvas.backgroundColor = "rgb(249, 252, 252)"
+                }
             });
        });
        
