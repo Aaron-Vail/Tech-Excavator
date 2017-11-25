@@ -32,7 +32,7 @@ public class GardenApiController {
 		return gardenDao.newGarden(garden, ((AppUser)session.getAttribute("currentUser")).getUserId());
 	}
 	
-	@RequestMapping(path = "/deleteGarden", method = RequestMethod.DELETE)
+	@RequestMapping(path = "/deleteGarden", method = RequestMethod.POST)
 	public void deleteGarden(HttpSession session, @RequestParam long gardenId){
 		gardenDao.deleteGarden(gardenId, ((AppUser)session.getAttribute("currentUser")).getUserId());
 	}

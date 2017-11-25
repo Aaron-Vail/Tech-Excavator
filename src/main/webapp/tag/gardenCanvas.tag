@@ -154,7 +154,7 @@
 
         //Load a canvas from selected object
             GARDEN.on('gardenSelectionUpdated', function() {
-                alert(GARDEN.currentGarden.plotsJson);
+                //alert(GARDEN.currentGarden.plotsJson);
                 if(GARDEN.currentGarden.plotsJson != 'empty'){
                     canvas.loadFromDatalessJSON(GARDEN.currentGarden.plotsJson);
                 }else{
@@ -165,7 +165,7 @@
        });
        
            this.getId = function(){
-             alert(canvas.getActiveObject().id);
+             //alert(canvas.getActiveObject().id);
            };
            this.colorSelector =  function(){
                 canvas.getActiveObject().set("fill", $("#color").val());
