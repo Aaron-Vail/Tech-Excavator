@@ -339,7 +339,7 @@
           $("#login-email").val("");
           $("#login-password").val("");
         } else {
-          if(data.admin == true) {
+          if(data == "admin") {
             window.location.href = "../html/admin.html";
           } else {
             window.location.href = "../html/home.html";

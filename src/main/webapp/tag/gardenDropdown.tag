@@ -87,6 +87,19 @@
 		//RIOT Mount
 		this.on('mount', function() {
 			//Get all gardens by currentUserId and store in self.gardens array above
+			GARDEN.on('updatedGardenPull', function() {
+				alert("Holy poop");
+				$.ajax({
+					url: GARDEN.root + "user/currentUser",
+					type: "GET",
+					dataType: "json",
+				}).done(function(data) {
+					GARDEN.gardens = data.gardens;
+					self.gardens = data.gardens;
+					$("#usersEmailAddress").text(data.email);
+					self.update();
+				});
+			})
 			$.ajax({
 				url: GARDEN.root + "user/currentUser",
 				type: "GET",
