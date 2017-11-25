@@ -113,8 +113,8 @@
                
                //Extending the rectangle to include an id
                rectangle.toObject = (function(toObject){
-                 return function(){
-                   return fabric.util.object.extend(toObject.call(this), {
+                 return function(properties){
+                   return fabric.util.object.extend(toObject.call(this,properties), {
                      id: this.id
                    });
                  };
@@ -132,7 +132,8 @@
 
        //Save a canvas button
        this.saveGarden = function(){
-            var json = JSON.stringify(canvas);
+            var json = JSON.stringify(canvas.toJSON("id"));
+            alert(json);
             alert(GARDEN.currentGarden.gardenId);
             $.ajax({
                 url: GARDEN.root + "saveGarden",
@@ -162,7 +163,7 @@
         //Load a canvas from selected object
             GARDEN.on('gardenSelectionUpdated', function() {
                 alert(GARDEN.currentGarden.plotsJson);
-                canvas.loadFromJSON(GARDEN.currentGarden.plotsJson)
+                canvas.loadFromDatalessJSON(GARDEN.currentGarden.plotsJson)
             });
        });
        
