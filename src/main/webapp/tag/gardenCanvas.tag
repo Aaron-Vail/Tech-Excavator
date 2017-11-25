@@ -148,11 +148,7 @@
                     url: GARDEN.root + "/user/currentUser",
                     type: "GET",
                 }).then(function(data){
-                    alert(data.gardens[1].plotsJson);
-                    alert(data.gardens[0].plotsJson)
                     GARDEN.gardens = data.gardens;
-                    alert(GARDEN.gardens[1].plotsJson)
-                    alert(data.gardens[1].plotsJson)
                     GARDEN.trigger("updatedGardenPull");
                 });
              });

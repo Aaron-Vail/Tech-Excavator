@@ -113,7 +113,7 @@
 				GARDEN.currentGarden = self.gardens[GARDEN.selectedGardenIndex];
 				GARDEN.trigger('gardenSelectionUpdated');
 			});
-
+		})
 	</script>
 
 </gardenDropdown>
