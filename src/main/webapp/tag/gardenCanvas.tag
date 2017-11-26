@@ -28,6 +28,8 @@
     <button id="newPlotModalBtn" data-toggle="modal" data-target="#newPlotModal" >New Plot</button>
     <button id = "loadPlot" onclick="{loadPlot}">Load Plot</button>
     <button id = "getId" onclick="{getId}">Get Id</button>
+    <button id = "embiggenCanvasWidth" onclick="{embiggenCanvasWidth}">Embiggen Canvas Width</button>
+    <button id = "embiggenCanvasHeight" onclick="{embiggenCanvasHeight}">Embiggen Canvas Height</button>
     <input type = "color" id = "color" value = "#9e6c3a" onchange="{colorSelector}"/>
     <button id = "colorBtn" onclick="{colorBtn}">Change Selection's Color</button>
     <span id = "height"></span>
@@ -41,43 +43,48 @@
         var canvas = this.__canvas = new fabric.Canvas('c',{
             backgroundColor: 'rgb(249, 252, 252)',
         });
-         fabric.Object.prototype.transparentCorners = false;
-         fabric.Object.prototype.originX = fabric.Object.prototype.originY = 'center';
 
 
+    //Increase Canvas Size
+        this.embiggenCanvasWidth = function(){
+            canvas.setWidth(canvas.width + 100);
+        };
+        this.embiggenCanvasHeight = function(){
+            canvas.setHeight(canvas.height + 100);
+        };
 
     //Keeps the objects in the canvas, needs to be fixed
-       canvas.observe("object:moving", function(e){
-             var obj = e.target;
-                // if object is too big ignore
+        canvas.observe("object:moving", function(e){
+            var obj = e.target;
+            // if object is too big ignore
+    
+            var halfw = obj.currentWidth/2;
+            var halfh = obj.currentHeight/2;
+            var bounds = {tl: {x: halfw, y:halfh},
+                br: {x: obj.canvas.width , y: obj.canvas.height }
+            };
        
-               var halfw = obj.currentWidth/2;
-               var halfh = obj.currentHeight/2;
-               var bounds = {tl: {x: halfw, y:halfh},
-                   br: {x: obj.canvas.width , y: obj.canvas.height }
-                };
+            // top-left  corner
+            if(obj.top < bounds.br.y || obj.left < bounds.br.x ){
+                obj.top = Math.max(obj.top, '0'  );  
+                obj.left = Math.max(obj.left, '0' )  
+            }
+    
+    
+                // alert("text");
+            if(obj.top < bounds.tl.y || obj.left < bounds.tl.x){
+                obj.top = Math.max(obj.top, '10'  );
+                obj.left = Math.max(obj.left , '50' ) 
+            }
+    
+    
+            // bot-right corner
+            if(obj.top > bounds.br.y || obj.left > bounds.br.x ){
+                obj.top = Math.min(obj.top, '800'  );  
+                obj.left = Math.min(obj.left, '1470' )  
+            }
        
-               // top-left  corner
-               if(obj.top < bounds.br.y || obj.left < bounds.br.x ){
-                   obj.top = Math.max(obj.top, '0'  );  
-                   obj.left = Math.max(obj.left, '0' )  
-               }
-       
-       
-                   // alert("text");
-               if(obj.top < bounds.tl.y || obj.left < bounds.tl.x){
-                   obj.top = Math.max(obj.top, '10'  );
-                   obj.left = Math.max(obj.left , '50' ) 
-               }
-       
-       
-               // bot-right corner
-               if(obj.top > bounds.br.y || obj.left > bounds.br.x ){
-                   obj.top = Math.min(obj.top, '800'  );  
-                   obj.left = Math.min(obj.left, '1470' )  
-               }
-       
-       });
+        });
     
     
     //We need to add buttons for everything below
@@ -150,6 +157,9 @@
     //Needs to trigger when the garden is selected
 
        this.on('mount', function() {
+            fabric.Object.prototype.transparentCorners = false;
+            fabric.Object.prototype.originX = fabric.Object.prototype.originY = 'center';
+            canvas.renderAll();
 
         //Load a canvas from selected object
             GARDEN.on('gardenSelectionUpdated', function() {
