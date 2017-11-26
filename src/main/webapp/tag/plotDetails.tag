@@ -17,17 +17,78 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="col-md-1"><input type="color" value="#9E6C3A"></td>
+                            <td class="col-md-1">Green</td>
                             <td class="col-md-3">Cucumbert Patch</td>
-                            <td class="col-md-3 plantDropDown" style="padding: 0px 25px 0px 0px;">
-                                <select id="plantDropDownItems" class="form-control">
-                                    <option>Please select a plant type</option>
-                                </select>
-                            </td>
+                            <td class="col-md-3">Cucumbers</td>
                             <td class="col-md-2">20ft</td>
                             <td class="col-md-2">10ft</td>
                             <td class="col-md-1">$100</td>
                         </tr>
+                        <tr>
+                                <td class="col-md-1">Green</td>
+                                <td class="col-md-3">Cucumbert Patch</td>
+                                <td class="col-md-3">Cucumbers</td>
+                                <td class="col-md-2">20ft</td>
+                                <td class="col-md-2">10ft</td>
+                                <td class="col-md-1">$100</td>
+                            </tr>
+                            <tr>
+                                    <td class="col-md-1">Green</td>
+                                    <td class="col-md-3">Cucumbert Patch</td>
+                                    <td class="col-md-3">Cucumbers</td>
+                                    <td class="col-md-2">20ft</td>
+                                    <td class="col-md-2">10ft</td>
+                                    <td class="col-md-1">$100</td>
+                                </tr>
+                                <tr>
+                                        <td class="col-md-1">Green</td>
+                                        <td class="col-md-3">Cucumbert Patch</td>
+                                        <td class="col-md-3">Cucumbers</td>
+                                        <td class="col-md-2">20ft</td>
+                                        <td class="col-md-2">10ft</td>
+                                        <td class="col-md-1">$100</td>
+                                    </tr>
+                                    <tr>
+                                            <td class="col-md-1">Green</td>
+                                            <td class="col-md-3">Cucumbert Patch</td>
+                                            <td class="col-md-3">Cucumbers</td>
+                                            <td class="col-md-2">20ft</td>
+                                            <td class="col-md-2">10ft</td>
+                                            <td class="col-md-1">$100</td>
+                                        </tr>
+                                        <tr>
+                                                <td class="col-md-1">Green</td>
+                                                <td class="col-md-3">Cucumbert Patch</td>
+                                                <td class="col-md-3">Cucumbers</td>
+                                                <td class="col-md-2">20ft</td>
+                                                <td class="col-md-2">10ft</td>
+                                                <td class="col-md-1">$100</td>
+                                            </tr>
+                                            <tr>
+                                                    <td class="col-md-1">Green</td>
+                                                    <td class="col-md-3">Cucumbert Patch</td>
+                                                    <td class="col-md-3">Cucumbers</td>
+                                                    <td class="col-md-2">20ft</td>
+                                                    <td class="col-md-2">10ft</td>
+                                                    <td class="col-md-1">$100</td>
+                                                </tr>
+                                                <tr>
+                                                        <td class="col-md-1">Green</td>
+                                                        <td class="col-md-3">Cucumbert Patch</td>
+                                                        <td class="col-md-3">Cucumbers</td>
+                                                        <td class="col-md-2">20ft</td>
+                                                        <td class="col-md-2">10ft</td>
+                                                        <td class="col-md-1">$100</td>
+                                                    </tr>
+                                                    <tr>
+                                                            <td class="col-md-1">Green</td>
+                                                            <td class="col-md-3">Cucumbert Patch</td>
+                                                            <td class="col-md-3">Cucumbers</td>
+                                                            <td class="col-md-2">20ft</td>
+                                                            <td class="col-md-2">10ft</td>
+                                                            <td class="col-md-1">$100</td>
+                                                        </tr>
+
                     </tbody>
                 </table>
             </div>
@@ -37,6 +98,9 @@
     <style>
         .plotDetailsRow {
             padding-left: 15px;
+        }
+        .table-fixed {
+            margin-bottom: 0;
         }
         .table-fixed thead {
             width: 100%;
@@ -53,17 +117,6 @@
             float: left;
             border-bottom-width: 0;
         }
-        input[type="color"] {
-            -webkit-appearance: none;
-            padding: 0;
-            border: none;
-            width: 100%;
-            height: 25px;
-        }
-
-
-
-
     </style>
 
     <!-- Javascript SPECIFIC TO THIS COMPONENT -->
