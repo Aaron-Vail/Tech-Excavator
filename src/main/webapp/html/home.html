@@ -56,17 +56,18 @@
 </header>
 
 <body>
-
-  <!-- RIOT gardenDropdown.tag -->
-  <gardenDropdown></gardenDropdown>
-  <canvas id = "c" width = "1400" height = "590"></canvas>
-  <gardenCanvas></gardenCanvas>
-
   <!-- RIOT -->
+  <gardenDropdown></gardenDropdown>
+  <gardenCanvas></gardenCanvas>
+  <canvas id = "c" width = "1400" height = "350"></canvas>
+  <plotDetails></plotDetails>
+
   <script src="../tag/gardenDropdown.tag" type="riot/tag"></script>
   <script src="../tag/gardenCanvas.tag" type="riot/tag"></script>
+  <script src="../tag/plotDetails.tag" type="riot/tag"></script>
   <script>riot.mount('gardenDropdown')</script>
   <script>riot.mount('gardenCanvas')</script>
+  <script>riot.mount('plotDetails')</script>
 
 </body>
 
