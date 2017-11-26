@@ -82,3 +82,10 @@ body {
 	outline: none !important;
 	box-shadow: none;
  }
+
+ /* For the div around the canvas */
+#wrapper{
+	overflow: auto;
+	max-height: 800px;
+    max-width: 100%;
+}
