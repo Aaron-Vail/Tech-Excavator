@@ -3,7 +3,8 @@ package com.techelevator.alpha.model;
 import java.math.BigDecimal;
 
 public class Plants {
-
+		
+		private long plantId;
 		private String scientificName;
 		private String commonName;
 		private BigDecimal pricePerPlant;
@@ -12,6 +13,7 @@ public class Plants {
 		private String imageLink;
 		private String plantingDirections;
 		private int region;
+		
 		public String getScientificName() {
 			return scientificName;
 		}
@@ -59,6 +61,12 @@ public class Plants {
 		}
 		public void setRegion(int region) {
 			this.region = region;
+		}
+		public long getPlantId() {
+			return plantId;
+		}
+		public void setPlantId(long plantId) {
+			this.plantId = plantId;
 		}
 		
 }
