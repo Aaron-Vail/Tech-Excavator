@@ -85,8 +85,8 @@ body {
 
  /* For the div around the canvas */
 #wrapper{
-	position: absolute;
 	overflow: auto;
-	max-height: 800px;
+	/* max-height: 800px; */
+	max-height: 350px;
     max-width: 100%;
 }
