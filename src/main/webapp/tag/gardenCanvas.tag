@@ -31,7 +31,6 @@
     <button id = "embiggenCanvasWidth" onclick="{embiggenCanvasWidth}">Embiggen Canvas Width</button>
     <button id = "embiggenCanvasHeight" onclick="{embiggenCanvasHeight}">Embiggen Canvas Height</button>
     <input type = "color" id = "color" value = "#9e6c3a" onchange="{colorSelector}"/>
-    <button id = "colorBtn" onclick="{colorBtn}">Change Selection's Color</button>
     <span id = "height"></span>
     <span id = "width"></span>
 </div>
@@ -55,34 +54,52 @@
 
     //Keeps the objects in the canvas, needs to be fixed
         canvas.observe("object:moving", function(e){
-            var obj = e.target;
-            // if object is too big ignore
+            this.obj = e.target;
+            currentCanvasHeight = canvas.height;
+            currentCanvasWidth = canvas.width;
+
+
+            if (obj.left + obj.currentWidth >currentCanvasWidth){
+                canvas.setWidth(currentCanvasWidth + 50);
+                $("#wrapper").scrollLeft(obj.left);
+                $("#wrapper").on('scroll', function(){
+                    canvas.calcOffset.bind(canvas);
+                });
+            } 
+            if (obj.left + obj.currentHeight >currentCanvasHeight){
+                canvas.setWidth(currentCanvasHeight + 50);
+                $("#wrapper").scrollLeft(obj.left);
+                $("#wrapper").on('scroll', function(){
+                    canvas.calcOffset.bind(canvas);
+                });
+            } 
+            // // if object is too big ignore
     
-            var halfw = obj.currentWidth/2;
-            var halfh = obj.currentHeight/2;
-            var bounds = {tl: {x: halfw, y:halfh},
-                br: {x: obj.canvas.width , y: obj.canvas.height }
-            };
+            // var halfw = obj.currentWidth/2;
+            // var halfh = obj.currentHeight/2;
+            // var bounds = {tl: {x: halfw, y:halfh},
+            //     br: {x: obj.canvas.width , y: obj.canvas.height }
+            // };
        
-            // top-left  corner
-            if(obj.top < bounds.br.y || obj.left < bounds.br.x ){
-                obj.top = Math.max(obj.top, '0'  );  
-                obj.left = Math.max(obj.left, '0' )  
-            }
+            // // top-left  corner
+            // if(obj.top < bounds.br.y || obj.left < bounds.br.x ){
+            //     obj.top = Math.max(obj.top, '0'  );  
+            //     obj.left = Math.max(obj.left, '0' )  
+            // }
     
     
-                // alert("text");
-            if(obj.top < bounds.tl.y || obj.left < bounds.tl.x){
-                obj.top = Math.max(obj.top, '10'  );
-                obj.left = Math.max(obj.left , '50' ) 
-            }
+            //     // alert("text");
+            // if(obj.top < bounds.tl.y || obj.left < bounds.tl.x){
+            //     obj.top = Math.max(obj.top, '10'  );
+            //     obj.left = Math.max(obj.left , '50' ) 
+            // }
     
     
-            // bot-right corner
-            if(obj.top > bounds.br.y || obj.left > bounds.br.x ){
-                obj.top = Math.min(obj.top, '800'  );  
-                obj.left = Math.min(obj.left, '1470' )  
-            }
+            // // bot-right corner
+            // if(obj.top > bounds.br.y || obj.left > bounds.br.x ){
+            //     obj.top = Math.min(obj.top, '800'  );  
+            //     obj.left = Math.min(obj.left, '1470' )  
+            // }
        
         });
     
@@ -156,7 +173,9 @@
            
     //Needs to trigger when the garden is selected
 
-       this.on('mount', function() {
+        this.on('mount', function() {
+            canvas.setWidth(1470);
+            canvas.setHeight(800);
             fabric.Object.prototype.transparentCorners = false;
             fabric.Object.prototype.originX = fabric.Object.prototype.originY = 'center';
             canvas.renderAll();
@@ -171,20 +190,16 @@
                     canvas.backgroundColor = "rgb(249, 252, 252)"
                 }
             });
-       });
+        });
        
-           this.getId = function(){
-             //alert(canvas.getActiveObject().id);
-           };
-           this.colorSelector =  function(){
-                canvas.getActiveObject().set("fill", $("#color").val());
-                canvas.renderAll();
-           };
-           this.colorBtn = function(){
-                canvas.getActiveObject().set("fill", $("#color").val());
-                canvas.renderAll();
-           };
-    
+        this.getId = function(){
+            //alert(canvas.getActiveObject().id);
+        };
+        this.colorSelector =  function(){
+            canvas.getActiveObject().set("fill", $("#color").val());
+            canvas.renderAll();
+        };
+
     //These are the height and width changers, will need to be updated on the next sprint
         canvas.observe("object:selected",function(e){
            $("#height").text(Math.round(e.target.height * e.target.scaleY));
@@ -196,19 +211,19 @@
          });
 
     //Opacity changes on hover
-    canvas.on('mouse:over', function(e) {
-        if(e.target != null){
-            e.target.set('opacity', 1.0);
-            canvas.renderAll();
-        }
-    });
+        canvas.on('mouse:over', function(e) {
+            if(e.target != null){
+                e.target.set('opacity', 1.0);
+                canvas.renderAll();
+            }
+        });
 
-    canvas.on('mouse:out', function(e) {
-        if(e.target != null){
-            e.target.set('opacity', 0.9);
-            canvas.renderAll();
-        }
-    });
+        canvas.on('mouse:out', function(e) {
+            if(e.target != null){
+                e.target.set('opacity', 0.9);
+                canvas.renderAll();
+            }
+        });
     //Slight size change on moving
     function animate(e, dir) {
         if (e.target) {
@@ -240,65 +255,6 @@
       }
       canvas.on('mouse:down', function(e) { animate(e, 1); });
       canvas.on('mouse:up', function(e) { animate(e, 0); });
-
-    // canvas.on('mouse:down', function(e) {
-    //     animate(e, 1);
-    // });
-    // canvas.on('mouse:up', function(e) {
-    //     animate(e, 0);
-    // });
-
-    // function animate(e, p) {
-    //     if (e.target) {
-    //         fabric.util.animate({
-    //             startValue: e.target.get('height'),
-    //             endValue: e.target.get('height') + (p ? -10 : 50 - e.target.height),
-    //             duration: 100,
-    //             onChange: function(v) {
-    //                 e.target.setHeight(v);
-    //                 canvas.renderAll();
-    //             },
-    //             onComplete: function() {
-    //                 e.target.setCoords();
-    //             }
-    //         });
-    //         fabric.util.animate({
-    //             startValue: e.target.get('width'),
-    //             endValue: e.target.get('width') + (p ? -10 : 50 - e.target.width),
-    //             duration: 100,
-    //             onChange: function(v) {
-    //                 e.target.setWidth(v);
-    //                 canvas.renderAll();
-    //             },
-    //             onComplete: function() {
-    //                 e.target.setCoords();
-    //             }
-    //         });
-            // fabric.util.animate({
-            //     startValue: e.target.get('top'),
-            //     endValue: e.target.get('top') + (p && 5),
-            //     duration: 100,
-            //     onChange: function(v) {
-            //         e.target.setTop(v);
-            //         canvas.renderAll();
-            //     },
-            //     onComplete: function() {
-            //         e.target.setCoords();
-            //     }
-            // });
-            // fabric.util.animate({
-            //     startValue: e.target.get('left'),
-            //     endValue: e.target.get('left') + (p && 5),
-            //     duration: 100,
-            //     onChange: function(v) {
-            //         e.target.setLeft(v);
-            //         canvas.renderAll();
-            //     },
-            //     onComplete: function() {
-            //         e.target.setCoords();
-            //     }
-            // });
-            // canvas.renderAll();
 
     </script>
 </gardenCanvas>

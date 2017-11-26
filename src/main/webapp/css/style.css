@@ -160,3 +160,11 @@ body {
 	outline: none !important;
 	box-shadow: none;
  }
+
+ /* For the div around the canvas */
+#wrapper{
+	position: absolute;
+	overflow: auto;
+	max-height: 800px;
+    max-width: 100%;
+}
