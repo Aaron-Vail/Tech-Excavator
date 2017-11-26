@@ -29,50 +29,6 @@ body {
 	color: #ffffff;
 }
 
-#dropdownMenu1 {
-	width: 35%;
-	border-radius: 0px;
-	text-align: left;
-	padding-left: 25px;
-	background-color: white;
-}
-
-#gardenDropDownItems {
-	width: 100%;
-	border-radius: 0px;
-	-webkit-appearance: none;
-    -webkit-border-radius: 0px;
-    background-image: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='24' height='24' viewBox='0 0 24 24'><path fill='#444' d='M7.406 7.828l4.594 4.594 4.594-4.594 1.406 1.406-6 6-6-6z'></path></svg>");
-    background-position: 100% 50%;
-    background-repeat: no-repeat;
-	text-align: left;
-	padding-left: 5px;
-}
-
-.caret {
-	float: right;
-	margin-top: 7px;
-}
-
-.input-group-addon {
-	border-radius: 0px;
-}
-
-#userDropDown {
-	padding-right: 50px;
-}
-
-.dropdown {
-	display: inline;
-	padding-right: 0px;
-	border-right: 0px;
-}
-
-#dropdownMenu1, #gardensButton, #minusButton, #plusButton, #saveButton, #shareButton, #shoppingListButton {
-	border-radius: 0px;
-	width: 100%;
-}
-
 .col-md-1, .col-md-6 {
 	padding: 0;
 }
@@ -98,40 +54,6 @@ body {
 }
 
 .modal-content {
-	border-radius: 0;
-}
-
-#newGardenCancelButton {
-	border-radius: 0;
-}
-
-#newGardenSaveButton {
-	background-color: #2E7F39;
-	border-radius: 0;
-}
-
-#deleteGardenCancelButton {
-	border-radius: 0;
-}
-
-#deleteGardenDeleteButton {
-	background-color: #D9534F;
-	border-color: #D43F3A;
-	border-radius: 0;
-}
-
-#regionDropdownMenuItems {
-	text-align: left;
-	width: 95%;
-	margin: 0px 15px 0px 15px;
-	border-radius: 0;
-	-webkit-appearance: none;
-    -webkit-border-radius: 0px;
-    background-image: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='24' height='24' viewBox='0 0 24 24'><path fill='#444' d='M7.406 7.828l4.594 4.594 4.594-4.594 1.406 1.406-6 6-6-6z'></path></svg>");
-    background-position: 100% 50%;
-    background-repeat: no-repeat;}
-
-#new-garden-input {
 	border-radius: 0;
 }
 

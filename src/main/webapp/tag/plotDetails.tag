@@ -13,7 +13,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-9">
-                <table class="table table-bordered table-condensed">
+                <table class="table table-condensed">
                     <thead>
                         <tr>
                             <th>Color</th>
