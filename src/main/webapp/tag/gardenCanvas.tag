@@ -26,7 +26,6 @@
         </div>
     </div>
     <button id="newPlotModalBtn" data-toggle="modal" data-target="#newPlotModal" >New Plot</button>
-    <button id = "saveGarden" onclick="{saveGarden}">Save Garden</button>
     <button id = "loadPlot" onclick="{loadPlot}">Load Plot</button>
     <button id = "getId" onclick="{getId}">Get Id</button>
     <input type = "color" id = "color" value = "#9e6c3a" onchange="{colorSelector}"/>
@@ -203,30 +202,93 @@
     //Slight size change on moving
     function animate(e, dir) {
         if (e.target) {
-          fabric.util.animate({
-            startValue: e.target.get('scaleX'),
-            endValue: e.target.get('scaleX') + (dir ? 0.1 : -0.1),
-            duration: 100,
-            onChange: function(value) {
-              e.target.scale(value);
-              canvas.renderAll();
-            },
-            onComplete: function() {
-              e.target.setCoords();
-            }
-          });
+            fabric.util.animate({
+                startValue: e.target.get('scaleX'),
+                endValue: e.target.get('scaleX') + (dir ? 0.1 : -0.1),
+                duration: 100,
+                onChange: function(value) {
+                e.target.scaleX = value;
+                canvas.renderAll();
+                },
+                onComplete: function() {
+                e.target.setCoords();
+                }
+            });
+            fabric.util.animate({
+                startValue: e.target.get('scaleY'),
+                endValue: e.target.get('scaleY') + (dir ? 0.1 : -0.1),
+                duration: 100,
+                onChange: function(value) {
+                e.target.scaleY = value;
+                canvas.renderAll();
+                },
+                onComplete: function() {
+                e.target.setCoords();
+                }
+            });
         }
       }
       canvas.on('mouse:down', function(e) { animate(e, 1); });
       canvas.on('mouse:up', function(e) { animate(e, 0); });
+
+    // canvas.on('mouse:down', function(e) {
+    //     animate(e, 1);
+    // });
+    // canvas.on('mouse:up', function(e) {
+    //     animate(e, 0);
+    // });
+
+    // function animate(e, p) {
+    //     if (e.target) {
+    //         fabric.util.animate({
+    //             startValue: e.target.get('height'),
+    //             endValue: e.target.get('height') + (p ? -10 : 50 - e.target.height),
+    //             duration: 100,
+    //             onChange: function(v) {
+    //                 e.target.setHeight(v);
+    //                 canvas.renderAll();
+    //             },
+    //             onComplete: function() {
+    //                 e.target.setCoords();
+    //             }
+    //         });
+    //         fabric.util.animate({
+    //             startValue: e.target.get('width'),
+    //             endValue: e.target.get('width') + (p ? -10 : 50 - e.target.width),
+    //             duration: 100,
+    //             onChange: function(v) {
+    //                 e.target.setWidth(v);
+    //                 canvas.renderAll();
+    //             },
+    //             onComplete: function() {
+    //                 e.target.setCoords();
+    //             }
+    //         });
+            // fabric.util.animate({
+            //     startValue: e.target.get('top'),
+            //     endValue: e.target.get('top') + (p && 5),
+            //     duration: 100,
+            //     onChange: function(v) {
+            //         e.target.setTop(v);
+            //         canvas.renderAll();
+            //     },
+            //     onComplete: function() {
+            //         e.target.setCoords();
+            //     }
+            // });
+            // fabric.util.animate({
+            //     startValue: e.target.get('left'),
+            //     endValue: e.target.get('left') + (p && 5),
+            //     duration: 100,
+            //     onChange: function(v) {
+            //         e.target.setLeft(v);
+            //         canvas.renderAll();
+            //     },
+            //     onComplete: function() {
+            //         e.target.setCoords();
+            //     }
+            // });
+            // canvas.renderAll();
+
     </script>
-
-
-
-
-
-
-
-
-
 </gardenCanvas>
