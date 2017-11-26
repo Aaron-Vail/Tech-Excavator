@@ -52,55 +52,35 @@
             canvas.setHeight(canvas.height + 100);
         };
 
-    //Keeps the objects in the canvas, needs to be fixed
+    //Scrolls the canvas with moving objects
         canvas.observe("object:moving", function(e){
-            this.obj = e.target;
-            currentCanvasHeight = canvas.height;
-            currentCanvasWidth = canvas.width;
+            var obj = e.target;
+            var currentCanvasHeight = canvas.height;
+            var currentCanvasWidth = canvas.width;
+            var currentWidth = obj.width * obj.scaleX;
+            var currentHeight = obj.height * obj.scaleY;
 
+            if(obj.left - currentWidth/2 < 0){
+                obj.left = currentWidth/2;
+            }
+            if(obj.top - currentHeight/2 < 0){
+                obj.top = currentHeight/2;
+            }
 
-            if (obj.left + obj.currentWidth >currentCanvasWidth){
+            if (obj.left + currentWidth/2 >currentCanvasWidth){
                 canvas.setWidth(currentCanvasWidth + 50);
                 $("#wrapper").scrollLeft(obj.left);
                 $("#wrapper").on('scroll', function(){
                     canvas.calcOffset.bind(canvas);
                 });
             } 
-            if (obj.left + obj.currentHeight >currentCanvasHeight){
-                canvas.setWidth(currentCanvasHeight + 50);
-                $("#wrapper").scrollLeft(obj.left);
+            if (obj.top + currentHeight/2 >currentCanvasHeight){
+                canvas.setHeight(currentCanvasHeight + 50);
+                $("#wrapper").scrollTop(obj.top);
                 $("#wrapper").on('scroll', function(){
                     canvas.calcOffset.bind(canvas);
                 });
             } 
-            // // if object is too big ignore
-    
-            // var halfw = obj.currentWidth/2;
-            // var halfh = obj.currentHeight/2;
-            // var bounds = {tl: {x: halfw, y:halfh},
-            //     br: {x: obj.canvas.width , y: obj.canvas.height }
-            // };
-       
-            // // top-left  corner
-            // if(obj.top < bounds.br.y || obj.left < bounds.br.x ){
-            //     obj.top = Math.max(obj.top, '0'  );  
-            //     obj.left = Math.max(obj.left, '0' )  
-            // }
-    
-    
-            //     // alert("text");
-            // if(obj.top < bounds.tl.y || obj.left < bounds.tl.x){
-            //     obj.top = Math.max(obj.top, '10'  );
-            //     obj.left = Math.max(obj.left , '50' ) 
-            // }
-    
-    
-            // // bot-right corner
-            // if(obj.top > bounds.br.y || obj.left > bounds.br.x ){
-            //     obj.top = Math.min(obj.top, '800'  );  
-            //     obj.left = Math.min(obj.left, '1470' )  
-            // }
-       
         });
     
     
@@ -180,11 +160,32 @@
             fabric.Object.prototype.originX = fabric.Object.prototype.originY = 'center';
             canvas.renderAll();
 
-        //Load a canvas from selected object
+    //Load a canvas from selected object
             GARDEN.on('gardenSelectionUpdated', function() {
                 //alert(GARDEN.currentGarden.plotsJson);
                 if(GARDEN.currentGarden.plotsJson != 'empty'){
+
                     canvas.loadFromDatalessJSON(GARDEN.currentGarden.plotsJson);
+
+                    //Resizing the canvas on a load
+                    canvas.setWidth(1470);
+                    canvas.setHeight(800);
+
+                    var gardenPlotsObject = JSON.parse(GARDEN.currentGarden.plotsJson).objects;
+
+                    gardenPlotsObject.forEach(function(element) {
+
+
+                    alert(element.angle);
+                    
+                        if(element.top + element.height * element.scaleY* Math.sin(Math.PI*(90- element.angle)/180) >= canvas.height){
+                            canvas.setHeight(element.top + element.height * element.scaleY* Math.sin(Math.PI*(90- element.angle)/180)) + 50;
+                        };
+                        if(element.left + element.width * element.scaleX *Math.sin(Math.PI*(90- element.angle)/180) >= canvas.width){
+                            canvas.setWidth(element.left + element.width * element.scaleX *Math.sin(Math.PI*(90- element.angle)/180)) + 50;
+                        };
+                    }, this);
+
                 }else{
                     canvas.clear();
                     canvas.backgroundColor = "rgb(249, 252, 252)"
@@ -224,7 +225,7 @@
                 canvas.renderAll();
             }
         });
-    //Slight size change on moving
+    //Slight size change on mouse down and up
     function animate(e, dir) {
         if (e.target) {
             fabric.util.animate({
@@ -256,5 +257,14 @@
       canvas.on('mouse:down', function(e) { animate(e, 1); });
       canvas.on('mouse:up', function(e) { animate(e, 0); });
 
+    //Locks rotation to 45
+    canvas.on('object:rotating', function(e) {
+        if(e.target.angle > 45 && e.target.angle < 180){
+            e.target.angle = 45;
+        }
+        if(e.target.angle >180 && e.target.angle < 315){
+            e.target.angle = 315;
+        }
+    });
     </script>
 </gardenCanvas>
