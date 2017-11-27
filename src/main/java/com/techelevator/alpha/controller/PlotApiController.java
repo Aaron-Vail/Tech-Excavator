@@ -1,5 +1,7 @@
 package com.techelevator.alpha.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techelevator.alpha.model.AppUser;
@@ -33,6 +36,11 @@ public class PlotApiController {
 	@RequestMapping(path = "/savePlot", method = RequestMethod.PUT)
 	public void savePlot(@ModelAttribute Plot plot, HttpSession session){
 		plotDao.savePlot(plot, ((AppUser)session.getAttribute("currentUser")).getUserId());
+	}
+	
+	@RequestMapping(path = "/getPlotsByGarden", method = RequestMethod.GET)
+	public List<Plot> getPlotsByGarden(@RequestParam Long gardenId, HttpSession session){
+		return plotDao.getPlotsByGarden(gardenId, ((AppUser)session.getAttribute("currentUser")).getUserId());
 	}
 	
 	

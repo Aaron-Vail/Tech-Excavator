@@ -172,7 +172,7 @@
                     canvas.setHeight(800);
 
                     var gardenPlotsObject = JSON.parse(GARDEN.currentGarden.plotsJson).objects;
-
+                    var plotSizeArray = [];
                     gardenPlotsObject.forEach(function(element) {
 
                         if(element.top + element.height * element.scaleY* Math.sin(Math.PI*(90- element.angle)/180) >= canvas.height){
@@ -182,10 +182,15 @@
                             canvas.setWidth(element.left + element.width * element.scaleX *Math.sin(Math.PI*(90- element.angle)/180)) + 50;
                         };
 
-                    }, this);
+                        plotSizeArray.push({'id':element.id, 'height': element.scaleY * element.height, 'width':element.scaleX * element.width});
 
+                    }, this);
+                    GARDEN.plotSizeArray = plotSizeArray;
+                    GARDEN.trigger("plotSizeUpdated");
                 }else{
                     canvas.clear();
+                    canvas.setWidth(1470);
+                    canvas.setHeight(800);
                     canvas.backgroundColor = "rgb(249, 252, 252)"
                 }
             });
@@ -257,6 +262,8 @@
         if(e.target){
             $("#height").text(Math.round(e.target.height * e.target.scaleY));
             $('#width').text(Math.round(e.target.width * e.target.scaleX));
+            GARDEN.selectedPlotId = e.target.id;
+            GARDEN.trigger("selectedPlotUpdated");
         }
     });
     canvas.on('mouse:up', function(e) { animate(e, 0); });
