@@ -175,15 +175,13 @@
 
                     gardenPlotsObject.forEach(function(element) {
 
-
-                    alert(element.angle);
-                    
                         if(element.top + element.height * element.scaleY* Math.sin(Math.PI*(90- element.angle)/180) >= canvas.height){
                             canvas.setHeight(element.top + element.height * element.scaleY* Math.sin(Math.PI*(90- element.angle)/180)) + 50;
                         };
                         if(element.left + element.width * element.scaleX *Math.sin(Math.PI*(90- element.angle)/180) >= canvas.width){
                             canvas.setWidth(element.left + element.width * element.scaleX *Math.sin(Math.PI*(90- element.angle)/180)) + 50;
                         };
+
                     }, this);
 
                 }else{
@@ -230,8 +228,8 @@
         if (e.target) {
             fabric.util.animate({
                 startValue: e.target.get('scaleX'),
-                endValue: e.target.get('scaleX') + (dir ? 0.1 : -0.1),
-                duration: 100,
+                endValue: e.target.get('scaleX') + (dir ? 0.05 : -0.05),
+                duration: 50,
                 onChange: function(value) {
                 e.target.scaleX = value;
                 canvas.renderAll();
@@ -242,8 +240,8 @@
             });
             fabric.util.animate({
                 startValue: e.target.get('scaleY'),
-                endValue: e.target.get('scaleY') + (dir ? 0.1 : -0.1),
-                duration: 100,
+                endValue: e.target.get('scaleY') + (dir ? 0.05 : -0.05),
+                duration: 50,
                 onChange: function(value) {
                 e.target.scaleY = value;
                 canvas.renderAll();
@@ -254,8 +252,14 @@
             });
         }
       }
-      canvas.on('mouse:down', function(e) { animate(e, 1); });
-      canvas.on('mouse:up', function(e) { animate(e, 0); });
+    canvas.on('mouse:down', function(e) { 
+        animate(e, 1);
+        if(e.target){
+            $("#height").text(Math.round(e.target.height * e.target.scaleY));
+            $('#width').text(Math.round(e.target.width * e.target.scaleX));
+        }
+    });
+    canvas.on('mouse:up', function(e) { animate(e, 0); });
 
     //Locks rotation to 45
     canvas.on('object:rotating', function(e) {

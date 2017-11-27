@@ -1,5 +1,6 @@
 package com.techelevator.alpha.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class JDBCPlantsDAO implements PlantsDAO {
 	
-private JdbcTemplate jdbcTemplate;
+	private JdbcTemplate jdbcTemplate;
 
 	@Autowired
 	public JDBCPlantsDAO(DataSource dataSource) {
@@ -23,7 +24,7 @@ private JdbcTemplate jdbcTemplate;
 	@Override
 	public Plants getPlantById(long plantId) {
 		Plants plant = new Plants();
-		SqlRowSet result = jdbcTemplate.queryForRowSet("SELECT * FROM WHERE plant_id = ?",plantId);
+		SqlRowSet result = jdbcTemplate.queryForRowSet("SELECT * FROM plant WHERE plant_id = ?",plantId);
 		if(result.next()){
 			plant.setPlantId(result.getLong("plant_id"));
 			plant.setScientificName(result.getString("scientific_name"));
@@ -41,27 +42,28 @@ private JdbcTemplate jdbcTemplate;
 	
 
 	@Override
-	public Plants getAllPlants() {
+	public List<Plants> getAllPlants() {
 		
+		List<Plants> plants = new ArrayList<>();
+		SqlRowSet result = jdbcTemplate.queryForRowSet("SELECT * FROM plant");
+		while(result.next()){
 			Plants plant = new Plants();
-			SqlRowSet result = jdbcTemplate.queryForRowSet("SELECT * FROM plants");
-			if(result.next()){
-				plant.setPlantId(result.getLong("plant_id"));
-				plant.setScientificName(result.getString("scientific_name"));
-				plant.setCommonName(result.getString("common_name"));
-				plant.setPricePerPlant(result.getBigDecimal("price_per_plant"));
-				plant.setAreaPerPlant(result.getInt("area_per_plant"));
-				plant.setDesiredLight(result.getString("desired_light"));
-				plant.setImageLink(result.getString("image_link"));
-				plant.setPlantingDirections(result.getString("planting_directions"));
-				plant.setRegion(result.getInt("region"));
-				
-				return plant;
-			}
+			plant.setPlantId(result.getLong("plant_id"));
+			plant.setScientificName(result.getString("scientific_name"));
+			plant.setCommonName(result.getString("common_name"));
+			plant.setPricePerPlant(result.getBigDecimal("price_per_plant"));
+			plant.setAreaPerPlant(result.getInt("area_per_plant"));
+			plant.setDesiredLight(result.getString("desired_light"));
+			plant.setImageLink(result.getString("image_link"));
+			plant.setPlantingDirections(result.getString("planting_directions"));
+			plant.setRegion(result.getInt("region"));
 			
-			return null;
+			plants.add(plant);
 		}
+		
+		return plants;
 	}
+}
 	
 	
 

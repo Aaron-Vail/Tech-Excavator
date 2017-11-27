@@ -1,5 +1,7 @@
 package com.techelevator.alpha.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +29,8 @@ public class PlantApiController {
 		return plantsDao.getPlantById(plantId);
 	}
 	
-	@RequestMapping(path = "/getAllPlants", method = RequestMethod.POST)
-	public Plants getAllPlants(@ModelAttribute Plants plant){
+	@RequestMapping(path = "/getAllPlants", method = RequestMethod.GET)
+	public List<Plants> getAllPlants(){
 		return plantsDao.getAllPlants();
 	}
 	
