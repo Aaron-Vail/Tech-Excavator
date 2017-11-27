@@ -60,14 +60,27 @@
   <gardenDropdown></gardenDropdown>
   <gardenCanvas></gardenCanvas>
   <div id = "wrapper"><canvas id = "c"></canvas></div>
-  <plotDetails></plotDetails>
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-9">
+            <plotDetails></plotDetails>
+        </div>
+        <div class="col-md-3">
+            <plantDirections></plantDirections>
+        </div>
+      </div>
+  </div>
+
+
 
   <script src="../tag/gardenDropdown.tag" type="riot/tag"></script>
   <script src="../tag/gardenCanvas.tag" type="riot/tag"></script>
   <script src="../tag/plotDetails.tag" type="riot/tag"></script>
+  <script src="../tag/plantDirections.tag" type="riot/tag"></script>
   <script>riot.mount('gardenDropdown')</script>
   <script>riot.mount('gardenCanvas')</script>
   <script>riot.mount('plotDetails')</script>
+  <script>riot.mount('plantDirections')</script>
 
 </body>
 
