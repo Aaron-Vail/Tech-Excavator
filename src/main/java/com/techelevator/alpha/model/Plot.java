@@ -3,7 +3,7 @@ package com.techelevator.alpha.model;
 public class Plot {
 	
 	private int plotId;
-	private String name;
+	private String plotName;
 	private int plantId;
 	private String lightLevel;
 	private int gardenId;
@@ -15,11 +15,11 @@ public class Plot {
 	public void setPlotId(int plotId) {
 		this.plotId = plotId;
 	}
-	public String getName() {
-		return name;
+	public String getPlotName() {
+		return plotName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setPlotName(String name) {
+		this.plotName = name;
 	}
 	public int getPlantId() {
 		return plantId;

@@ -22,7 +22,7 @@ public class JDBCPlotDAO implements PlotDAO {
 	
 	@Override
 	public Long createPlot(Plot plot, Long userId) {
-		return jdbcTemplate.queryForObject("INSERT INTO plot (user_id, plot_name, light_level, plant_id) VALUES (?,?,?,?) RETURNING plot_id", Long.class, userId, plot.getName(), plot.getLightLevel(), plot.getPlantId());
+		return jdbcTemplate.queryForObject("INSERT INTO plot (user_id, plot_name, light_level, plant_id) VALUES (?,?,?,?) RETURNING plot_id", Long.class, userId, plot.getPlotName(), plot.getLightLevel(), plot.getPlantId());
 	}
 
 	@Override
@@ -41,12 +41,12 @@ public class JDBCPlotDAO implements PlotDAO {
 	@Override
 	public List<Plot> getPlotsByGarden(Long gardenId, long userId) {
 		
-		List<Plot> plots = new ArrayList();
+		List<Plot> plots = new ArrayList<>();
 		SqlRowSet results = jdbcTemplate.queryForRowSet("SELECT * FROM plot WHERE garden_id = ? and user_id = ?", gardenId, userId);
 		while(results.next()){
 			Plot plot = new Plot();
 			plot.setLightLevel(results.getString("light_level"));
-			plot.setName(results.getString("plot_name"));
+			plot.setPlotName(results.getString("plot_name"));
 			plot.setPlantId(results.getInt("plant_id"));
 			plot.setPlotId(results.getInt("plot_id"));
 			
