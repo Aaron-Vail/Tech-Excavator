@@ -12,15 +12,15 @@ INSERT INTO region (region_id, climate) VALUES ('4', 'Warm');
 INSERT INTO region (region_id, climate) VALUES ('5', 'Hot');
 
 --Plant information
-<<<<<<< HEAD
+
 
 INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, 
 					image_link, planting_directions, region) VALUES 
 					('Lycopersicon lycopersicum', 
 					'Tomato', '0.03', '3', 'sun', 'https://static.pexels.com/photos/257794/pexels-photo-257794.jpeg', 
-					'Rows: space plants placing one seed every 2" to 8" in rows 4'' to 5'' apart.  Hills: plant 5 to 8 
+					'Rows: space plants placing one seed every 2" to 8" in rows 4 ft to 5 ft apart.  Hills: plant 5 to 8 
 					seeds per hill. When plants emerge, cut off weaker plants leaving only 2 to 3 per hill. Allow 3'' to 
-					6'' between hills.  Beds: place hills in beds following spacing for hills above.  Containers: Place 
+					6 ft between hills.  Beds: place hills in beds following spacing for hills above.  Containers: Place 
 					seeds as described above for rows or hills. Use bush-type cucumbers which require less room or grow plants 
 					on cages or on trellises.', '3'
 					);
@@ -29,9 +29,9 @@ INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant
 					image_link, planting_directions, region) VALUES 
 					('Daucus carota', 'Carrot', 
 					'0.02', '1', 'sun', 'https://static.pexels.com/photos/65174/pexels-photo-65174.jpeg', 
-					'Rows: space plants placing one seed every 2" to 8" in rows 4'' to 5'' apart.  
+					'Rows: space plants placing one seed every 2" to 8" in rows 4 ft to 5ft in apart.  
 					Hills: plant 5 to 8 seeds per hill. When plants emerge, cut off weaker plants leaving only 
-					2 to 3 per hill. Allow 3'' to 6'' between hills.  Beds: place hills in beds following spacing 
+					2 to 3 per hill. Allow 3 ft to 6 ft between hills.  Beds: place hills in beds following spacing 
 					for hills above.  Containers: Place seeds as described above for rows or hills. Use bush-type 
 					cucumbers which require less room or grow plants on cages or on trellises.', '3'
 					);
@@ -40,9 +40,9 @@ INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant
 					image_link, planting_directions, region) VALUES 
 					('vulgaris', 'Beet', '0.04', 
 					'1', 'sun', 'https://cdn.pixabay.com/photo/2017/07/08/17/42/beets-2485052_960_720.jpg', 
-					'Rows: space plants placing one seed every 2" to 8" in rows 4' to 5' apart.  Hills: plant 
+					'Rows: space plants placing one seed every 2" to 8" in rows 4 ft to 5 ft apart.  Hills: plant 
 					5 to 8 seeds per hill. When plants emerge, cut off weaker plants leaving only 2 to 3 per hill. 
-					Allow 3'' to 6'' between hills.  Beds: place hills in beds following spacing for hills above.  
+					Allow 3 ft to 6 ft between hills.  Beds: place hills in beds following spacing for hills above.  
 					Containers: Place seeds as described above for rows or hills. Use bush-type cucumbers which require 
 					less room or grow plants on cages or on trellises.', '2'
 					);
@@ -51,9 +51,9 @@ INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant
 					image_link, planting_directions, region) VALUES 
 					('napus', 'Turnip', '0.02', 
 					'1', 'sun', 'https://cdn.pixabay.com/photo/2017/04/04/18/00/vegetables-2202506_960_720.jpg', 
-					'Rows: space plants placing one seed every 2" to 8" in rows 4'' to 5'' apart.  Hills: plant 
+					'Rows: space plants placing one seed every 2" to 8" in rows 4 ft to 5 ft apart.  Hills: plant 
 					5 to 8 seeds per hill. When plants emerge, cut off weaker plants leaving only 2 to 3 per hill. 
-					Allow 3'' to 6'' between hills.  Beds: place hills in beds following spacing for hills above.  
+					Allow 3 ft to 6 ft between hills.  Beds: place hills in beds following spacing for hills above.  
 					Containers: Place seeds as described above for rows or hills. Use bush-type cucumbers which 
 					require less room or grow plants on cages or on trellises.', '2'
 					);
@@ -62,9 +62,9 @@ INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant
 					image_link, planting_directions, region) VALUES 
 					('Citrullus lanatus', 'Watermelon', '0.07', 
 					'1', 'sun', 'https://cdn.pixabay.com/photo/2017/10/14/15/50/watermelon-2850840_960_720.png', 
-					'Rows: space plants placing one seed every 2" to 8" in rows 4'' to 5'' apart.  Hills: plant 
+					'Rows: space plants placing one seed every 2" to 8" in rows 4 ft to 5 ft apart.  Hills: plant 
 					5 to 8 seeds per hill. When plants emerge, cut off weaker plants leaving only 2 to 3 per hill. 
-					Allow 3'' to 6'' between hills.  Beds: place hills in beds following spacing for hills above.  
+					Allow 3 ft to 6 ft between hills.  Beds: place hills in beds following spacing for hills above.  
 					Containers: Place seeds as described above for rows or hills. Use bush-type cucumbers which require 
 					less room or grow plants on cages or on trellises.', '3'
 					);
@@ -73,8 +73,8 @@ INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant
 					image_link, planting_directions, region) VALUES 
 					('Sativus', 'Cucumber', '0.02', '1', 'sun', 
 					'https://cdn.pixabay.com/photo/2016/11/05/00/01/cucumbers-1799262_960_720.jpg', 'Rows: space plants 
-					placing one seed every 2" to 8" in rows 4'' to 5'' apart.  Hills: plant 5 to 8 seeds per hill. 
-					When plants emerge, cut off weaker plants leaving only 2 to 3 per hill. Allow 3'' to 6'' between hills.  
+					placing one seed every 2" to 8" in rows 4 ft to 5 ft apart.  Hills: plant 5 to 8 seeds per hill. 
+					When plants emerge, cut off weaker plants leaving only 2 to 3 per hill. Allow 3 ft to 6 ft between hills.  
 					Beds: place hills in beds following spacing for hills above.  Containers: Place seeds as described 
 					above for rows or hills. Use bush-type cucumbers which require less room or grow plants on cages or on trellises.',
 					'3'
@@ -84,9 +84,9 @@ INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant
 					image_link, planting_directions, region) VALUES 
 					('Vesca', 'Strawberry', '0.04', '1', 'shade', 
 					'https://cdn.pixabay.com/photo/2017/11/05/17/14/strawberry-2921169_960_720.jpg', 
-					'Rows: space plants placing one seed every 2" to 8" in rows 4'' to 5'' apart.  
+					'Rows: space plants placing one seed every 2" to 8" in rows 4 ft to 5 ft apart.  
 					Hills: plant 5 to 8 seeds per hill. When plants emerge, cut off weaker plants 
-					leaving only 2 to 3 per hill. Allow 3'' to 6'' between hills.  Beds: place hills 
+					leaving only 2 to 3 per hill. Allow 3 ft to 6 ft between hills.  Beds: place hills 
 					in beds following spacing for hills above.  Containers: Place seeds as described 
 					above for rows or hills. Use bush-type cucumbers which require less room or grow 
 					plants on cages or on trellises.', '3'
@@ -96,15 +96,15 @@ INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant
 					image_link, planting_directions, region) VALUES 
 					('Pepo', 'Pumpkin', '0.03', '6', 'shade', 
 					'https://cdn.pixabay.com/photo/2017/10/29/16/24/autumn-2900167_960_720.jpg', 
-					'Rows: space plants placing one seed every 2" to 8" in rows 4'' to 5'' apart.  Hills: 
+					'Rows: space plants placing one seed every 2" to 8" in rows 4 ft to 5 ft apart.  Hills: 
 					plant 5 to 8 seeds per hill. When plants emerge, cut off weaker plants leaving only 2 
-					to 3 per hill. Allow 3'' to 6'' between hills.  Beds: place hills in beds following 
+					to 3 per hill. Allow 3 ft to 6 ft between hills.  Beds: place hills in beds following 
 					spacing for hills above.  Containers: Place seeds as described above for rows or hills. 
 					Use bush-type cucumbers which require less room or grow plants on cages or on trellises.', '2'
 					);
 					
 
-INSERT INTO plant (scientific_name, common_name, price_per_plaInt, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('Brassica eruca', 'Arugula', '0.07', '1', 'sun', 'https://cdn.pixabay.com/photo/2016/05/05/15/11/rocket-1374096_960_720.jpg', 'Grown as an edible herb in the Mediterranean area since Roman times,
+INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('Brassica eruca', 'Arugula', '0.07', '1', 'sun', 'https://cdn.pixabay.com/photo/2016/05/05/15/11/rocket-1374096_960_720.jpg', 'Grown as an edible herb in the Mediterranean area since Roman times,
  it was mentioned by various classical authors as an aphrodisiac,[11][12] most famously in a poem long ascribed to Virgil, Moretum, which contains the line: “et Venerem revocans eruca morantem” (“and the rocket, which revives drowsy Venus [sexual desire]”).[13] Some writers assert that for this reason during the Middle Ages it was forbidden to grow rocket in monasteries.[14] It was listed, however, in a decree by Charlemagne of 802 as one of the pot herbs suitable for growing in gardens.', '3');
 INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('Oleracea', 'Kale', '0.08', '2', 'sun', 'https://cdn.pixabay.com/photo/2015/03/26/09/40/plant-690051_960_720.jpg', 'Until the end of the Middle Ages, kale was one of the most common green vegetables in Europe. Curly-leaved varieties of cabbage already existed along with flat-leaved varieties in Greece in the fourth century BC. It was also used as medicinal 
 food source. Disocorides wrote that it could be used to treat bowel ailments.[3] These forms,  which were referred to by the Romans as Sabellian kale, are considered to be the ancestors of modern kales.', '3');
