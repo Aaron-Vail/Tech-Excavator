@@ -49,6 +49,7 @@ public class JDBCPlotDAO implements PlotDAO {
 			plot.setPlotName(results.getString("plot_name"));
 			plot.setPlantId(results.getInt("plant_id"));
 			plot.setPlotId(results.getInt("plot_id"));
+			plot.setGardenId(results.getInt("garden_id"));
 			
 			plots.add(plot);
 		}
