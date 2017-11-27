@@ -20,7 +20,7 @@
                             <td class="col-md-1" id="colorBox"><input type="color" value="#9E6C3A"></td>
                             <td class="col-md-3">Cucumber Patch</td>
                             <td class="col-md-3" id="plantDropDown">
-                                <select>
+                                <select id="selectedPlant">
                                     <option each={ plants } value={plantId}>{commonName}</option>
                                 </select>
                             </td>
@@ -87,6 +87,24 @@
                     self.update();
 				});
 			}
+
+            //Save new plots to database
+            function saveNewPlots() {
+                var selectedPlantId=$("#selectedPlant").val();
+                $.ajax({
+                    url: GARDEN.root + "savePlots",
+                    type: "POST",
+                    data: {
+                        gardenId: GARDEN.currentGarden.gardenId,
+                        plantId: selectedPlantId,
+                        plotId:
+                    }
+                }).done(function(data) {
+
+                })
+            }
+
+
 		})
     </script>
 </plotDetails>
