@@ -16,9 +16,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr each={ plots } id={plotId}>
                             <td class="col-md-1" id="colorBox"><input type="color" value="#9E6C3A"></td>
-                            <td class="col-md-3">Cucumber Patch</td>
+                            <td class="col-md-3">{plotName}</td>
                             <td class="col-md-3" id="plantDropDown">
                                 <select id="selectedPlant">
                                     <option each={ plants } value={plantId}>{commonName}</option>
@@ -69,6 +69,7 @@
     <script>
         var self = this;
 		self.plants = [];
+        self.plots = [];
 
 		//RIOT Mount
 		this.on('mount', function() {
@@ -87,6 +88,7 @@
                     self.update();
 				});
 			}
+
             //Load plots when a garden is selected
             GARDEN.on('gardenSelectionUpdated', function() {
                 $.ajax({
@@ -94,23 +96,27 @@
                     type: "GET",
                 }).then(function(data){
                     GARDEN.currentGarden.plotInfo = data;
+                    self.plots = data;
+                    console.log(data);
+                    self.update();
                 })
             });
-            //Save new plots to database
-            function saveNewPlots() {
-                var selectedPlantId=$("#selectedPlant").val();
-                $.ajax({
-                    url: GARDEN.root + "savePlots",
-                    type: "POST",
-                    data: {
-                        gardenId: GARDEN.currentGarden.gardenId,
-                        plantId: selectedPlantId,
-                        plotId: 3,
-                    }
-                }).done(function(data) {
 
-                })
-            }
+            //Save new plots to database
+            // function saveNewPlots() {
+            //     var selectedPlantId=$("#selectedPlant").val();
+            //     $.ajax({
+            //         url: GARDEN.root + "savePlots",
+            //         type: "POST",
+            //         data: {
+            //             gardenId: GARDEN.currentGarden.gardenId,
+            //             plantId: selectedPlantId,
+            //             plotId: 3,
+            //         }
+            //     }).done(function(data) {
+
+            //     })
+            // }
 
 
 		})
