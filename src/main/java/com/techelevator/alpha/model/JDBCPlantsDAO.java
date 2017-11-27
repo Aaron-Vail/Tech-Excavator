@@ -1,5 +1,6 @@
 package com.techelevator.alpha.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,8 +64,14 @@ public class JDBCPlantsDAO implements PlantsDAO {
 		
 		return plants;
 	}
+	
+	@Override
+	public void addPlant(String scientificName, String commonName, BigDecimal pricePerPlant, int areaPerPlant, String desiredLight, String imageLink, String plantingDirections, int region) {
+		
+		jdbcTemplate.update("INSERT into plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES (?,?,?,?,?,?,?,?) RETURNING plant_id", Long.class, scientificName, commonName, pricePerPlant, areaPerPlant, desiredLight, imageLink, plantingDirections, region);
+		
+	}
 }
-	
-	
+
 
 

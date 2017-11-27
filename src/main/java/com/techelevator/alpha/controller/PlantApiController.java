@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.techelevator.alpha.model.AppUser;
+import com.techelevator.alpha.model.Garden;
 import com.techelevator.alpha.model.Plants;
 import com.techelevator.alpha.model.PlantsDAO;
 
@@ -34,5 +35,12 @@ public class PlantApiController {
 		return plantsDao.getAllPlants();
 	}
 	
-	
+	@RequestMapping(path = "/addPlants", method = RequestMethod.POST)
+	public void addPlants(HttpSession session, @ModelAttribute Plants plant){
+		AppUser user = (AppUser)session.getAttribute("currentUser");
+		if (user.isAdmin()){
+			plantsDao.addPlant(plant.getScientificName(), plant.getCommonName(), plant.getPricePerPlant(), plant.getAreaPerPlant(), plant.getDesiredLight(), plant.getImageLink(), plant.getPlantingDirections(), plant.getRegion());
+		}
+
+	}
 }
