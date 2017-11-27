@@ -33,9 +33,10 @@ public class PlotApiController {
 		
 	}
 	
-	@RequestMapping(path = "/savePlot", method = RequestMethod.PUT)
-	public void savePlot(@ModelAttribute Plot plot, HttpSession session){
-		plotDao.savePlot(plot, ((AppUser)session.getAttribute("currentUser")).getUserId());
+	@RequestMapping(path = "/savePlots", method = RequestMethod.PUT)
+	public void savePlot(@ModelAttribute List<Plot> plots, HttpSession session){
+		
+		plotDao.savePlots(plots, ((AppUser)session.getAttribute("currentUser")).getUserId());
 	}
 	
 	@RequestMapping(path = "/getPlotsByGarden", method = RequestMethod.GET)

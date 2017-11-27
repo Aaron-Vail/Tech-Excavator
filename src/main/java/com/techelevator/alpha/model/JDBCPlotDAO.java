@@ -1,5 +1,6 @@
 package com.techelevator.alpha.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -31,18 +32,28 @@ public class JDBCPlotDAO implements PlotDAO {
 	}
 
 	@Override
-	public void savePlot(Plot plot, long userId) {
-		jdbcTemplate.update("UPDATE plot SET garden_id = ? WHERE plot_id = ? AND user_id = ?", plot.getGardenId(), plot.getPlotId(), userId);
+	public void savePlots(List<Plot> plots, long userId) {
+		for (Plot plot : plots){
+			jdbcTemplate.update("UPDATE plot SET garden_id = ? WHERE plot_id = ? AND user_id = ?", plot.getGardenId(), plot.getPlotId(), userId);
+		}
 	}
 
 	@Override
 	public List<Plot> getPlotsByGarden(Long gardenId, long userId) {
+		
+		List<Plot> plots = new ArrayList();
 		SqlRowSet results = jdbcTemplate.queryForRowSet("SELECT * FROM plot WHERE garden_id = ? and user_id = ?", gardenId, userId);
 		while(results.next()){
+			Plot plot = new Plot();
+			plot.setLightLevel(results.getString("light_level"));
+			plot.setName(results.getString("plot_name"));
+			plot.setPlantId(results.getInt("plant_id"));
+			plot.setPlotId(results.getInt("plot_id"));
 			
+			plots.add(plot);
 		}
 		
-		return null;
+		return plots;
 	}
 
 }

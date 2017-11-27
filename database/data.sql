@@ -4,16 +4,6 @@
 
 BEGIN;
 
--- Trial User Data, password is "Password"
-INSERT INTO app_user (email, hashed_password, salt) VALUES ('trial@user.edu', 'VDkcZD/a/RrPCsq7BFMEsw==','CBhv/pvtgNgL2YPB46xW2TJ6CwySXJLrweHlzosl/JuelqQo7xHekS1+nzO1f9m5XXfWaPtlo81uYDEK8PQeSPCXRHsGyNNpHVGq+ICHDPyzxzW4/YjFojDzm3R1SOObGgmdNW0QZLSCECuugT//BMoEgEMhx2p4hotiCmAnmqo=');
-INSERT INTO garden (garden_name, user_id) VALUES ('Garden 1', (SELECT user_id FROM app_user WHERE email = 'trial@user.edu'));
-INSERT INTO garden (garden_name, user_id) VALUES ('Garden 2', (SELECT user_id FROM app_user WHERE email = 'trial@user.edu'));
-
---Trial Admin Data, password is "Password"
-INSERT INTO app_user (email, hashed_password, salt, admin) VALUES ('trial@admin.edu', 'VDkcZD/a/RrPCsq7BFMEsw==','CBhv/pvtgNgL2YPB46xW2TJ6CwySXJLrweHlzosl/JuelqQo7xHekS1+nzO1f9m5XXfWaPtlo81uYDEK8PQeSPCXRHsGyNNpHVGq+ICHDPyzxzW4/YjFojDzm3R1SOObGgmdNW0QZLSCECuugT//BMoEgEMhx2p4hotiCmAnmqo=',true);
-INSERT INTO garden (garden_name, user_id) VALUES ('Garden 1', (SELECT user_id FROM app_user WHERE email = 'trial@admin.edu'));
-INSERT INTO garden (garden_name, user_id) VALUES ('Garden 2', (SELECT user_id FROM app_user WHERE email = 'trial@admin.edu'));
-
 --Region information
 INSERT INTO region (region_id, climate) VALUES ('1', 'Cold');
 INSERT INTO region (region_id, climate) VALUES ('2', 'Cool');
@@ -40,6 +30,18 @@ INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant
 INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('Vitis labrusca Concord', 'Concord Grape', '0.07', '10', 'shade', 'https://images.pexels.com/photos/197907/pexels-photo-197907.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb', 'Water weekly', '4');
 INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('napus', 'Rutabaga', '0.02', '2', 'shade', 'https://i.pinimg.com/736x/fa/11/7b/fa117bd98c6fb1a16e41d7936acb2109--rap-simple.jpg', 'Water often', '3'); 
 
+
+-- Trial User Data, password is "Password"
+INSERT INTO app_user (email, hashed_password, salt) VALUES ('trial@user.edu', 'VDkcZD/a/RrPCsq7BFMEsw==','CBhv/pvtgNgL2YPB46xW2TJ6CwySXJLrweHlzosl/JuelqQo7xHekS1+nzO1f9m5XXfWaPtlo81uYDEK8PQeSPCXRHsGyNNpHVGq+ICHDPyzxzW4/YjFojDzm3R1SOObGgmdNW0QZLSCECuugT//BMoEgEMhx2p4hotiCmAnmqo=');
+INSERT INTO garden (garden_name, user_id, plot_json, region) VALUES ('Garden 1', (SELECT user_id FROM app_user WHERE email = 'trial@user.edu'),'{"version":"2.0.0-rc.1","objects":[{"type":"rect","version":"2.0.0-rc.1","originX":"center","originY":"center","left":764,"top":184,"width":200,"height":200,"fill":"#9e6c3a","stroke":null,"strokeWidth":1,"strokeDashArray":null,"strokeLineCap":"butt","strokeLineJoin":"miter","strokeMiterLimit":10,"scaleX":1,"scaleY":1,"angle":0,"flipX":false,"flipY":false,"opacity":0.9,"shadow":null,"visible":true,"clipTo":null,"backgroundColor":"","fillRule":"nonzero","paintFirst":"fill","globalCompositeOperation":"source-over","transformMatrix":null,"skewX":0,"skewY":0,"rx":4,"ry":4,"id":1},{"type":"rect","version":"2.0.0-rc.1","originX":"center","originY":"center","left":355.23,"top":187,"width":200,"height":200,"fill":"#9e6c3a","stroke":null,"strokeWidth":1,"strokeDashArray":null,"strokeLineCap":"butt","strokeLineJoin":"miter","strokeMiterLimit":10,"scaleX":1.87,"scaleY":1,"angle":0,"flipX":false,"flipY":false,"opacity":0.9,"shadow":null,"visible":true,"clipTo":null,"backgroundColor":"","fillRule":"nonzero","paintFirst":"fill","globalCompositeOperation":"source-over","transformMatrix":null,"skewX":0,"skewY":0,"rx":4,"ry":4,"id":2}],"background":"rgb(249, 252, 252)"}','3');
+INSERT INTO garden (garden_name, user_id, plot_json, region) VALUES ('Garden 2', (SELECT user_id FROM app_user WHERE email = 'trial@user.edu'),'{"version":"2.0.0-rc.1","objects":[{"type":"rect","version":"2.0.0-rc.1","originX":"center","originY":"center","left":633,"top":190,"width":200,"height":200,"fill":"#9e6c3a","stroke":null,"strokeWidth":1,"strokeDashArray":null,"strokeLineCap":"butt","strokeLineJoin":"miter","strokeMiterLimit":10,"scaleX":1,"scaleY":1,"angle":0,"flipX":false,"flipY":false,"opacity":0.9,"shadow":null,"visible":true,"clipTo":null,"backgroundColor":"","fillRule":"nonzero","paintFirst":"fill","globalCompositeOperation":"source-over","transformMatrix":null,"skewX":0,"skewY":0,"rx":4,"ry":4,"id":3}],"background":"rgb(249, 252, 252)"}','3');
+INSERT INTO plot (user_id, plot_name, light_level, garden_id, plant_id) VALUES('1','Plot 1','sun','1','5');
+INSERT INTO plot (user_id, plot_name, light_level, garden_id, plant_id) VALUES('1','Plot 1','sun','1','10');
+INSERT INTO plot (user_id, plot_name, light_level, garden_id, plant_id) VALUES('1','Plot 1','sun','2','9');
+--Trial Admin Data, password is "Password"
+INSERT INTO app_user (email, hashed_password, salt, admin) VALUES ('trial@admin.edu', 'VDkcZD/a/RrPCsq7BFMEsw==','CBhv/pvtgNgL2YPB46xW2TJ6CwySXJLrweHlzosl/JuelqQo7xHekS1+nzO1f9m5XXfWaPtlo81uYDEK8PQeSPCXRHsGyNNpHVGq+ICHDPyzxzW4/YjFojDzm3R1SOObGgmdNW0QZLSCECuugT//BMoEgEMhx2p4hotiCmAnmqo=',true);
+INSERT INTO garden (garden_name, user_id) VALUES ('Garden 1', (SELECT user_id FROM app_user WHERE email = 'trial@admin.edu'));
+INSERT INTO garden (garden_name, user_id) VALUES ('Garden 2', (SELECT user_id FROM app_user WHERE email = 'trial@admin.edu'));
 --Dummy user data
 INSERT INTO app_user (email, hashed_password, salt) VALUES ('trial@user2.edu', 'VDkcZD/a/RrPCsq7BFMEsw==','CBhv/pvtgNgL2YPB46xW2TJ6CwySXJLrweHlzosl/JuelqQo7xHekS1+nzO1f9m5XXfWaPtlo81uYDEK8PQeSPCXRHsGyNNpHVGq+ICHDPyzxzW4/YjFojDzm3R1SOObGgmdNW0QZLSCECuugT//BMoEgEMhx2p4hotiCmAnmqo=');
 INSERT INTO garden (garden_name, region,  user_id) VALUES ('My Carrot Patch', '3', (SELECT user_id FROM app_user WHERE email = 'trial@user2.edu'));
