@@ -87,7 +87,15 @@
                     self.update();
 				});
 			}
-
+            //Load plots when a garden is selected
+            GARDEN.on('gardenSelectionUpdated', function() {
+                $.ajax({
+                    url: GARDEN.root + "getPlotsByGarden?gardenId=" + GARDEN.currentGarden.gardenId,
+                    type: "GET",
+                }).then(function(data){
+                    GARDEN.currentGarden.plotInfo = data;
+                })
+            });
             //Save new plots to database
             function saveNewPlots() {
                 var selectedPlantId=$("#selectedPlant").val();
@@ -97,7 +105,7 @@
                     data: {
                         gardenId: GARDEN.currentGarden.gardenId,
                         plantId: selectedPlantId,
-                        plotId:
+                        plotId: 3,
                     }
                 }).done(function(data) {
 
