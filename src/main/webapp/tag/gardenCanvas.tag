@@ -124,6 +124,7 @@
     
                canvas.add(rectangle);
                canvas.renderAll();
+               GARDEN.trigger("newPlotCreated", rectangle);
            });
            $("#newPlotModal").modal('hide');
         };
