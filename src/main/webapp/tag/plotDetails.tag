@@ -21,10 +21,7 @@
                             <td class="col-md-3">Cucumber Patch</td>
                             <td class="col-md-3" id="plantDropDown">
                                 <select>
-                                    <!-- <option each={ gardens } onchange={getGardenById} value={gardenId}>{gardenName}</option> -->
-                                    <option>Cucumbers</option>
-                                    <option>Tomatoes</option>
-                                    <option>Kale</option>
+                                    <option each={ plants } value={plantId}>{commonName}</option>
                                 </select>
                             </td>
                             <td class="col-md-2">20ft</td>
@@ -88,7 +85,6 @@
 					GARDEN.plants = data;
 					self.plants = data;
                     self.update();
-                    alert(self.plants[0].commonName);
 				});
 			}
 
