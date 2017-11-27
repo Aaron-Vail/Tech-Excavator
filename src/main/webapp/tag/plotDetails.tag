@@ -87,7 +87,6 @@
                     self.update();
 				});
 			}
-
 		})
     </script>
 </plotDetails>
