@@ -172,7 +172,6 @@
                     canvas.setHeight(800);
 
                     var gardenPlotsObject = JSON.parse(GARDEN.currentGarden.plotsJson).objects;
-                    var plotSizeArray = [];
                     gardenPlotsObject.forEach(function(element) {
 
                         if(element.top + element.height * element.scaleY* Math.sin(Math.PI*(90- element.angle)/180) >= canvas.height){
@@ -182,11 +181,7 @@
                             canvas.setWidth(element.left + element.width * element.scaleX *Math.sin(Math.PI*(90- element.angle)/180)) + 50;
                         };
 
-                        plotSizeArray.push({'id':element.id, 'height': element.scaleY * element.height, 'width':element.scaleX * element.width});
-
                     }, this);
-                    GARDEN.plotSizeArray = plotSizeArray;
-                    GARDEN.trigger("plotSizeUpdated");
                 }else{
                     canvas.clear();
                     canvas.setWidth(1470);
@@ -195,7 +190,7 @@
                 }
             });
         });
-       
+
         this.getId = function(){
             //alert(canvas.getActiveObject().id);
         };
