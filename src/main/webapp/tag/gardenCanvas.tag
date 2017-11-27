@@ -28,9 +28,6 @@
     <button id="newPlotModalBtn" data-toggle="modal" data-target="#newPlotModal" >New Plot</button>
     <button id = "loadPlot" onclick="{loadPlot}">Load Plot</button>
     <button id = "getId" onclick="{getId}">Get Id</button>
-    <button id = "embiggenCanvasWidth" onclick="{embiggenCanvasWidth}">Embiggen Canvas Width</button>
-    <button id = "embiggenCanvasHeight" onclick="{embiggenCanvasHeight}">Embiggen Canvas Height</button>
-    <input type = "color" id = "color" value = "#9e6c3a" onchange="{colorSelector}"/>
     <span id = "height"></span>
     <span id = "width"></span>
 </div>
@@ -105,7 +102,7 @@
                 var rectangle = new fabric.Rect({ 
                    left: 100,
                    top: 100,
-                   fill: $("#color").val(),
+                   fill: "#9e6c3a",
                    width: 200,
                    height: 200,
                    cornerStyle: "circle",
@@ -127,6 +124,7 @@
     
                canvas.add(rectangle);
                canvas.renderAll();
+               GARDEN.trigger("newPlotCreated", rectangle);
            });
            $("#newPlotModal").modal('hide');
         };
@@ -150,9 +148,7 @@
              });
        
            });
-           
-    //Needs to trigger when the garden is selected
-
+//RIOT MOUNT
         this.on('mount', function() {
             canvas.setWidth(1470);
             canvas.setHeight(800);
@@ -172,7 +168,6 @@
                     canvas.setHeight(800);
 
                     var gardenPlotsObject = JSON.parse(GARDEN.currentGarden.plotsJson).objects;
-                    var plotSizeArray = [];
                     gardenPlotsObject.forEach(function(element) {
 
                         if(element.top + element.height * element.scaleY* Math.sin(Math.PI*(90- element.angle)/180) >= canvas.height){
@@ -182,11 +177,7 @@
                             canvas.setWidth(element.left + element.width * element.scaleX *Math.sin(Math.PI*(90- element.angle)/180)) + 50;
                         };
 
-                        plotSizeArray.push({'id':element.id, 'height': element.scaleY * element.height, 'width':element.scaleX * element.width});
-
                     }, this);
-                    GARDEN.plotSizeArray = plotSizeArray;
-                    GARDEN.trigger("plotSizeUpdated");
                 }else{
                     canvas.clear();
                     canvas.setWidth(1470);
@@ -194,40 +185,51 @@
                     canvas.backgroundColor = "rgb(249, 252, 252)"
                 }
             });
+
+
+            //These are the height and width changers, will need to be updated on the next sprint
+            canvas.observe("object:scaling",function(e){
+                var costPerArea = $(document.getElementById("selectedPlant")).find(":selected").attr("data-ppa");
+                var heightInFt = (e.target.height*e.target.scaleY/20).toFixed(1);
+                var widthInFt = (e.target.width*e.target.scaleX/20).toFixed(1);
+                
+                $(document.getElementById("width" + e.target.id)).text(widthInFt+ "ft");
+                $(document.getElementById("height" + e.target.id)).text(heightInFt + "ft");
+                $(document.getElementById("price" + e.target.id)).text("$" + (widthInFt*heightInFt*costPerArea).toFixed(2));
+            });
         });
-       
+
         this.getId = function(){
             //alert(canvas.getActiveObject().id);
         };
-        this.colorSelector =  function(){
-            canvas.getActiveObject().set("fill", $("#color").val());
-            canvas.renderAll();
-        };
+        
+    //Set the color of the object
+    GARDEN.on("colorUpdate",function(data){
+        canvas.forEachObject(function(object){
+            console.log(object.fill);
+            console.log(data.fill);
+            if(object.id == data.plotId){
+                object.setColor(data.fill);
+                canvas.renderAll();
+            }
+        })
+    });
 
-    //These are the height and width changers, will need to be updated on the next sprint
-        canvas.observe("object:selected",function(e){
-           $("#height").text(Math.round(e.target.height * e.target.scaleY));
-           $('#width').text(Math.round(e.target.width * e.target.scaleX));
-         });
-        canvas.observe("object:scaling",function(e){
-           $("#height").text(Math.round(e.target.height * e.target.scaleY));
-           $('#width').text(Math.round(e.target.width * e.target.scaleX));
-         });
 
     //Opacity changes on hover
-        canvas.on('mouse:over', function(e) {
-            if(e.target != null){
-                e.target.set('opacity', 1.0);
-                canvas.renderAll();
-            }
-        });
+    canvas.on('mouse:over', function(e) {
+        if(e.target != null){
+            e.target.set('opacity', 1.0);
+            canvas.renderAll();
+        }
+    });
 
-        canvas.on('mouse:out', function(e) {
-            if(e.target != null){
-                e.target.set('opacity', 0.9);
-                canvas.renderAll();
-            }
-        });
+    canvas.on('mouse:out', function(e) {
+        if(e.target != null){
+            e.target.set('opacity', 0.9);
+            canvas.renderAll();
+        }
+    });
     //Slight size change on mouse down and up
     function animate(e, dir) {
         if (e.target) {
@@ -262,11 +264,17 @@
         if(e.target){
             $("#height").text(Math.round(e.target.height * e.target.scaleY));
             $('#width').text(Math.round(e.target.width * e.target.scaleX));
-            GARDEN.selectedPlotId = e.target.id;
-            GARDEN.trigger("selectedPlotUpdated");
+
         }
     });
-    canvas.on('mouse:up', function(e) { animate(e, 0); });
+    canvas.on('mouse:up', function(e) { 
+        animate(e, 0); 
+        if(e.target){
+
+        }
+    });
+
+
 
     //Locks rotation to 45
     canvas.on('object:rotating', function(e) {

@@ -3,7 +3,7 @@
     <!-- HTML SPECIFIC TO THIS COMPONENT -->
     <div class="container-fluid">
         <div class="row plotDetailsRow">
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <table class="table table-fixed">
                     <thead>
                         <tr>
@@ -16,17 +16,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr each={ plots } id={plotId}>
-                            <td class="col-md-1" id="colorBox"><input type="color" value="#9E6C3A"></td>
+                        <tr each={ plots } id="row{plotId}">
+                            <td class="col-md-1" id="colorBox"><input type="color" value={ fill } data-plotId={plotId} onchange={colorSelector}></td>
                             <td class="col-md-3">{plotName}</td>
                             <td class="col-md-3" id="plantDropDown">
                                 <select id="selectedPlant">
-                                    <option each={ plants } value={plantId}>{commonName}</option>
+                                    <option each={ plants } value={plantId} data-ppa = {pricePerPlant / areaPerPlant}>{commonName}</option>
                                 </select>
                             </td>
-                            <td class="col-md-2">20ft</td>
-                            <td class="col-md-2">10ft</td>
-                            <td class="col-md-1">$100</td>
+                            <td class="col-md-2" id="width{plotId}">{ width }ft</td>
+                            <td class="col-md-2" id="height{plotId}">{ height }ft</td>
+                            <td class="col-md-1" id = "price{plotId}"> $Cash </td>
                         </tr>
                     </tbody>
                 </table>
@@ -45,7 +45,7 @@
             width: 100%;
         }
         .table-fixed tbody {
-            height: 155px;
+            height: 250px;
             overflow-y: auto;
             width: 100%;
         }
@@ -96,12 +96,39 @@
                     type: "GET",
                 }).then(function(data){
                     GARDEN.currentGarden.plotInfo = data;
-                    self.plots = data;
-                    console.log(data);
+
+                    var plotObjects = JSON.parse(GARDEN.currentGarden.plotsJson).objects;
+                    
+                    GARDEN.currentGarden.plotInfo.forEach(function(e1) {
+                        plotObjects.forEach(function(e2){
+                            if(e1.plotId == e2.id){
+                                e1.height = e2.height * e2.scaleY / 20;
+                                e1.width = e2.width * e2.scaleX / 20;
+                                e1.fill = e2.fill;
+                            }
+                        },this)
+                    }, this);
+                    
+                    //console.log(GARDEN.currentGarden.plotInfo);
+
+                    self.plots = GARDEN.currentGarden.plotInfo;
                     self.update();
+
+                    GARDEN.currentGarden.plotInfo.forEach(function(event){
+                        $("#row" + event.plotId + " #selectedPlant option[value='" + event.plantId +"']").attr("selected","selected");
+                        GARDEN.plants.forEach(function(plant){
+                            if(plant.plantId == event.plantId){
+                                $("#price" + event.plotId).text("$" + (event.height*event.width*plant.pricePerPlant/plant.areaPerPlant).toFixed(2));
+                            }
+                        }, this)
+                    },this);
+
+
                 })
             });
-
+            this.colorSelector = function(e){
+                GARDEN.trigger("colorUpdate",{"plotId":$(e.target).attr("data-plotId"),"fill":$(e.target).val()})
+            }
             //Save new plots to database
             // function saveNewPlots() {
             //     var selectedPlantId=$("#selectedPlant").val();
