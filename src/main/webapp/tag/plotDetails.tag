@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row plotDetailsRow">
             <div class="col-md-9">
-                <table class="table table-condensed table-fixed">
+                <table class="table table-fixed">
                     <thead>
                         <tr>
                             <th class="col-md-1">Color</th>
@@ -17,78 +17,20 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="col-md-1">Green</td>
-                            <td class="col-md-3">Cucumbert Patch</td>
-                            <td class="col-md-3">Cucumbers</td>
+                            <td class="col-md-1" id="colorBox"><input type="color" value="#9E6C3A"></td>
+                            <td class="col-md-3">Cucumber Patch</td>
+                            <td class="col-md-3" id="plantDropDown">
+                                <select>
+                                    <!-- <option each={ gardens } onchange={getGardenById} value={gardenId}>{gardenName}</option> -->
+                                    <option>Cucumbers</option>
+                                    <option>Tomatoes</option>
+                                    <option>Kale</option>
+                                </select>
+                            </td>
                             <td class="col-md-2">20ft</td>
                             <td class="col-md-2">10ft</td>
                             <td class="col-md-1">$100</td>
                         </tr>
-                        <tr>
-                                <td class="col-md-1">Green</td>
-                                <td class="col-md-3">Cucumbert Patch</td>
-                                <td class="col-md-3">Cucumbers</td>
-                                <td class="col-md-2">20ft</td>
-                                <td class="col-md-2">10ft</td>
-                                <td class="col-md-1">$100</td>
-                            </tr>
-                            <tr>
-                                    <td class="col-md-1">Green</td>
-                                    <td class="col-md-3">Cucumbert Patch</td>
-                                    <td class="col-md-3">Cucumbers</td>
-                                    <td class="col-md-2">20ft</td>
-                                    <td class="col-md-2">10ft</td>
-                                    <td class="col-md-1">$100</td>
-                                </tr>
-                                <tr>
-                                        <td class="col-md-1">Green</td>
-                                        <td class="col-md-3">Cucumbert Patch</td>
-                                        <td class="col-md-3">Cucumbers</td>
-                                        <td class="col-md-2">20ft</td>
-                                        <td class="col-md-2">10ft</td>
-                                        <td class="col-md-1">$100</td>
-                                    </tr>
-                                    <tr>
-                                            <td class="col-md-1">Green</td>
-                                            <td class="col-md-3">Cucumbert Patch</td>
-                                            <td class="col-md-3">Cucumbers</td>
-                                            <td class="col-md-2">20ft</td>
-                                            <td class="col-md-2">10ft</td>
-                                            <td class="col-md-1">$100</td>
-                                        </tr>
-                                        <tr>
-                                                <td class="col-md-1">Green</td>
-                                                <td class="col-md-3">Cucumbert Patch</td>
-                                                <td class="col-md-3">Cucumbers</td>
-                                                <td class="col-md-2">20ft</td>
-                                                <td class="col-md-2">10ft</td>
-                                                <td class="col-md-1">$100</td>
-                                            </tr>
-                                            <tr>
-                                                    <td class="col-md-1">Green</td>
-                                                    <td class="col-md-3">Cucumbert Patch</td>
-                                                    <td class="col-md-3">Cucumbers</td>
-                                                    <td class="col-md-2">20ft</td>
-                                                    <td class="col-md-2">10ft</td>
-                                                    <td class="col-md-1">$100</td>
-                                                </tr>
-                                                <tr>
-                                                        <td class="col-md-1">Green</td>
-                                                        <td class="col-md-3">Cucumbert Patch</td>
-                                                        <td class="col-md-3">Cucumbers</td>
-                                                        <td class="col-md-2">20ft</td>
-                                                        <td class="col-md-2">10ft</td>
-                                                        <td class="col-md-1">$100</td>
-                                                    </tr>
-                                                    <tr>
-                                                            <td class="col-md-1">Green</td>
-                                                            <td class="col-md-3">Cucumbert Patch</td>
-                                                            <td class="col-md-3">Cucumbers</td>
-                                                            <td class="col-md-2">20ft</td>
-                                                            <td class="col-md-2">10ft</td>
-                                                            <td class="col-md-1">$100</td>
-                                                        </tr>
-
                     </tbody>
                 </table>
             </div>
@@ -117,10 +59,39 @@
             float: left;
             border-bottom-width: 0;
         }
+        #colorBox {
+            padding-bottom: 0px;
+        }
+        #plantDropDown {
+            padding-bottom: 0px;
+        }
+        
     </style>
 
     <!-- Javascript SPECIFIC TO THIS COMPONENT -->
     <script>
-        
+        var self = this;
+		self.plants = [];
+
+		//RIOT Mount
+		this.on('mount', function() {
+
+            getAllPlants()
+
+			//Get all plants
+			function getAllPlants() {
+				$.ajax({
+					url: GARDEN.root + "getAllPlants",
+					type: "GET",
+					dataType: "json"
+				}).done(function(data) {
+					GARDEN.plants = data;
+					self.plants = data;
+                    self.update();
+                    alert(self.plants[0].commonName);
+				});
+			}
+
+		})
     </script>
 </plotDetails>
