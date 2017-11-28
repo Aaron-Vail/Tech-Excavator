@@ -113,7 +113,7 @@
                     'lightLevel': $("input:radio[name=sunOrShade]").val(),
 
                 //This will be the plant data at some point
-                    'plantId': 2,
+                    'plantId': 1,
                 }
             }).then(function(data){
                 plotId = data;
@@ -288,7 +288,8 @@
         if(e.target){
             $("#height").text(Math.round(e.target.height * e.target.scaleY));
             $('#width').text(Math.round(e.target.width * e.target.scaleX));
-            console.log($())
+            GARDEN.trigger("plotRectangleSelected", e.target.id);
+            GARDEN.trigger("plantSelected", $(document.getElementById("row"+e.target.id)).find(":selected").val());
         }
     });
     canvas.on('mouse:up', function(e) { 
