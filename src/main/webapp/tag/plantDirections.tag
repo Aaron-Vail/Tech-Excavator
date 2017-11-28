@@ -12,6 +12,7 @@
                 <img src="tomato.jpg" id="plantImage" class="pull-left"/>
                 <h3 id = "plantName">Tomatoes</h3>
                 <p id = "plantDirections">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                <h4 id= "plantPopularity"></h4>
             </div>
         </div>
     </div>
@@ -46,6 +47,9 @@
         p {
             padding: 0px 15px 0px 15px;
         }
+        #plantPopularity{
+            padding-left: 15px;
+        }
         /* img {
             object-fit: cover;
         } */
@@ -69,6 +73,12 @@
                         $("#plantDirections").text(plant.plantingDirections);
                         riot.update();
                     }
+                });
+                $.ajax({
+                    url: GARDEN.root + "getPlantsByPopularity?plantId=" + selectedPlantId,
+                    method: "GET",
+                }).then(function(count){
+                    $("#plantPopularity").text("This plant is in " + count + " user's plots!");
                 });
             });
             
