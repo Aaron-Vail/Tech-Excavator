@@ -97,25 +97,40 @@
 
     //Load plots when a garden is selected
             GARDEN.on('gardenSelectionUpdated', function() {
+
+                self.plants = [];
+                GARDEN.plants.forEach(function(plant){
+                    if(plant.region == GARDEN.currentGarden.region){
+                        self.plants.push(plant);
+                    }
+                });
+
                 $.ajax({
                     url: GARDEN.root + "getPlotsByGarden?gardenId=" + GARDEN.currentGarden.gardenId,
                     type: "GET",
                 }).then(function(data){
                     GARDEN.currentGarden.plotInfo = data;
+                    self.plots = data;
+                    console.log(data.length == 0);
 
-                    var plotObjects = JSON.parse(GARDEN.currentGarden.plotsJson).objects;
-                    
-                    GARDEN.currentGarden.plotInfo.forEach(function(e1) {
-                        plotObjects.forEach(function(e2){
-                            if(e1.plotId == e2.id){
-                                e1.height = e2.height * e2.scaleY / 20;
-                                e1.width = e2.width * e2.scaleX / 20;
-                                e1.fill = e2.fill;
-                            }
-                        },this)
-                    }, this);
+                    if(data.length != 0){
+                        var plotObjects = JSON.parse(GARDEN.currentGarden.plotsJson).objects;
+                        
+                        GARDEN.currentGarden.plotInfo.forEach(function(e1) {
+                            plotObjects.forEach(function(e2){
+                                if(e1.plotId == e2.id){
+                                    e1.height = e2.height * e2.scaleY / 20;
+                                    e1.width = e2.width * e2.scaleX / 20;
+                                    e1.fill = e2.fill;
+                                }
+                            },this)
+                        }, this);
 
-                    self.plots = GARDEN.currentGarden.plotInfo;
+                        self.plots = GARDEN.currentGarden.plotInfo;
+                    }else{
+                        self.plot = [];
+                        console.log(self.plots);
+                    }
                     self.update();
 
                     GARDEN.currentGarden.plotInfo.forEach(function(event){
@@ -129,6 +144,7 @@
 
 
                 })
+                self.update();
             });
 
     //Color selection trigger
