@@ -20,13 +20,15 @@
     <style>
 
         .mainPlantDirectionsDiv {
-            height: 250px;
+            height: 275px;
             border-top: 1px solid lightgrey;
         }
         #plantImage {
+            width: 150px;
             height: 150px;
+            object-fit: cover;
             margin: 4px 0px 0px 15px;
-            padding-right: 15px;
+            padding-right: 15px;   
         }
         #plantDirectionsHeader {
             text-align: center;
