@@ -7,6 +7,6 @@ public interface PlantsDAO {
 
 	public Plants getPlantById(long plantId);
 	public List<Plants> getAllPlants();
-	public void addPlant(String scientificName, String commonName, BigDecimal pricePerPlant, int areaPerPlant, String desiredLight, String imageLink, String plantingDirections, int region);
+	public int getPlantPopularity(long plantId);
 
 }
