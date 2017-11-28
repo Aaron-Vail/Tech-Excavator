@@ -170,7 +170,9 @@
                 $.ajax({
                     url: GARDEN.root + "savePlots",
                     method: "POST",
-                    data: plotUpdateArray,
+                    data: {
+                        'plots': plotUpdateArray,
+                    }
                 })
             })
 
