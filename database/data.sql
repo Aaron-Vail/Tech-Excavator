@@ -12,31 +12,139 @@ INSERT INTO region (region_id, climate) VALUES ('4', 'Warm');
 INSERT INTO region (region_id, climate) VALUES ('5', 'Hot');
 
 --Plant information
-INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('Lycopersicon lycopersicum', 'Tomato', '0.03', '3', 'sun', 'https://static.pexels.com/photos/257794/pexels-photo-257794.jpeg', 'Water semi-frequently', '3');
-INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('Daucus carota', 'Carrot', '0.02', '1', 'sun', 'https://static.pexels.com/photos/65174/pexels-photo-65174.jpeg', 'Average Water Needs; Water regularly. Do not overwater', '3');
-INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('vulgaris', 'Beet', '0.04', '1', 'sun', 'https://cdn.pixabay.com/photo/2017/07/08/17/42/beets-2485052_960_720.jpg', 'Direct sow as soon as the ground can be worked', '2');
-INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('napus', 'Turnip', '0.02', '1', 'sun', 'https://cdn.pixabay.com/photo/2017/04/04/18/00/vegetables-2202506_960_720.jpg', 'Average Water Needs; Water regularly. Do not overwater
-Requires consistently moist soil; do not let dry out between waterings', '2');
-INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('Citrullus lanatus', 'Watermelon', '0.07', '1', 'sun', 'https://cdn.pixabay.com/photo/2017/10/14/15/50/watermelon-2850840_960_720.png', 'From seed; direct sow after last frost', '3');
-INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('Sativus', 'Cucumber', '0.02', '1', 'sun', 'https://cdn.pixabay.com/photo/2016/11/05/00/01/cucumbers-1799262_960_720.jpg', 'Automated testing', '3');
-INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('Vesca', 'Strawberry', '0.04', '1', 'shade', 'https://cdn.pixabay.com/photo/2017/11/05/17/14/strawberry-2921169_960_720.jpg', 'Average Water Needs. Water regularly. Do not overwater', '3'); 
-INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('Pepo', 'Pumpkin', '0.03', '6', 'shade', 'https://cdn.pixabay.com/photo/2017/10/29/16/24/autumn-2900167_960_720.jpg', 'From seed; direct sow after last frost', '2');
+
+
+INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, 
+					image_link, planting_directions, region) VALUES 
+					('Lycopersicon lycopersicum', 
+					'Tomato', '0.03', '3', 'sun', 'https://static.pexels.com/photos/257794/pexels-photo-257794.jpeg', 
+					'Rows: space plants placing one seed every 2" to 8" in rows 4 ft to 5 ft apart.  Hills: plant 5 to 8 
+					seeds per hill. When plants emerge, cut off weaker plants leaving only 2 to 3 per hill. Allow 3'' to 
+					6 ft between hills.  Beds: place hills in beds following spacing for hills above.  Containers: Place 
+					seeds as described above for rows or hills. Use bush-type cucumbers which require less room or grow plants 
+					on cages or on trellises.', '3'
+					);
+					
+INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, 
+					image_link, planting_directions, region) VALUES 
+					('Daucus carota', 'Carrot', 
+					'0.02', '1', 'sun', 'https://static.pexels.com/photos/65174/pexels-photo-65174.jpeg', 
+					'Rows: space plants placing one seed every 2" to 8" in rows 4 ft to 5ft in apart.  
+					Hills: plant 5 to 8 seeds per hill. When plants emerge, cut off weaker plants leaving only 
+					2 to 3 per hill. Allow 3 ft to 6 ft between hills.  Beds: place hills in beds following spacing 
+					for hills above.  Containers: Place seeds as described above for rows or hills. Use bush-type 
+					cucumbers which require less room or grow plants on cages or on trellises.', '3'
+					);
+					
+INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, 
+					image_link, planting_directions, region) VALUES 
+					('vulgaris', 'Beet', '0.04', 
+					'1', 'sun', 'https://cdn.pixabay.com/photo/2017/07/08/17/42/beets-2485052_960_720.jpg', 
+					'Rows: space plants placing one seed every 2" to 8" in rows 4 ft to 5 ft apart.  Hills: plant 
+					5 to 8 seeds per hill. When plants emerge, cut off weaker plants leaving only 2 to 3 per hill. 
+					Allow 3 ft to 6 ft between hills.  Beds: place hills in beds following spacing for hills above.  
+					Containers: Place seeds as described above for rows or hills. Use bush-type cucumbers which require 
+					less room or grow plants on cages or on trellises.', '2'
+					);
+					
+INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, 
+					image_link, planting_directions, region) VALUES 
+					('napus', 'Turnip', '0.02', 
+					'1', 'sun', 'https://cdn.pixabay.com/photo/2017/04/04/18/00/vegetables-2202506_960_720.jpg', 
+					'Rows: space plants placing one seed every 2" to 8" in rows 4 ft to 5 ft apart.  Hills: plant 
+					5 to 8 seeds per hill. When plants emerge, cut off weaker plants leaving only 2 to 3 per hill. 
+					Allow 3 ft to 6 ft between hills.  Beds: place hills in beds following spacing for hills above.  
+					Containers: Place seeds as described above for rows or hills. Use bush-type cucumbers which 
+					require less room or grow plants on cages or on trellises.', '2'
+					);
+					
+INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, 
+					image_link, planting_directions, region) VALUES 
+					('Citrullus lanatus', 'Watermelon', '0.07', 
+					'1', 'sun', 'https://cdn.pixabay.com/photo/2017/10/14/15/50/watermelon-2850840_960_720.png', 
+					'Rows: space plants placing one seed every 2" to 8" in rows 4 ft to 5 ft apart.  Hills: plant 
+					5 to 8 seeds per hill. When plants emerge, cut off weaker plants leaving only 2 to 3 per hill. 
+					Allow 3 ft to 6 ft between hills.  Beds: place hills in beds following spacing for hills above.  
+					Containers: Place seeds as described above for rows or hills. Use bush-type cucumbers which require 
+					less room or grow plants on cages or on trellises.', '3'
+					);
+					
+INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, 
+					image_link, planting_directions, region) VALUES 
+					('Sativus', 'Cucumber', '0.02', '1', 'sun', 
+					'https://cdn.pixabay.com/photo/2016/11/05/00/01/cucumbers-1799262_960_720.jpg', 'Rows: space plants 
+					placing one seed every 2" to 8" in rows 4 ft to 5 ft apart.  Hills: plant 5 to 8 seeds per hill. 
+					When plants emerge, cut off weaker plants leaving only 2 to 3 per hill. Allow 3 ft to 6 ft between hills.  
+					Beds: place hills in beds following spacing for hills above.  Containers: Place seeds as described 
+					above for rows or hills. Use bush-type cucumbers which require less room or grow plants on cages or on trellises.',
+					'3'
+					);
+					
+INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, 
+					image_link, planting_directions, region) VALUES 
+					('Vesca', 'Strawberry', '0.04', '1', 'shade', 
+					'https://cdn.pixabay.com/photo/2017/11/05/17/14/strawberry-2921169_960_720.jpg', 
+					'Rows: space plants placing one seed every 2" to 8" in rows 4 ft to 5 ft apart.  
+					Hills: plant 5 to 8 seeds per hill. When plants emerge, cut off weaker plants 
+					leaving only 2 to 3 per hill. Allow 3 ft to 6 ft between hills.  Beds: place hills 
+					in beds following spacing for hills above.  Containers: Place seeds as described 
+					above for rows or hills. Use bush-type cucumbers which require less room or grow 
+					plants on cages or on trellises.', '3'
+					); 
+					
+INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, 
+					image_link, planting_directions, region) VALUES 
+					('Pepo', 'Pumpkin', '0.03', '6', 'shade', 
+					'https://cdn.pixabay.com/photo/2017/10/29/16/24/autumn-2900167_960_720.jpg', 
+					'Rows: space plants placing one seed every 2" to 8" in rows 4 ft to 5 ft apart.  Hills: 
+					plant 5 to 8 seeds per hill. When plants emerge, cut off weaker plants leaving only 2 
+					to 3 per hill. Allow 3 ft to 6 ft between hills.  Beds: place hills in beds following 
+					spacing for hills above.  Containers: Place seeds as described above for rows or hills. 
+					Use bush-type cucumbers which require less room or grow plants on cages or on trellises.', '2'
+					);
+					
+
 INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('Brassica eruca', 'Arugula', '0.07', '1', 'sun', 'https://cdn.pixabay.com/photo/2016/05/05/15/11/rocket-1374096_960_720.jpg', 'Grown as an edible herb in the Mediterranean area since Roman times,
  it was mentioned by various classical authors as an aphrodisiac,[11][12] most famously in a poem long ascribed to Virgil, Moretum, which contains the line: “et Venerem revocans eruca morantem” (“and the rocket, which revives drowsy Venus [sexual desire]”).[13] Some writers assert that for this reason during the Middle Ages it was forbidden to grow rocket in monasteries.[14] It was listed, however, in a decree by Charlemagne of 802 as one of the pot herbs suitable for growing in gardens.', '3');
-INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('Oleracea', 'Kale', '0.08', '2', 'sun', 'https://cdn.pixabay.com/photo/2015/03/26/09/40/plant-690051_960_720.jpg', 'Until the end of the Middle Ages, kale was one of the most common green vegetables in Europe. Curly-leaved varieties of cabbage already existed along with flat-leaved varieties in Greece in the fourth century BC. It was also used as medicinal food source. Disocorides wrote that it could be used to treat bowel ailments.[3] These forms,
- which were referred to by the Romans as Sabellian kale, are considered to be the ancestors of modern kales.', '3');
-INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('Oleracea var. botrytis', 'Cauliflower', '0.02', '3', 'sun', 'https://cdn.pixabay.com/photo/2016/10/15/00/50/romanesco-broccoli-1741608_960_720.jpg', 'In the 1st century AD, Pliny''s included what he called cyma among his descriptions of cultivated plants in Natural History:
- "Ex omnibus brassicae generibus suavissima est cyma,"[3] ("Of all the varieties of cabbage the most pleasant-tasted is cyma").[4] Plinys descriptions likely refer to the flowering heads of an earlier cultivated variety of Brassica oleracea, but comes close to describing modern cauliflower.', '3');
-INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('Vulgaris subsp. cicla', 'Spinach', '0.03', '1', 'shade', 'https://cdn.pixabay.com/photo/2017/04/09/21/35/spinach-2216967_960_720.jpg', 'Spinach is thought to have originated in ancient Persia (modern Iran and neighboring countries). It is not known by whom, or when, spinach was introduced to India, but the plant was
- subsequently introduced to ancient China, where it was known as "Persian vegetable" (bōsī cài; 波斯菜; present:菠菜). The earliest available record of the spinach plant was recorded in Chinese, stating it was introduced into China via Nepal (probably in 647 AD).[', '3');
-INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('Frost yam', 'Snow Yam', '0.11', '1', 'shade', 'https://atmedia.imgix.net/9592e734016972fdb7adeb59dbfe67c1d79132e3?auto=format&q=45&w=800.0&fit=max&cs=strip', 'The Snow Yam is a foraging item found only in Winter. Unlike other forage items found on the ground, to obtain a Snow Yam, you must dig with the Hoe. It''s not necessary to dig at an Artifact Spot, although Snow Yams may be found at Artifact Spots.
- Snow Yams may be found by digging any tillable soil in Stardew Valley outside of The Farm. They may also be grown from Winter Wild Seeds.','1');
-INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('Persea americana', 'Avacado', '2.00', '12', 'sun', 'https://images.pexels.com/photos/142890/pexels-photo-142890.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb', 'Avocados are commercially valuable and are cultivated in tropical and Mediterranean climates throughout the world.[3]
- They have a green-skinned, fleshy body that may be pear-shaped, egg-shaped, or spherical. Commercially, they ripen after harvesting. Avocado trees are partially self-pollinating and are often propagated through grafting to maintain a predictable quality and quantity of the fruit.', '5');
-INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('Vitis labrusca Concord', 'Concord Grape', '0.07', '10', 'shade', 'https://images.pexels.com/photos/197907/pexels-photo-197907.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb', 'The Concord grape is a cultivar derived from the grape species Vitis labrusca (also called fox grape) that are used as table grapes, wine grapes and juice grapes. They are often used to make grape jelly,
- grape juice, grape pies, grape-flavored soft drinks, and candy. The grape is sometimes used to make wine, particularly kosher wine. Traditionally, most commercially produced Concord wines have been finished sweet, but dry versions are possible if adequate fruit ripeness is achieved.', '4');
-INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('napus', 'Rutabaga', '0.02', '2', 'shade', 'https://i.pinimg.com/736x/fa/11/7b/fa117bd98c6fb1a16e41d7936acb2109--rap-simple.jpg', 'The first known printed reference to the rutabaga comes from the Swiss botanist Gaspard Bauhin in 1620,
- where he notes that it was growing wild in Sweden. It is often considered to have originated in Scandinavia or Russia.[8] It is said to have been widely introduced to Britain around 1800, but it was recorded as being present in the royal gardens in England as early as 1669 and was described in France in 1700.', '3'); 
+INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('Oleracea', 'Kale', '0.08', '2', 'sun', 'https://cdn.pixabay.com/photo/2015/03/26/09/40/plant-690051_960_720.jpg', 'Until the end of the Middle Ages, kale was one of the most common green vegetables in Europe. Curly-leaved varieties of cabbage already existed along with flat-leaved varieties in Greece in the fourth century BC. It was also used as medicinal 
+food source. Disocorides wrote that it could be used to treat bowel ailments.[3] These forms,  which were referred to by the Romans as Sabellian kale, are considered to be the ancestors of modern kales.', '3');
+
+INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('Oleracea var.
+ botrytis', 'Cauliflower', '0.02', '3', 'sun', 'https://cdn.pixabay.com/photo/2016/10/15/00/50/romanesco-broccoli-1741608_960_720.jpg', 'In the 1st century AD, 
+ Pliny''s included what he called cyma among his descriptions of cultivated plants in Natural History: "Ex omnibus brassicae generibus suavissima est cyma,"[3] 
+ ("Of all the varieties of cabbage the most pleasant-tasted is cyma").[4] Plinys descriptions likely refer to the flowering heads of an earlier cultivated variety 
+ of Brassica oleracea, but comes close to describing modern cauliflower.', '3');
+
+INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('Vulgaris subsp.
+ cicla', 'Spinach', '0.03', '1', 'shade', 'https://cdn.pixabay.com/photo/2017/04/09/21/35/spinach-2216967_960_720.jpg', 'Spinach is thought to have originated in 
+ ancient Persia (modern Iran and neighboring countries). It is not known by whom, or when, spinach was introduced to India, but the plant was subsequently 
+ introduced to ancient China, where it was known as "Persian vegetable" (bōsī cài; 波斯菜; present:菠菜). The earliest available record of the spinach plant was 
+ recorded in Chinese, stating it was introduced into China via Nepal (probably in 647 AD).[', '3');
+
+INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('Frost yam', 
+'Snow Yam', '0.11', '1', 'shade', 'https://atmedia.imgix.net/9592e734016972fdb7adeb59dbfe67c1d79132e3?auto=format&q=45&w=800.0&fit=max&cs=strip', 'The Snow Yam is
+ a foraging item found only in Winter. Unlike other forage items found on the ground, to obtain a Snow Yam, you must dig with the Hoe. It''s not necessary to
+  dig at an Artifact Spot, although Snow Yams may be found at Artifact Spots. Snow Yams may be found by digging any tillable soil in Stardew Valley outside of
+   The Farm. They may also be grown from Winter Wild Seeds.','1');
+
+INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('Persea americana',
+ 'Avacado', '2.00', '12', 'sun', 'https://images.pexels.com/photos/142890/pexels-photo-142890.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb', 'Avocados are 
+ commercially valuable and are cultivated in tropical and Mediterranean climates throughout the world.[3] They have a green-skinned, fleshy body that may be
+  pear-shaped, egg-shaped, or spherical. Commercially, they ripen after harvesting. Avocado trees are partially self-pollinating and are often propagated through 
+  grafting to maintain a predictable quality and quantity of the fruit.', '5');
+
+INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('Vitis labrusca 
+Concord', 'Concord Grape', '0.07', '10', 'shade', 'https://images.pexels.com/photos/197907/pexels-photo-197907.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb', 'The 
+Concord grape is a cultivar derived from the grape species Vitis labrusca (also called fox grape) that are used as table grapes, wine grapes and juice grapes. They 
+are often used to make grape jelly, grape juice, grape pies, grape-flavored soft drinks, and candy. The grape is sometimes used to make wine, particularly kosher 
+wine. Traditionally, most commercially produced Concord wines have been finished sweet, but dry versions are possible if adequate fruit ripeness is achieved.', '4');
+
+INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES ('napus', 
+'Rutabaga', '0.02', '2', 'shade', 'https://i.pinimg.com/736x/fa/11/7b/fa117bd98c6fb1a16e41d7936acb2109--rap-simple.jpg', 'The first known printed reference to 
+the rutabaga comes from the Swiss botanist Gaspard Bauhin in 1620, where he notes that it was growing wild in Sweden. It is often considered to have originated in
+ Scandinavia or Russia.[8] It is said to have been widely introduced to Britain around 1800, but it was recorded as being present in the royal gardens in England 
+ as early as 1669 and was described in France in 1700.', '3'); 
+
 
 
 -- Trial User Data, password is "Password"
