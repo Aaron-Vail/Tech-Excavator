@@ -233,6 +233,8 @@
         
     //Set the color of the object
     GARDEN.on("colorUpdate",function(data){
+        canvas.discardActiveObject()
+        canvas.renderAll();
         canvas.forEachObject(function(object){
             if(object.id == data.plotId){
                 object.setColor(data.fill);

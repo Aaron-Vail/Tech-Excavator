@@ -65,6 +65,10 @@
             padding-bottom: 0px;
         }
         
+        .selectedPlotRow td{
+            
+        }
+    
     </style>
 
     <!-- Javascript SPECIFIC TO THIS COMPONENT -->
@@ -129,7 +133,8 @@
 
     //Color selection trigger
             this.colorSelector = function(e){
-                GARDEN.trigger("colorUpdate",{"plotId":$(e.target).attr("data-plotId"),"fill":$(e.target).val()})
+                GARDEN.trigger("colorUpdate",{"plotId":$(e.target).attr("data-plotId"),"fill":$(e.target).val()});
+                GARDEN.trigger("plotRectangleSelected", $(e.target).attr("data-plotId"));
             };
 
     //New plot created handler
@@ -194,13 +199,30 @@
                 var table = document.getElementById("plotsTable");
                 for (var i = 0, row; row = table.rows[i]; i++) {
                     if($(row).attr("id") == "row"+selectedPlotId){
-                        $(row).addClass("active");
+                        for(var j = 0, child; child = $(row).children()[j]; j++){
+                            var rgb = hexToRgb($("input[data-plotId='" + selectedPlotId + "']").val());
+                            $(child).attr("style","background: rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + "," + rgb.a + ")");
+                        }
+                        //$(row).addClass("active");
                     }else{
-                        $(row).removeClass("active");
+                        for(var j = 0, child; child = $(row).children()[j]; j++){
+                            $(child).attr("style","background: rgba(255,255,255)");
+                        }
+                        //$(row).removeClass("active");
                     }
                 }
                 self.update();
             });
+            
+            function hexToRgb(hex) {
+                var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+                return result ? {
+                    r: parseInt(result[1], 16),
+                    g: parseInt(result[2], 16),
+                    b: parseInt(result[3], 16),
+                    a: 0.1,
+                } : null;
+            }
 		})
     </script>
 </plotDetails>
