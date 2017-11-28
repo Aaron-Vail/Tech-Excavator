@@ -87,6 +87,6 @@ body {
 #wrapper{
 	overflow: auto;
 	/* max-height: 800px; */
-	max-height: 550px;
+	max-height: 500px;
     max-width: 100%;
 }
