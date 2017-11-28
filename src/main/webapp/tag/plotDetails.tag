@@ -111,7 +111,6 @@
                 }).then(function(data){
                     GARDEN.currentGarden.plotInfo = data;
                     self.plots = data;
-                    console.log(data.length == 0);
 
                     if(data.length != 0){
                         var plotObjects = JSON.parse(GARDEN.currentGarden.plotsJson).objects;
@@ -129,7 +128,6 @@
                         self.plots = GARDEN.currentGarden.plotInfo;
                     }else{
                         self.plot = [];
-                        console.log(self.plots);
                     }
                     self.update();
 
