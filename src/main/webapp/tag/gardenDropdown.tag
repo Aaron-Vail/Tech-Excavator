@@ -170,8 +170,10 @@
 
 			//Run when updated garden is saved
 			GARDEN.on('updatedGardenPull', function() {
-				getCurrentGardens();
-			})
+				getCurrentGardens(function() {
+						$('#gardenDropDownItems option').last().attr('selected', 'selected');
+				});
+			});
 
 			//Get all gardens by currentUserId and store in self.gardens array above
 			function getCurrentGardens(callback) {
@@ -207,6 +209,9 @@
 					$("#regionDropdownMenuItems").val("Please select a region");
 					getCurrentGardens(function() {
 						$('#gardenDropDownItems option').last().attr('selected', 'selected');
+					GARDEN.selectedGardenIndex = $("#gardenDropDownItems option:selected").index() - 1;
+					GARDEN.currentGarden = self.gardens[GARDEN.selectedGardenIndex];
+					GARDEN.trigger('gardenSelectionUpdated');
 					});
 				});
 			});

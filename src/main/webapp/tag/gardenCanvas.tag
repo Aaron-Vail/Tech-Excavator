@@ -25,7 +25,7 @@
             </div>
         </div>
     </div>
-    <button id="newPlotModalBtn" data-toggle="modal" data-target="#newPlotModal" class="btn btn-default btn-circle btn-xl">
+    <button id="newPlotModalBtn" data-toggle="modal" data-target="#newPlotModal" class="btn btn-default btn-circle btn-xl" style="visibility: hidden">
             <i class="glyphicon glyphicon-leaf"></i>
     </button>
     
@@ -202,8 +202,9 @@
                     canvas.clear();
                     canvas.setWidth(1905);
                     canvas.setHeight(1080);
-                    canvas.backgroundColor = "rgb(249, 252, 252)"
+                    canvas.backgroundColor = "rgb(249, 252, 252)";
                 }
+                $("#newPlotModalBtn").removeAttr("style");
             });
 
 
