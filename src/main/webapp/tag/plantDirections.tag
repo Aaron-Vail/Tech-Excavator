@@ -20,11 +20,12 @@
     <style>
 
         .mainPlantDirectionsDiv {
-            height: 150px;
+            height: 250px;
+            border-top: 1px solid lightgrey;
         }
         #plantImage {
             height: 150px;
-            margin: 4px 0px 0px 0px;
+            margin: 4px 0px 0px 15px;
             padding-right: 15px;
         }
         #plantDirectionsHeader {
@@ -32,13 +33,16 @@
             font-family: 'Bad Script', cursive;
             border-bottom: 1px solid lightgray;
             font-size: 36px;
-            margin: 15px 25px 10px 0px;
+            margin: 15px 0px 10px 0px;
         }
         #plantDirectionsItem {
             margin-top: 0;
         }
         h3 {
             margin-top: 0;
+        }
+        p {
+            padding: 0px 15px 0px 15px;
         }
         /* img {
             object-fit: cover;

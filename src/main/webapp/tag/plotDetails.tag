@@ -37,6 +37,8 @@
     <style>
         .plotDetailsRow {
             padding-left: 15px;
+            border-top: 1px solid lightgrey;
+            border-right: 1px solid lightgrey;
         }
         .table-fixed {
             margin-bottom: 0;
