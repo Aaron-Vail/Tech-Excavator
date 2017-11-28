@@ -34,7 +34,6 @@
     <button id = "getId" onclick="{getId}">Get Id</button>
     <span id = "height"></span>
     <span id = "width"></span> -->
-    <button id="newPlotModalBtn" data-toggle="modal" data-target="#newPlotModal" >New Plot</button>
 </div>
 
 <style>
@@ -236,7 +235,6 @@
             if(object.id == data.plotId){
                 object.setColor(data.fill);
                 canvas.renderAll();
-                break;
             }
         })
     });
