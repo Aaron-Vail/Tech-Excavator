@@ -66,11 +66,13 @@ public class JDBCPlantsDAO implements PlantsDAO {
 	}
 	
 	@Override
-	public void addPlant(String scientificName, String commonName, BigDecimal pricePerPlant, int areaPerPlant, String desiredLight, String imageLink, String plantingDirections, int region) {
-		
-		jdbcTemplate.update("INSERT into plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, image_link, planting_directions, region) VALUES (?,?,?,?,?,?,?,?) RETURNING plant_id", Long.class, scientificName, commonName, pricePerPlant, areaPerPlant, desiredLight, imageLink, plantingDirections, region);
-		
+	public int getPlantPopularity(long plantId) {
+		int result = jdbcTemplate.queryForObject("SELECT COUNT(plant_id) FROM plot"
+				+ " WHERE garden_id IS NOT NULL AND plant_id = ?", Integer.class, plantId);
+		return result;
 	}
+
+	
 }
 
 

@@ -35,12 +35,9 @@ public class PlantApiController {
 		return plantsDao.getAllPlants();
 	}
 	
-	@RequestMapping(path = "/addPlants", method = RequestMethod.POST)
-	public void addPlants(HttpSession session, @ModelAttribute Plants plant){
-		AppUser user = (AppUser)session.getAttribute("currentUser");
-		if (user.isAdmin()){
-			plantsDao.addPlant(plant.getScientificName(), plant.getCommonName(), plant.getPricePerPlant(), plant.getAreaPerPlant(), plant.getDesiredLight(), plant.getImageLink(), plant.getPlantingDirections(), plant.getRegion());
-		}
-
+	@RequestMapping(path = "/getPlantsByPopularity", method = RequestMethod.GET)
+	public int getPlantsByPopularity(@RequestParam long plantId) {
+		return plantsDao.getPlantPopularity(plantId);
 	}
+	
 }
