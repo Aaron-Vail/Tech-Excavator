@@ -34,7 +34,7 @@ public class JDBCPlotDAO implements PlotDAO {
 	@Override
 	public void savePlots(List<Plot> plots, long userId) {
 		for (Plot plot : plots){
-			jdbcTemplate.update("UPDATE plot SET garden_id = ? WHERE plot_id = ? AND user_id = ?", plot.getGardenId(), plot.getPlotId(), userId);
+			jdbcTemplate.update("UPDATE plot SET garden_id = ? AND plant_id = ? WHERE plot_id = ? AND user_id = ?", plot.getGardenId(), plot.getPlantId(),plot.getPlotId(), userId);
 		}
 	}
 
@@ -53,8 +53,22 @@ public class JDBCPlotDAO implements PlotDAO {
 			
 			plots.add(plot);
 		}
-		
 		return plots;
+	}
+
+	@Override
+	public Plot getPlotById(int plotId, long userId) {
+		
+		Plot plot = new Plot();
+		SqlRowSet results = jdbcTemplate.queryForRowSet("SELECT * FROM plot WHERE plot_id = ? and user_id = ?", plotId, userId);
+		if(results.next()){
+			plot.setLightLevel(results.getString("light_level"));
+			plot.setPlotName(results.getString("plot_name"));
+			plot.setPlantId(results.getInt("plant_id"));
+			plot.setPlotId(results.getInt("plot_id"));
+			plot.setGardenId(results.getInt("garden_id"));
+		}
+		return plot;
 	}
 
 }

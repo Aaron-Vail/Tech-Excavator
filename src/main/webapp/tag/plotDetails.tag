@@ -126,9 +126,54 @@
 
                 })
             });
+
+            //Color selection trigger
             this.colorSelector = function(e){
                 GARDEN.trigger("colorUpdate",{"plotId":$(e.target).attr("data-plotId"),"fill":$(e.target).val()})
-            }
+            };
+
+            //New plot created handler
+            GARDEN.on("newPlotCreated", function(data){
+                console.log(data.id);
+                $.ajax({
+                    url: GARDEN.root + "getPlotById?plotId=" + data.id,
+                    method: "GET",
+                }).then(function(result){
+                    result.height = data.height * data.scaleY / 20;
+                    result.width = data.width * data.scaleX / 20;
+                    result.fill = data.fill;
+                    result.gardenId = GARDEN.currentGarden.gardenId;
+                    GARDEN.currentGarden.plotInfo.push(result);
+
+                    self.plots = GARDEN.currentGarden.plotInfo;
+                    self.update();
+
+                    $("#row" + result.plotId + " #selectedPlant option[value='" + result.plantId +"']").attr("selected","selected");
+                        GARDEN.plants.forEach(function(plant){
+                            if(plant.plantId == result.plantId){
+                                $("#price" + result.plotId).text("$" + (result.height*result.width*plant.pricePerPlant/plant.areaPerPlant).toFixed(2));
+                            }
+                    }, this)
+                });
+            });
+
+
+            GARDEN.on('saveButtonClicked', function(){
+                var plotUpdateArray = [];
+                GARDEN.currentGarden.plotInfo.forEach(function(plot){
+                    plotUpdateArray.push({
+                        'plotId': plot.plotId,
+                        'plantId': plot.plantId,
+                        'gardenId': plot.gardenId,
+                    })
+                })
+                $.ajax({
+                    url: GARDEN.root + "savePlots",
+                    method: "POST",
+                    data: plotUpdateArray,
+                })
+            })
+
             //Save new plots to database
             // function saveNewPlots() {
             //     var selectedPlantId=$("#selectedPlant").val();

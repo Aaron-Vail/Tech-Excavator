@@ -84,13 +84,14 @@
     //We need to add buttons for everything below
        //Add new rectangle button
        this.createNewPlot = function(event){
+            console.log($("#new-plot-input").val());
 
             var plotId;
             $.ajax({
                 url: GARDEN.root + "createPlot",
                 type: "POST",         
                 data:{
-                    'name': $("#new-plot-input").val(),
+                    'plotName': $("#new-plot-input").val(),
                     'lightLevel': $("input:radio[name=sunOrShade]").val(),
 
                 //This will be the plant data at some point

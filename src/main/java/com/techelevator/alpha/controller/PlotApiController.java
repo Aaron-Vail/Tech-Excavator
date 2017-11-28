@@ -1,5 +1,6 @@
 package com.techelevator.alpha.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -26,15 +27,17 @@ public class PlotApiController {
 	
 	@RequestMapping(path = "/createPlot", method = RequestMethod.POST)
 	public Long newPlot(@ModelAttribute Plot plot, HttpSession session){
-		//return plotDao.createPlot(plot, ((AppUser)session.getAttribute("currentUser")).getUserId());
+		
+		
+		return plotDao.createPlot(plot, ((AppUser)session.getAttribute("currentUser")).getUserId());
 		
 		//Temporary for testing
-		return plotDao.createPlot(plot, 1L);
+		//return plotDao.createPlot(plot, 1L);
 		
 	}
 	
-	@RequestMapping(path = "/savePlots", method = RequestMethod.PUT)
-	public void savePlot(@ModelAttribute List<Plot> plots, HttpSession session){
+	@RequestMapping(path = "/savePlots", method = RequestMethod.POST)
+	public void savePlot(@ModelAttribute ArrayList<Plot> plots, HttpSession session){
 		
 		plotDao.savePlots(plots, ((AppUser)session.getAttribute("currentUser")).getUserId());
 	}
@@ -43,6 +46,12 @@ public class PlotApiController {
 	public List<Plot> getPlotsByGarden(@RequestParam Long gardenId, HttpSession session){
 		return plotDao.getPlotsByGarden(gardenId, ((AppUser)session.getAttribute("currentUser")).getUserId());
 	}
+	
+	@RequestMapping(path = "/getPlotById", method = RequestMethod.GET)
+	public Plot getPlotById(@RequestParam int plotId, HttpSession session){
+		return plotDao.getPlotById(plotId, ((AppUser)session.getAttribute("currentUser")).getUserId());
+	}
+
 	
 	
 }

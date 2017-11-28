@@ -7,5 +7,6 @@ public interface PlotDAO {
 	public void deletePlot(int plotId);
 	public void savePlots(List<Plot> plots, long userId);
 	public List<Plot> getPlotsByGarden(Long gardenId, long userId);
+	public Plot getPlotById(int plotId, long userId);
 
 }

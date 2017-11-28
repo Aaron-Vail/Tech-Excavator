@@ -82,7 +82,6 @@ public class UserApiController {
 	public AppUser getCurrentUser(HttpSession session, HttpServletRequest request){
 		
 		//Making sure the current user has all of the freshest gardens
-		System.out.println(((AppUser)session.getAttribute("currentUser")).getUserId());
 		AppUser user = appUserDao.getUserInfo(((AppUser)session.getAttribute("currentUser")).getEmail());
 		request.getSession().setAttribute("currentUser", user);
 		
