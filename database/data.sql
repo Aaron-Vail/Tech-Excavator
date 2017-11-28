@@ -107,7 +107,7 @@ INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant
 INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, 
 					image_link, planting_directions, region) VALUES 
 					('Brassica eruca', 'Arugula', '0.07', '1', 'sun', 
-					'https://cdn.pixabay.com/photo/2016/05/05/15/11/rocket-1374096_960_720.jpg', 
+					'http://res.cloudinary.com/ddiztoimj/image/upload/v1511887810/arugula_uyebcr.jpg', 
 					'Grown as an edible herb in the Mediterranean area since Roman times, it was mentioned 
 					by various classical authors as an aphrodisiac, most famously in a poem long ascribed to Virgil, Moretum, 
  					which contains the line: “et Venerem revocans eruca morantem” (“and the rocket, which 
