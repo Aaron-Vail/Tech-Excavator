@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row plotDetailsRow">
             <div class="col-md-12">
-                <table class="table table-fixed">
+                <table id="plotsTable" class="table table-fixed">
                     <thead>
                         <tr>
                             <th class="col-md-1">Color</th>
@@ -188,6 +188,19 @@
                 self.update();
                
             }
+
+    //When one of the plot rectangles are selected
+            GARDEN.on("plotRectangleSelected", function(selectedPlotId){
+                var table = document.getElementById("plotsTable");
+                for (var i = 0, row; row = table.rows[i]; i++) {
+                    if($(row).attr("id") == "row"+selectedPlotId){
+                        $(row).addClass("active");
+                    }else{
+                        $(row).removeClass("active");
+                    }
+                }
+                self.update();
+            });
 		})
     </script>
 </plotDetails>
