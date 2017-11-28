@@ -86,6 +86,7 @@
 
 		#gardenDropDownItems {
 			width: 100%;
+			height: 42px;
 			border-radius: 0px;
 			-webkit-appearance: none;
 				-webkit-border-radius: 0px;
@@ -116,6 +117,7 @@
 		}
 
 		#dropdownMenu1, #gardensButton, #minusButton, #plusButton, #saveButton, #shareButton, #shoppingListButton {
+			padding: 10px 0px 10px 0px;
 			border-radius: 0px;
 			width: 100%;
 		}
@@ -172,17 +174,17 @@
 			})
 
 			//Get all gardens by currentUserId and store in self.gardens array above
-			function getCurrentGardens() {
+			function getCurrentGardens(callback) {
 				$.ajax({
 					url: GARDEN.root + "user/currentUser",
 					type: "GET",
 					dataType: "json",
-				}).done(function(data) {
+				}).then(function(data) {
 					GARDEN.gardens = data.gardens;
 					self.gardens = data.gardens;
 					$("#usersEmailAddress").text(data.email);
 					self.update();
-				});
+				}).then(callback);
 			}
 
 			//Create new garden
@@ -203,8 +205,9 @@
 					$('#newGardenModal').modal('hide');
 					$("#new-garden-input").val("");
 					$("#regionDropdownMenuItems").val("Please select a region");
-					getCurrentGardens();
-					$("#gardenDropDownItems").attr("value");
+					getCurrentGardens(function() {
+						$('#gardenDropDownItems option').last().attr('selected', 'selected');
+					});
 				});
 			});
 
