@@ -25,9 +25,36 @@
             </div>
         </div>
     </div>
+    <button id="newPlotModalBtn" data-toggle="modal" data-target="#newPlotModal" class="btn btn-default btn-circle btn-xl">
+        <i class="glyphicon glyphicon-plus-sign"></i>
+    </button>
+    
+    <!-- <button id="newPlotModalBtn" data-toggle="modal" data-target="#newPlotModal" ><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></button> -->
+    <!-- <button id = "loadPlot" onclick="{loadPlot}">Load Plot</button>
+    <button id = "getId" onclick="{getId}">Get Id</button>
+    <span id = "height"></span>
+    <span id = "width"></span> -->
     <button id="newPlotModalBtn" data-toggle="modal" data-target="#newPlotModal" >New Plot</button>
 </div>
 
+<style>
+    .btn-circle.btn-xl {
+        position: absolute;
+        top: 150px;
+        left: 20px;
+        z-index: 1;
+        width: 50px;
+        height: 50px;
+        padding: 10px 13px;
+        font-size: 24px;
+        line-height: 1.33;
+        border-radius: 35px;
+        color: #fff;
+        background-color: #d9534f;
+        border-color: #d43f3a;
+    }
+
+</style>
 
 <script>
     var self = this;

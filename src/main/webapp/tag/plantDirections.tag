@@ -20,7 +20,7 @@
     <style>
 
         .mainPlantDirectionsDiv {
-            height: 250px;
+            height: 150px;
         }
         #plantImage {
             height: 150px;
