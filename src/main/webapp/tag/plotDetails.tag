@@ -177,6 +177,7 @@
                     if(plot.plotId == $(e.target).attr("data-plotId")){
                         plot.plantId = $(e.target).find(":selected").val();
                         $("#price" + plot.plotId).text("$" + (plot.height*plot.width*$(e.target).find(":selected").attr("data-ppa")).toFixed(2));
+                        GARDEN.trigger("plantSelected", plot.plantId);
                     }
 
                 });

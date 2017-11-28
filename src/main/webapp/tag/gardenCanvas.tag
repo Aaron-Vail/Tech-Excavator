@@ -26,10 +26,6 @@
         </div>
     </div>
     <button id="newPlotModalBtn" data-toggle="modal" data-target="#newPlotModal" >New Plot</button>
-    <button id = "loadPlot" onclick="{loadPlot}">Load Plot</button>
-    <button id = "getId" onclick="{getId}">Get Id</button>
-    <span id = "height"></span>
-    <span id = "width"></span>
 </div>
 
 
@@ -213,6 +209,7 @@
             if(object.id == data.plotId){
                 object.setColor(data.fill);
                 canvas.renderAll();
+                break;
             }
         })
     });
