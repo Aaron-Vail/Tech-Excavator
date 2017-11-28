@@ -57,7 +57,7 @@ public class JDBCAppUserDAO implements AppUserDAO {
 		user.setEmail(email);
 		user.setAdmin(results.getBoolean("admin"));
 		
-		String sqlSearchForGardens = "SELECT * FROM garden WHERE user_id = ? AND date_deleted IS NULL";
+		String sqlSearchForGardens = "SELECT * FROM garden WHERE user_id = ? AND date_deleted IS NULL ORDER BY garden_id ASC";
 		results = jdbcTemplate.queryForRowSet(sqlSearchForGardens, user.getUserId());
 		
 		while(results.next()){

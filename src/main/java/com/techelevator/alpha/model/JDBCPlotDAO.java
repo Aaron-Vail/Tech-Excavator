@@ -32,11 +32,8 @@ public class JDBCPlotDAO implements PlotDAO {
 	}
 
 	@Override
-	public void savePlots(List<Plot> plots, long userId) {
-		for (Plot plot : plots){
-			System.out.println(plot.getGardenId());
-			jdbcTemplate.update("UPDATE plot SET garden_id = ? AND plant_id = ? WHERE plot_id = ? AND user_id = ?", plot.getGardenId(), plot.getPlantId(),plot.getPlotId(), userId);
-		}
+	public void savePlots(Plot plot, long userId) {
+			jdbcTemplate.update("UPDATE plot SET garden_id = ?, plant_id = ? WHERE plot_id = ? AND user_id = ?", plot.getGardenId(), plot.getPlantId(),plot.getPlotId(), userId);
 	}
 
 	@Override
