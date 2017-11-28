@@ -80,12 +80,8 @@
             } 
         });
     
-    
-    //We need to add buttons for everything below
        //Add new rectangle button
        this.createNewPlot = function(event){
-            console.log($("#new-plot-input").val());
-
             var plotId;
             $.ajax({
                 url: GARDEN.root + "createPlot",
@@ -188,12 +184,19 @@
             });
 
 
-            //These are the height and width changers, will need to be updated on the next sprint
+//These are the height and width changers
             canvas.observe("object:scaling",function(e){
                 var costPerArea = $(document.getElementById("selectedPlant")).find(":selected").attr("data-ppa");
                 var heightInFt = (e.target.height*e.target.scaleY/20).toFixed(1);
                 var widthInFt = (e.target.width*e.target.scaleX/20).toFixed(1);
-                
+
+                GARDEN.currentGarden.plotInfo.forEach(function(plot){
+                    if(plot.plotId == e.target.id){
+                        plot.height = heightInFt;
+                        plot.width = widthInFt;
+                    }
+                });
+
                 $(document.getElementById("width" + e.target.id)).text(widthInFt+ "ft");
                 $(document.getElementById("height" + e.target.id)).text(heightInFt + "ft");
                 $(document.getElementById("price" + e.target.id)).text("$" + (widthInFt*heightInFt*costPerArea).toFixed(2));
@@ -207,8 +210,6 @@
     //Set the color of the object
     GARDEN.on("colorUpdate",function(data){
         canvas.forEachObject(function(object){
-            console.log(object.fill);
-            console.log(data.fill);
             if(object.id == data.plotId){
                 object.setColor(data.fill);
                 canvas.renderAll();

@@ -20,7 +20,7 @@
                             <td class="col-md-1" id="colorBox"><input type="color" value={ fill } data-plotId={plotId} onchange={colorSelector}></td>
                             <td class="col-md-3">{plotName}</td>
                             <td class="col-md-3" id="plantDropDown">
-                                <select id="selectedPlant">
+                                <select id="selectedPlant" onchange="{plantSelected}" data-plotId="{plotId}">
                                     <option each={ plants } value={plantId} data-ppa = {pricePerPlant / areaPerPlant}>{commonName}</option>
                                 </select>
                             </td>
@@ -71,12 +71,12 @@
 		self.plants = [];
         self.plots = [];
 
-		//RIOT Mount
+	//RIOT Mount
 		this.on('mount', function() {
 
             getAllPlants()
 
-			//Get all plants
+    //Get all plants
 			function getAllPlants() {
 				$.ajax({
 					url: GARDEN.root + "getAllPlants",
@@ -89,7 +89,7 @@
 				});
 			}
 
-            //Load plots when a garden is selected
+    //Load plots when a garden is selected
             GARDEN.on('gardenSelectionUpdated', function() {
                 $.ajax({
                     url: GARDEN.root + "getPlotsByGarden?gardenId=" + GARDEN.currentGarden.gardenId,
@@ -108,8 +108,6 @@
                             }
                         },this)
                     }, this);
-                    
-                    //console.log(GARDEN.currentGarden.plotInfo);
 
                     self.plots = GARDEN.currentGarden.plotInfo;
                     self.update();
@@ -127,14 +125,13 @@
                 })
             });
 
-            //Color selection trigger
+    //Color selection trigger
             this.colorSelector = function(e){
                 GARDEN.trigger("colorUpdate",{"plotId":$(e.target).attr("data-plotId"),"fill":$(e.target).val()})
             };
 
-            //New plot created handler
+    //New plot created handler
             GARDEN.on("newPlotCreated", function(data){
-                console.log(data.id);
                 $.ajax({
                     url: GARDEN.root + "getPlotById?plotId=" + data.id,
                     method: "GET",
@@ -149,7 +146,7 @@
                     self.update();
 
                     $("#row" + result.plotId + " #selectedPlant option[value='" + result.plantId +"']").attr("selected","selected");
-                        GARDEN.plants.forEach(function(plant){
+                    GARDEN.plants.forEach(function(plant){
                             if(plant.plantId == result.plantId){
                                 $("#price" + result.plotId).text("$" + (result.height*result.width*plant.pricePerPlant/plant.areaPerPlant).toFixed(2));
                             }
@@ -157,42 +154,37 @@
                 });
             });
 
-
+    //When the garden save button is clicked
             GARDEN.on('saveButtonClicked', function(){
                 var plotUpdateArray = [];
                 GARDEN.currentGarden.plotInfo.forEach(function(plot){
-                    plotUpdateArray.push({
-                        'plotId': plot.plotId,
-                        'plantId': plot.plantId,
-                        'gardenId': plot.gardenId,
-                    })
-                })
-                $.ajax({
-                    url: GARDEN.root + "savePlots",
-                    method: "POST",
-                    data: {
-                        'plots': plotUpdateArray,
+
+                    $.ajax({
+                        url: GARDEN.root + "savePlot",
+                        method: "POST",
+                        data: {
+                            'plotId': plot.plotId,
+                            'plantId': plot.plantId,
+                            'gardenId': plot.gardenId,
+                        }
+                    });
+                });
+            });
+
+    //The plant is changed in a plot row
+            this.plantSelected = function(e){
+                GARDEN.currentGarden.plotInfo.forEach(function(plot){
+                    if(plot.plotId == $(e.target).attr("data-plotId")){
+                        plot.plantId = $(e.target).find(":selected").val();
+                        $("#price" + plot.plotId).text("$" + (plot.height*plot.width*$(e.target).find(":selected").attr("data-ppa")).toFixed(2));
                     }
-                })
-            })
 
-            //Save new plots to database
-            // function saveNewPlots() {
-            //     var selectedPlantId=$("#selectedPlant").val();
-            //     $.ajax({
-            //         url: GARDEN.root + "savePlots",
-            //         type: "POST",
-            //         data: {
-            //             gardenId: GARDEN.currentGarden.gardenId,
-            //             plantId: selectedPlantId,
-            //             plotId: 3,
-            //         }
-            //     }).done(function(data) {
+                });
 
-            //     })
-            // }
-
-
+                self.plots = GARDEN.currentGarden.plotInfo;
+                self.update();
+               
+            }
 		})
     </script>
 </plotDetails>
