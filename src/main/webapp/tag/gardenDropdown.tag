@@ -26,7 +26,7 @@
 	  		<button id="shareButton" type="button" class="btn btn-default">Share</button>
 	  	</div>
 	  	<div class="col-md-1">
-	  		<button id="shoppingListButton" type="button" class="btn btn-default">Shopping List</button>
+	  		<button id="shoppingListButton" type="button" class="btn btn-default" onclick ={shoppingList}>Shopping List</button>
 	  	</div>
 	  </div>
 	</div>
@@ -242,7 +242,14 @@
 				GARDEN.trigger('saveButtonClicked');
 			});
 
+		//Shopping list button clicked
 
+		this.shoppingList = function(e){
+			//Temporary
+			GARDEN.trigger("shoppingListButtonClicked");
+
+
+		}
 		})
 	</script>
 
