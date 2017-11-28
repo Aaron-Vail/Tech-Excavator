@@ -10,16 +10,11 @@
         <div class="row">
             <div class="col-md-12">
                 <img src="tomato.jpg" id="plantImage" class="pull-left"/>
+                <h3>Tomatoes</h3>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
             </div>
         </div>
     </div>
-<!-- 
-
-    <div class="col-md-12">
-        <div class="pull-left"><img src="YourImage.png"/></div>
-        <div class="pull-left">Your text goes here......</div>
-    </div> -->
 
     <!-- CSS SPECIFIC TO THIS COMPONENT -->
     <style>
@@ -33,9 +28,16 @@
             padding-right: 15px;
         }
         #plantDirectionsHeader {
-            margin: 8px 25px 15px 0px;
+            text-align: center;
+            font-family: 'Bad Script', cursive;
+            border-bottom: 1px solid lightgray;
+            font-size: 36px;
+            margin: 15px 25px 10px 0px;
         }
         #plantDirectionsItem {
+            margin-top: 0;
+        }
+        h3 {
             margin-top: 0;
         }
         /* img {
@@ -50,6 +52,8 @@
         //RIOT Mount
         this.on('mount', function() {
             
+            
+
         });
 
     </script>
