@@ -14,7 +14,7 @@
                 <div class="modal-body">
                     <input type="text" name="new-plot-input" id="new-plot-input" class="form-control" placeholder="Plot Name">
                 </div>
-                <div class = "radio">
+                <div class = "radio" style = "padding-left: 1.5em">
                     <lable class = "radio-inline"><input type = "radio" name = "sunOrShade" value = "sun" checked = "">Sun</input></lable>
                     <lable class = "radio-inline"><input type = "radio" name = "sunOrShade" value = "shade">Shade</input></lable>
                 </div>
@@ -26,7 +26,7 @@
         </div>
     </div>
     <button id="newPlotModalBtn" data-toggle="modal" data-target="#newPlotModal" class="btn btn-default btn-circle btn-xl">
-        <i class="glyphicon glyphicon-plus-sign"></i>
+            <i class="glyphicon glyphicon-leaf"></i>
     </button>
     
     <!-- <button id="newPlotModalBtn" data-toggle="modal" data-target="#newPlotModal" ><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></button> -->
@@ -49,8 +49,9 @@
         line-height: 1.33;
         border-radius: 35px;
         color: #fff;
-        background-color: #d9534f;
-        border-color: #d43f3a;
+        background-color: #2e7f39;
+        border-color: #e7e7e7;
+        padding-left: 11px;
     }
 
 </style>
@@ -169,8 +170,8 @@
            });
 //RIOT MOUNT
         this.on('mount', function() {
-            canvas.setWidth(1470);
-            canvas.setHeight(800);
+            canvas.setWidth(1905);
+            canvas.setHeight(1080);
             fabric.Object.prototype.transparentCorners = false;
             fabric.Object.prototype.originX = fabric.Object.prototype.originY = 'center';
             canvas.renderAll();
@@ -183,8 +184,8 @@
                     canvas.loadFromDatalessJSON(GARDEN.currentGarden.plotsJson);
 
                     //Resizing the canvas on a load
-                    canvas.setWidth(1470);
-                    canvas.setHeight(800);
+                    canvas.setWidth(1905);
+                    canvas.setHeight(1080);
 
                     var gardenPlotsObject = JSON.parse(GARDEN.currentGarden.plotsJson).objects;
                     gardenPlotsObject.forEach(function(element) {
@@ -199,8 +200,8 @@
                     }, this);
                 }else{
                     canvas.clear();
-                    canvas.setWidth(1470);
-                    canvas.setHeight(800);
+                    canvas.setWidth(1905);
+                    canvas.setHeight(1080);
                     canvas.backgroundColor = "rgb(249, 252, 252)"
                 }
             });
