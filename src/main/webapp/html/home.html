@@ -62,12 +62,17 @@
   <gardenCanvas></gardenCanvas>
   <div id = "wrapper"><canvas id = "c"></canvas></div>
   <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-9">
-            <plotDetails></plotDetails>
-        </div>
-        <div class="col-md-3" style="padding-left: 0;">
-            <plantDirections></plantDirections>
+    <button type="button" class="btn btn-default btn-xs" aria-label="Left Align" data-toggle="collapse" data-target="#mini">
+        <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+    </button>
+    <div id="mini" class="collapse">
+      <div class="row">
+          <div class="col-md-9">
+              <plotDetails></plotDetails>
+          </div>
+          <div class="col-md-3" style="padding-left: 0;">
+              <plantDirections></plantDirections>
+          </div>
         </div>
       </div>
   </div>
@@ -75,9 +80,11 @@
 
 
   <script src="../tag/gardenDropdown.tag" type="riot/tag"></script>
+  <script src="../tag/shoppingList.tag" type="riot/tag"></script>
   <script src="../tag/gardenCanvas.tag" type="riot/tag"></script>
   <script src="../tag/plotDetails.tag" type="riot/tag"></script>
   <script src="../tag/plantDirections.tag" type="riot/tag"></script>
+  <script>riot.mount('gardenDropdown')</script>
   <script>riot.mount('gardenDropdown')</script>
   <script>riot.mount('gardenCanvas')</script>
   <script>riot.mount('plotDetails')</script>
