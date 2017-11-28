@@ -263,7 +263,7 @@
         if(e.target){
             $("#height").text(Math.round(e.target.height * e.target.scaleY));
             $('#width').text(Math.round(e.target.width * e.target.scaleX));
-
+            console.log($())
         }
     });
     canvas.on('mouse:up', function(e) { 
