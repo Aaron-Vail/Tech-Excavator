@@ -84,9 +84,17 @@ body {
  }
 
  /* For the div around the canvas */
-#wrapper{
+#wrapper {
 	overflow: auto;
 	/* max-height: 800px; */
-	max-height: 500px;
+	max-height: 1200px;
     max-width: 100%;
+}
+
+#threeBurgers {
+	border-radius: 0px;
+}
+
+#menuDropper {
+	text-align: center;
 }

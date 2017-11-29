@@ -9,8 +9,8 @@
                         <tr>
                             <th class="col-md-1">Color</th>
                             <th class="col-md-3">Plot Name</th>
-                            <th class="col-md-3">Plant Type</th>
-                            <th class="col-md-2">Width</th>
+                            <th class="col-md-3" style="padding-left: 0px">Plant Type</th>
+                            <th class="col-md-2" style="padding-left: 25px">Width</th>
                             <th class="col-md-2">Height</th>
                             <th class="col-md-1">Price</th>
                         </tr>
@@ -20,11 +20,11 @@
                             <td class="col-md-1" id="colorBox"><input type="color" value={ fill } data-plotId={plotId} onchange={colorSelector}></td>
                             <td class="col-md-3">{plotName}</td>
                             <td class="col-md-3" id="plantDropDown">
-                                <select id="selectedPlant" onchange="{plantSelected}" data-plotId="{plotId}">
+                                <select id="selectedPlant" class="form-control" onchange="{plantSelected}" data-plotId="{plotId}">
                                     <option each={ plants } value={plantId} data-ppa = {pricePerPlant / areaPerPlant}>{commonName}</option>
                                 </select>
                             </td>
-                            <td class="col-md-2" id="width{plotId}">{ width }ft</td>
+                            <td class="col-md-2" style="padding-left: 25px" id="width{plotId}">{ width }ft </td>
                             <td class="col-md-2" id="height{plotId}">{ height }ft</td>
                             <td class="col-md-1" id = "price{plotId}"> $Cash </td>
                         </tr>
@@ -59,14 +59,24 @@
             border-bottom-width: 0;
         }
         #colorBox {
-            padding-bottom: 0px;
+            padding-bottom: 5px;
         }
         #plantDropDown {
-            padding-bottom: 0px;
+            padding: 0px;
+            height: 37px;
         }
         
-        .selectedPlotRow td{
-            
+        #selectedPlant {
+            width: 75%;
+			height: 37px;
+			border-radius: 0px;
+			-webkit-appearance: none;
+				-webkit-border-radius: 0px;
+				background-image: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='24' height='24' viewBox='0 0 24 24'><path fill='#444' d='M7.406 7.828l4.594 4.594 4.594-4.594 1.406 1.406-6 6-6-6z'></path></svg>");
+				background-position: 100% 50%;
+				background-repeat: no-repeat;
+			text-align: left;
+			padding-left: 5px;
         }
     
     </style>
@@ -111,7 +121,6 @@
                 }).then(function(data){
                     GARDEN.currentGarden.plotInfo = data;
                     self.plots = data;
-                    console.log(data.length == 0);
 
                     if(data.length != 0){
                         var plotObjects = JSON.parse(GARDEN.currentGarden.plotsJson).objects;
@@ -129,7 +138,6 @@
                         self.plots = GARDEN.currentGarden.plotInfo;
                     }else{
                         self.plot = [];
-                        console.log(self.plots);
                     }
                     self.update();
 
