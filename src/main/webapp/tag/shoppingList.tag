@@ -9,7 +9,7 @@
                 <div class="modal-header">
                     <h4 class="modal-title">Your Shopping List</h4>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" id="shoppingListModalBody">
 
                     <div each={ gardens }>
                             <h4>{gardenName}</h4>
@@ -31,6 +31,16 @@
         </div>
     </div>
 
+    <style>
+        #shoppingListModal{
+            margin-top: 3%;
+        }
+        #shoppingListModalBody{
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+    </style>
 
     <script>
         var self = this;
