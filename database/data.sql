@@ -61,7 +61,7 @@ INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant
 INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, 
 					image_link, planting_directions, region) VALUES 
 					('Citrullus lanatus', 'Watermelon', '0.07', 
-					'1', 'sun', 'http://res.cloudinary.com/ddiztoimj/image/upload/v1511887815/watermelon_pk2lmw.png', 
+					'5', 'sun', 'http://res.cloudinary.com/ddiztoimj/image/upload/v1511887815/watermelon_pk2lmw.png', 
 					'Rows: space plants placing one seed every 2" to 8" in rows 4 ft to 5 ft apart.  Hills: plant 
 					5 to 8 seeds per hill. When plants emerge, cut off weaker plants leaving only 2 to 3 per hill. 
 					Allow 3 ft to 6 ft between hills.  Beds: place hills in beds following spacing for hills above.  
