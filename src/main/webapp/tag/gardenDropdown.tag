@@ -222,7 +222,7 @@
 					}
 				}).done(function(data) {
 					getCurrentGardens();
-					
+					GARDEN.trigger("gardenDeleted");
 					$('#deleteGardenModal').modal('hide');
 				});
 			});

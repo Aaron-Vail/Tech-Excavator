@@ -248,5 +248,12 @@
                 } : null;
             }
 		})
+
+    //When a garden is deleted
+        GARDEN.on("gardenDeleted", function(){
+            $("tbody tr").empty();
+            self.update();
+        });
+
     </script>
 </plotDetails>

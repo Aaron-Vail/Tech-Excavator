@@ -320,5 +320,16 @@
         }
     });
 
+    //On garden deleted
+    GARDEN.on("gardenDeleted", function(){
+        canvas.clear();
+        canvas.setWidth(1905);
+        canvas.setHeight(1080);
+        $("#newPlotModalBtn").attr("style","visibility: hidden");
+        self.update();
+
+
+    })
+
     </script>
 </gardenCanvas>
