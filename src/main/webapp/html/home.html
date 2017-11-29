@@ -59,6 +59,7 @@
 <body>
   <!-- RIOT -->
   <gardenDropdown></gardenDropdown>
+  <shoppingList></shoppingList>
   <gardenCanvas></gardenCanvas>
   <div id = "wrapper"><canvas id = "c"></canvas></div>
   <div class="container-fluid">
@@ -82,11 +83,12 @@
   </div>
 
 
-
+  <script src="../tag/shoppingList.tag" type="riot/tag"></script>
   <script src="../tag/gardenDropdown.tag" type="riot/tag"></script>
   <script src="../tag/gardenCanvas.tag" type="riot/tag"></script>
   <script src="../tag/plotDetails.tag" type="riot/tag"></script>
   <script src="../tag/plantDirections.tag" type="riot/tag"></script>
+  <script>riot.mount('shoppingList')</script>
   <script>riot.mount('gardenDropdown')</script>
   <script>riot.mount('gardenCanvas')</script>
   <script>riot.mount('plotDetails')</script>
