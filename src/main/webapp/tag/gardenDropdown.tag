@@ -221,8 +221,9 @@
 						gardenId: selectedGardenId
 					}
 				}).done(function(data) {
-					$('#deleteGardenModal').modal('hide');
 					getCurrentGardens();
+					
+					$('#deleteGardenModal').modal('hide');
 				});
 			});
 
@@ -236,12 +237,15 @@
 			//Save button clicked
 			$("#saveButton").on("click", function() {
 				GARDEN.gardenBeforeSave = $("#gardenDropDownItems").find(":selected").val();
-				GARDEN.trigger('saveButtonClicked');
+				if(GARDEN.gardenBeforeSave != "Please select a garden"){
+					GARDEN.trigger('saveButtonClicked');
+				}
 			});
 			//Run when updated garden is saved
 			GARDEN.on('updatedGardenPull', function() {
 				getCurrentGardens(function() {
 						$("#gardenDropDownItems option[value='" + GARDEN.gardenBeforeSave + "']").attr('selected', 'selected');
+						alert("Garden was saved successfully!")
 				});
 			});
 
