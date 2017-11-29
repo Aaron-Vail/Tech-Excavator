@@ -36,7 +36,7 @@
             font-family: 'Bad Script', cursive;
             border-bottom: 1px solid lightgray;
             font-size: 36px;
-            margin: 15px 0px 10px 0px;
+            margin: 15px 15px 10px 15px;
         }
         #plantDirectionsItem {
             margin-top: 0;
