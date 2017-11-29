@@ -168,13 +168,6 @@
 			//Ran on login to get all gardens by user ID
 			getCurrentGardens();
 
-			//Run when updated garden is saved
-			GARDEN.on('updatedGardenPull', function() {
-				getCurrentGardens(function() {
-						$('#gardenDropDownItems option').last().attr('selected', 'selected');
-				});
-			});
-
 			//Get all gardens by currentUserId and store in self.gardens array above
 			function getCurrentGardens(callback) {
 				$.ajax({
@@ -238,8 +231,16 @@
 				GARDEN.trigger('gardenSelectionUpdated');
 			});
 
+			//Save button clicked
 			$("#saveButton").on("click", function() {
+				GARDEN.gardenBeforeSave = $("#gardenDropDownItems").find(":selected").val();
 				GARDEN.trigger('saveButtonClicked');
+			});
+			//Run when updated garden is saved
+			GARDEN.on('updatedGardenPull', function() {
+				getCurrentGardens(function() {
+						$("#gardenDropDownItems option[value='" + GARDEN.gardenBeforeSave + "']").attr('selected', 'selected');
+				});
 			});
 
 		//Shopping list button clicked
