@@ -231,17 +231,22 @@
             //alert(canvas.getActiveObject().id);
         };
         
-    //Set the color of the object
-    GARDEN.on("colorUpdate",function(data){
-        canvas.discardActiveObject()
-        canvas.renderAll();
-        canvas.forEachObject(function(object){
-            if(object.id == data.plotId){
-                object.setColor(data.fill);
-                canvas.renderAll();
-            }
-        })
-    });
+        //Set the color of the object
+        GARDEN.on("colorUpdate",function(data){
+            canvas.discardActiveObject()
+            canvas.renderAll();
+            canvas.forEachObject(function(object){
+                if(object.id == data.plotId){
+                    object.setColor(data.fill);
+                    canvas.renderAll();
+                }
+            })
+        });
+
+        //Downloads the current canvas
+        GARDEN.on("downloadButtonClicked",function(e){
+            GARDEN.trigger("canvasPng",e,canvas.toDataURL("png"));
+        });
 
 
     //Opacity changes on hover
@@ -314,5 +319,6 @@
             e.target.angle = 315;
         }
     });
+
     </script>
 </gardenCanvas>

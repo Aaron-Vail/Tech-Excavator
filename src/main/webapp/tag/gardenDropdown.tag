@@ -23,7 +23,9 @@
 	  		<button id="saveButton" type="button" class="btn btn-default">Save</button>
 	  	</div>
 	  	<div class="col-md-1">
-	  		<button id="shareButton" type="button" class="btn btn-default">Share</button>
+				<a id="downloadLink">
+					<button id="shareButton" type="button" class="btn btn-default" onclick={download}>Download</button>
+				</a>
 	  	</div>
 	  	<div class="col-md-1">
 	  		<button id="shoppingListButton" type="button" class="btn btn-default" onclick ={shoppingList}>Shopping List</button>
@@ -248,10 +250,20 @@
 		this.shoppingList = function(e){
 			//Temporary
 			GARDEN.trigger("shoppingListButtonClicked");
-
-
 		}
+
+		//Download Button Clicked
+		this.download = function(e){
+			GARDEN.trigger("downloadButtonClicked", e);
+		}
+		GARDEN.on("canvasPng", function(e, png){
+			if('currentGarden' in GARDEN){
+				$("#downloadLink").attr("href",png);
+				$("#downloadLink").attr("download", GARDEN.currentGarden.gardenName +".png");
+			}
 		})
+
+	})
 	</script>
 
 </gardenDropdown>
