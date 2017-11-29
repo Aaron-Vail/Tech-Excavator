@@ -24,7 +24,7 @@
                                     <option each={ plants } value={plantId} data-ppa = {pricePerPlant / areaPerPlant}>{commonName}</option>
                                 </select>
                             </td>
-                            <td class="col-md-2" style="padding-left: 25px" id="width{plotId}">{ width }ft </td>
+                            <td class="col-md-2" style="padding-left: 25px" id="width{plotId}">{ width }ft</td>
                             <td class="col-md-2" id="height{plotId}">{ height }ft</td>
                             <td class="col-md-1" id = "price{plotId}"> $Cash </td>
                         </tr>
