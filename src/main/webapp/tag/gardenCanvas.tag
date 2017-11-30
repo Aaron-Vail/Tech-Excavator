@@ -146,6 +146,7 @@
                canvas.renderAll();
                GARDEN.trigger("newPlotCreated", rectangle);
            });
+           $("#new-plot-input").val("");
            $("#newPlotModal").modal('hide');
         };
     

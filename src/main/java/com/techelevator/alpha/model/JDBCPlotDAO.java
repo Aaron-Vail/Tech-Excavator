@@ -40,7 +40,7 @@ public class JDBCPlotDAO implements PlotDAO {
 	public List<Plot> getPlotsByGarden(Long gardenId, long userId) {
 		
 		List<Plot> plots = new ArrayList<>();
-		SqlRowSet results = jdbcTemplate.queryForRowSet("SELECT * FROM plot WHERE garden_id = ? and user_id = ?", gardenId, userId);
+		SqlRowSet results = jdbcTemplate.queryForRowSet("SELECT * FROM plot WHERE garden_id = ? and user_id = ? ORDER BY plot_id ASC", gardenId, userId);
 		while(results.next()){
 			Plot plot = new Plot();
 			plot.setLightLevel(results.getString("light_level"));

@@ -194,7 +194,7 @@ INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant
 					); 
 
 INSERT INTO plant (scientific_name, common_name, price_per_plant, area_per_plant, desired_light, 
-					image_link, planting_directions, region) VALUES ('rotundifolius', 'potato', '0.02', '1', 'shade', 'https://images-na.ssl-images-amazon.com/images/I/41SnI3JpZKL._SX355_.jpg', 
+					image_link, planting_directions, region) VALUES ('rotundifolius', 'Potato', '0.02', '1', 'shade', 'https://images-na.ssl-images-amazon.com/images/I/41SnI3JpZKL._SX355_.jpg', 
 					'The potato is a starchy, tuberous crop from the perennial nightshade Solanum tuberosum. The word "potato" may 
 					refer either to the plant itself or to the edible tuber.[2] In the Andes, where the species is indigenous, 
 					some other closely related species are cultivated. Potatoes were introduced to Europe in the second half of the 16th century 
