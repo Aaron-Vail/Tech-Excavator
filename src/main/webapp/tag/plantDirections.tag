@@ -78,7 +78,12 @@
                     url: GARDEN.root + "getPlantsByPopularity?plantId=" + selectedPlantId,
                     method: "GET",
                 }).then(function(count){
-                    $("#plantPopularity").text("This plant is in " + count + " user's plots!");
+                    if(count<2){
+                        $("#plantPopularity").text("This plant is in " + count + " user's plots!");
+                    }else{
+                        $("#plantPopularity").text("This plant is in " + count + " users' plots!");
+                    }
+                    
                 });
             });
             
