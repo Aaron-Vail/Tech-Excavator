@@ -103,3 +103,8 @@ body {
 	text-align: center;
 	background-color: rgb(249, 252, 252);
 }
+
+#adminImg {
+	width: 100%;
+	height: 100%;
+}
